@@ -10,6 +10,30 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-transparent">
+      <div class="container">
+        <%= link_to root_path do %>
+        <span> <%= image_tag "sake-logo.png", class: "navbar-brand icon" %> </span>
+        <% end %>
+        
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <%= link_to users_new_path do %>
+            <%= image_tag "sake-login.png", class: "login" %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to users_new_path do %>
+            <%= image_tag "sake-reg.png", class: "login" %>
+            <% end %>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </nav>
+    
+    
     <%= yield %>
   </body>
 </html>

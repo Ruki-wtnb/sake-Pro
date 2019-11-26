@@ -22,7 +22,7 @@ h1, h2 {
 .top-hero-wrapper {
   width: 100vw;
   height: 100vh;
-  background-image: url('bg-top.png');
+  background-image: url('#');
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -64,4 +64,36 @@ h1, h2 {
       margin-bottom: 20px;
     }
   }
+}
+
+//nav-bar
+.navbar-transparent {
+  margin-bottom: 0px;
+  background-color: rgba(0,0,0,0.5);
+  a {
+    color: #fff !important;
+  }
+
+  .navbar-brand {
+    padding: 0px;
+    margin-top: 15px;
+  }
+
+  .icon {
+    height: 50px;
+    width: 150px;
+  }
+}
+
+.login{
+  height: 50px;
+  width:100px;
+}
+
+//alert
+.alert {
+  margin-bottom: 0px;
+  position: fixed;
+  width: 100%;
+  z-index: 10000;
 }
