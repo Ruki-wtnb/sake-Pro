@@ -7,21 +7,21 @@
         <%= form_for @user do |f| %>
         <div class="form-group">
             <%= f.label :name, "氏名", class: 'text-white' %>
-            <%= f.text_field :name, class: 'form-control' %>
+            <%= f.text_field :name, :placeholder => "15文字以内で入力してください", class: 'form-control'%>
         </div>
         
         <div class="form-group">
-          <%= f.label :email, "", class: 'text-white' %>
+          <%= f.label :email, "メールアドレス", class: 'text-white' %>
           <%= f.text_field :email, class: 'form-control' %>
         </div>
         
         <div class="form-group">
-          <%= f.label :password, class: 'text-white' %>
-          <%= f.password_field :password, class: 'form-control' %>
+          <%= f.label :password, "暗号",class: 'text-white' %>
+          <%= f.password_field :password, :placeholder => "文字数字交じり,8字以上32文字以下",class: 'form-control' %>
         </div>
         
         <div class="form-group">
-          <%= f.label :password_confirmation, class: 'text-white' %>
+          <%= f.label :password_confirmation, "暗号確認用", class: 'text-white' %>
           <%= f.password_field :password_confirmation, class: 'form-control' %>
         </div>
         <%= f.submit "登録", class: 'btn-block btn-white' %>

@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
   def new
     @user = User.new
+    @name_value = "15文字以内"
     #binding.pry
   end
   
   def create
     @user = User.new(user_params)
-    binding.pry
+    #binding.pry
     
     if @user.save
       redirect_to root_path, success: '登録が完了しました'

@@ -10,30 +10,45 @@
   </head>
 
   <body>
+    <% flash.each do |key, value| %>
+     <div class="alert alert-<%= key %>" role="alert"><%= value %></div> 
+    <% end %>
+    
     <nav class="navbar navbar-default navbar-fixed-top navbar-transparent">
-      <div class="container">
+     <div class="container">
         <%= link_to root_path do %>
-        <span> <%= image_tag "sake-logo.png", class: "navbar-brand icon" %> </span>
+        <span><%= image_tag "icons/sake-logo.png", class: "navbar-brand icon" %></span>
         <% end %>
         
         <ul class="nav navbar-nav navbar-right">
+          <% if logged_in? %>
+
+          <% else %>
           <li>
-            <%= link_to users_new_path do %>
-            <%= image_tag "sake-login.png", class: "login" %>
+            <%= link_to login_path do %>
+            <%= image_tag "icons/sake-login.png", class: "login" %>
             <% end %>
           </li>
           <li>
             <%= link_to users_new_path do %>
-            <%= image_tag "sake-reg.png", class: "login" %>
+            <%= image_tag "icons/sake-reg.png", class: "login" %>
             <% end %>
           </li>
-          
+          <% end %>
         </ul>
         
       </div>
     </nav>
     
-    
     <%= yield %>
+    
+
+  <script>
+  $(function(){
+    $(".alert").fadeOut(5000);
+  });
+ </script>
+ 
+    
   </body>
 </html>
