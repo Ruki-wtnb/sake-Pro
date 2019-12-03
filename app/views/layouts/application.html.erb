@@ -14,29 +14,52 @@
      <div class="alert alert-<%= key %>" role="alert"><%= value %></div> 
     <% end %>
     
-    <nav class="navbar navbar-default navbar-fixed-top navbar-transparent">
-     <div class="container">
+    <nav class="navbar navbar-fixed-top">
+     <div class="container-fluid">
+       <div class="row">
+
         <%= link_to root_path do %>
-        <span><%= image_tag "icons/sake-logo.png", class: "navbar-brand icon" %></span>
+        <span><%= image_tag "icons/sake-logo.png", class: "navbar-brand logo" %></span>
         <% end %>
         
-        <ul class="nav navbar-nav navbar-right">
+        <div>
+        <ul class="nav navbar-nav navbar-right icon-set">
           <% if logged_in? %>
+          
+          <li>
+            <%= link_to mypage_path do %>
+            <%= image_tag "icons/sake_my_page.png", class: 'icon' %>
+            <% end %>
+          </li>
+          
+          <li>
+            <%= link_to new_jsake_path do %>
+            <%= image_tag "icons/reg-sake.png", class: 'icon' %>
+            <% end %>
+          </li>
+          
+          <li>
+            <%= link_to logout_path, method: :delete do %>
+            <%= image_tag "icons/sake-logout.png", class: 'icon' %>
+            <% end %>
+          </li>
 
           <% else %>
+          
           <li>
             <%= link_to login_path do %>
-            <%= image_tag "icons/sake-login.png", class: "login" %>
+            <%= image_tag "icons/sake-login.png", class: "icon" %>
             <% end %>
           </li>
           <li>
             <%= link_to users_new_path do %>
-            <%= image_tag "icons/sake-reg.png", class: "login" %>
+            <%= image_tag "icons/sake-reg.png", class: "icon" %>
             <% end %>
           </li>
           <% end %>
         </ul>
-        
+        </div>
+        </div>
       </div>
     </nav>
     

@@ -1,0 +1,2 @@
+class Seimaibuai < ApplicationRecord
+end

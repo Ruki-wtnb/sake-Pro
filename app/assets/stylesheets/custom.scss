@@ -1,3 +1,4 @@
+
 h1, h2 {
   font-weight: 100;
 }
@@ -67,33 +68,52 @@ h1, h2 {
 }
 
 //nav-bar
-.navbar-transparent {
+.navbar {
   margin-bottom: 0px;
   background-color: rgba(0,0,0,0.5);
-  a {
-    color: #fff !important;
-  }
-
-  .navbar-brand {
-    padding: 0px;
-    margin-top: 15px;
-  }
-
-  .icon {
-    height: 50px;
-    width: 150px;
-  }
 }
 
-.login{
-  height: 50px;
-  width:100px;
+.logo{
+  height: 80px;
+  width: 320px;
+  padding-left: 100px;
 }
 
+.icon{
+  height: 60px;
+  width: 60px;
+
+}  
+
+.icon-reg{
+  height: 60px;
+  width: 60px;
+}  
+  
+.icon-set{
+  padding-right: 100px;
+}
 //alert
-.alert {
+.alert { 
   margin-bottom: 0px;
   position: fixed;
   width: 100%;
   z-index: 10000;
+}
+
+//jsake
+
+.jsake-new-wrapper{
+  padding-top:150px;
+}
+
+
+//mypage
+.mypage-index-wrapper{
+  padding-top: 150px;
+}
+
+.sake-img{
+  height: 100px;
+  width: 100px;
 }

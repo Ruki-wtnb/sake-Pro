@@ -1,0 +1,44 @@
+
+  <div class="container mypage-index-wrapper">
+    
+    <div class="row">
+      <div class="col-md-3 bg-primary">test</div>
+      <div class="col-md-3 bg-success">test2</div>
+      <div class="col-md-3 bg-info">test3</div>
+      <div class="col-md-3 bg-danger">test4</div>
+    </div>
+    
+    <% @my_sake.each_slice(4) do |sake1, sake2, sake3, sake4| %>
+    
+    <div class="row">
+      <div class="col-md-3">
+        <% if sake1 != nil %>
+        <%= image_tag sake1.image_url.url %>
+        <% end %>
+      </div>
+      
+      <div class="col-md-3">
+        <% if sake2 != nil %>
+        <%= image_tag sake2.image_url.url %>
+        <% end %>
+      </div>
+      
+      <div class="col-md-3">
+        <% if sake3 != nil %>
+        <%= image_tag sake3.image_url.url %>
+        <% end %>
+      </div>
+      
+      <div class="col-md-3">
+        <% if sake4 != nil %>
+        <%= image_tag sake4.image_url.url %>
+        <% end %>
+      </div>
+    </div>  
+    <% end %>
+  
+  
+  
+    
+    
+    
