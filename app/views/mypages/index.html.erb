@@ -1,5 +1,5 @@
 
-  <div class="container mypage-index-wrapper">
+  <div class="container-fluid mypage-index-wrapper">
     
     <div class="row">
       <div class="col-md-3 bg-primary">test</div>
@@ -11,28 +11,45 @@
     <% @my_sake.each_slice(4) do |sake1, sake2, sake3, sake4| %>
     
     <div class="row">
+      
       <div class="col-md-3">
+        <div class="topic-index-single">
         <% if sake1 != nil %>
         <%= image_tag sake1.image_url.url %>
+        <br>
+        <%= sake1.meigara %>
         <% end %>
+        </div>
       </div>
       
       <div class="col-md-3">
+        <div class="topic-index-single">
         <% if sake2 != nil %>
         <%= image_tag sake2.image_url.url %>
+        <br>
+        <%= sake2.meigara %>
         <% end %>
+        </div>
       </div>
       
       <div class="col-md-3">
+        <div class="topic-index-single">
         <% if sake3 != nil %>
         <%= image_tag sake3.image_url.url %>
+        <br>
+        <%= sake3.meigara %>
         <% end %>
+        </div>
       </div>
       
       <div class="col-md-3">
+        <div class="topic-index-single">
         <% if sake4 != nil %>
         <%= image_tag sake4.image_url.url %>
+        <br>
+        <%= sake2.meigara %>
         <% end %>
+        </div>
       </div>
     </div>  
     <% end %>
