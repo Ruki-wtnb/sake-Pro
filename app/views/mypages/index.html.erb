@@ -1,61 +1,85 @@
 
+ 
   <div class="container-fluid mypage-index-wrapper">
     
-    <div class="row">
-      <div class="col-md-3 bg-primary">test</div>
-      <div class="col-md-3 bg-success">test2</div>
-      <div class="col-md-3 bg-info">test3</div>
-      <div class="col-md-3 bg-danger">test4</div>
-    </div>
-    
-    <% @my_sake.each_slice(4) do |sake1, sake2, sake3, sake4| %>
+    <%= will_paginate %>
     
     <div class="row">
+    <% @mypages.each_slice(4) do |sake1, sake2, sake3, sake4| %>
       
       <div class="col-md-3">
-        <div class="topic-index-single">
         <% if sake1 != nil %>
+        <div class="thumbnail shadow topic-index-single">
         <%= image_tag sake1.image_url.url %>
         <br>
-        <%= sake1.meigara %>
+        <div class="caption">
+        <h4 class="well"><%= sake1.meigara %></h4>  
+        <h5>産地：<%= sake1.locaility %>&emsp;&emsp;精米歩合：<%= sake1.seimai_buai %></h5>
+        <h5>アルコール度数：<%= sake1.alcohol_degree %></h5>
+        <h5>日本酒度：<%= sake1.sake_meter_value %>&emsp;&emsp;酸度：<%= sake1.acidity%></h5>
+        </div>
         <% end %>
         </div>
       </div>
       
       <div class="col-md-3">
-        <div class="topic-index-single">
         <% if sake2 != nil %>
+        <div class="thumbnail shadow topic-index-single">
         <%= image_tag sake2.image_url.url %>
         <br>
-        <%= sake2.meigara %>
+        <div class="caption">
+        <h4 class="well"><%= sake2.meigara %></h4>  
+        <h5>産地：<%= sake2.locaility %>&emsp;&emsp;精米歩合：<%= sake2.seimai_buai %></h5>
+        <h5>アルコール度数：<%= sake2.alcohol_degree %></h5>
+        <h5>日本酒度：<%= sake2.sake_meter_value %>&emsp;&emsp;酸度：<%= sake2.acidity%></h5>
+        </div>
         <% end %>
         </div>
       </div>
       
       <div class="col-md-3">
-        <div class="topic-index-single">
         <% if sake3 != nil %>
+        <div class="thumbnail shadow topic-index-single">
         <%= image_tag sake3.image_url.url %>
         <br>
-        <%= sake3.meigara %>
+        <div class="caption">
+        <h4 class="well"><%= sake3.meigara %></h4>  
+        <h5>産地：<%= sake3.locaility %>&emsp;&emsp;精米歩合：<%= sake3.seimai_buai %></h5>
+        <h5>アルコール度数：<%= sake3.alcohol_degree %></h5>
+        <h5>日本酒度：<%= sake3.sake_meter_value %>&emsp;&emsp;酸度：<%= sake3.acidity%></h5>
+        </div>
         <% end %>
         </div>
       </div>
       
       <div class="col-md-3">
-        <div class="topic-index-single">
         <% if sake4 != nil %>
+        <div class="thumbnail shadow topic-index-single">
         <%= image_tag sake4.image_url.url %>
         <br>
-        <%= sake2.meigara %>
+        <div class="caption">
+        <h4 class="well"><%= sake4.meigara %></h4>  
+        <h5>産地：<%= sake4.locaility %>&emsp;&emsp;精米歩合：<%= sake4.seimai_buai %></h5>
+        <h5>アルコール度数：<%= sake4.alcohol_degree %></h5>
+        <h5>日本酒度：<%= sake4.sake_meter_value %>&emsp;&emsp;酸度：<%= sake4.acidity%></h5>
+        </div>
         <% end %>
         </div>
       </div>
-    </div>  
+
     <% end %>
-  
-  
-  
+    
+    <%= will_paginate %>
     
     
+     <ul class="nav nav-pills">
+       <li class="active"><a href="#favo" data-target="#favo" data-toggle="tab">お気に入り</a></li>
+       <li><a href="#reg" data-target="#reg" data-toggle="tab">登録</a></li>
+       <li><a href="#plot" data-target="#plot" data-toggle="tab">プロット</a></li>
+    </ul>
     
+    <div class="tab-content">
+      <div class="tab-pane active" id="favo">test</div>
+      <div class="tab-pane" id="reg">test2</div>
+      <div class="tab-pane" id="plot">test3</div>
+    </div>

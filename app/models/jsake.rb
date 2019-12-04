@@ -10,4 +10,6 @@ class Jsake < ApplicationRecord
   
   mount_uploader :image_url, ImageUploader
   
+  has_many :favorites
+  
 end

@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   
   get '/mypage', to: 'mypages#index'
+  post '/favorites', to: "mypages#create"
   
 end
