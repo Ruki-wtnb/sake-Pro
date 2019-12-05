@@ -4,7 +4,7 @@
      <div class="col-md-offset-4 col-md-4">
        <div class="form-group top_search">
          <%= form_tag(search_tops_path, method: :get) do %>
-         <%= text_field :word, class: 'form-control' %>
+         <%= text_field :word, params[:word], class: 'form-control' %>
          <%= submit_tag "検索" %>
          <% end %>
        </div>
