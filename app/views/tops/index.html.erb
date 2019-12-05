@@ -1,14 +1,82 @@
-<div class="top-hero-wrapper text-center">
-  <div class="container top-hero-container">
-    <h1 class="text-white">Make you Happy</h1>
-    <h2 class="text-white">Pictgram is a service that you can post photos.</h2>
+
+ <div class"container-fluid top_serch">
+   <div class="row">
+     <div class="col-md-offset-4 col-md-4">
+       <div class="form-group">
+
+       </div>
+     </div>
+   </div>
+ </div>
+
+
+  <div class="container-fluid mypage-index-wrapper top_list">
+    
+    <%= will_paginate %>
+    
     <div class="row">
-      <div class="col-md-offset-3 col-md-3">
-        <%= link_to 'Sign up',  users_new_path, class: 'btn btn-block btn-white' %>
-      </div>
+    <% @tops.each_slice(4) do |all_sake1, all_sake2, all_sake3, all_sake4| %>
+      
       <div class="col-md-3">
-        <%= link_to 'マイページ', new_jsake_path,class: 'btn btn-block btn-white' %>
+        <% if all_sake1 != nil %>
+        <div class="thumbnail shadow topic-index-single">
+        <%= image_tag all_sake1.image_url.url %>
+        <br>
+        <div class="caption">
+        <h4 class="well"><%= all_sake1.meigara %></h4>  
+        <h5>産地：<%= all_sake1.locaility %>&emsp;&emsp;精米歩合：<%= all_sake1.seimai_buai %></h5>
+        <h5>アルコール度数：<%= all_sake1.alcohol_degree %></h5>
+        <h5>日本酒度：<%= all_sake1.sake_meter_value %>&emsp;&emsp;酸度：<%= all_sake1.acidity%></h5>
+        </div>
+        <% end %>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
+      
+      <div class="col-md-3">
+        <% if all_sake2 != nil %>
+        <div class="thumbnail shadow topic-index-single">
+        <%= image_tag all_sake2.image_url.url %>
+        <br>
+        <div class="caption">
+        <h4 class="well"><%= all_sake2.meigara %></h4>  
+        <h5>産地：<%= all_sake2.locaility %>&emsp;&emsp;精米歩合：<%= all_sake2.seimai_buai %></h5>
+        <h5>アルコール度数：<%= all_sake2.alcohol_degree %></h5>
+        <h5>日本酒度：<%= all_sake2.sake_meter_value %>&emsp;&emsp;酸度：<%= all_sake2.acidity%></h5>
+        </div>
+        <% end %>
+        </div>
+      </div>
+      
+      <div class="col-md-3">
+        <% if all_sake3 != nil %>
+        <div class="thumbnail shadow topic-index-single">
+        <%= image_tag all_sake3.image_url.url %>
+        <br>
+        <div class="caption">
+        <h4 class="well"><%= all_sake3.meigara %></h4>  
+        <h5>産地：<%= all_sake3.locaility %>&emsp;&emsp;精米歩合：<%= all_sake3.seimai_buai %></h5>
+        <h5>アルコール度数：<%= all_sake3.alcohol_degree %></h5>
+        <h5>日本酒度：<%= all_sake3.sake_meter_value %>&emsp;&emsp;酸度：<%= all_sake3.acidity%></h5>
+        </div>
+        <% end %>
+        </div>
+      </div>
+      
+      <div class="col-md-3">
+        <% if all_sake4 != nil %>
+        <div class="thumbnail shadow topic-index-single">
+        <%= image_tag all_sake4.image_url.url %>
+        <br>
+        <div class="caption">
+        <h4 class="well"><%= all_sake4.meigara %></h4>  
+        <h5>産地：<%= all_sake4.locaility %>&emsp;&emsp;精米歩合：<%= all_sake4.seimai_buai %></h5>
+        <h5>アルコール度数：<%= all_sake4.alcohol_degree %></h5>
+        <h5>日本酒度：<%= all_sake4.sake_meter_value %>&emsp;&emsp;酸度：<%= all_sake4.acidity%></h5>
+        </div>
+        <% end %>
+        </div>
+      </div>
+
+    <% end %>
+    
+    <%= will_paginate %>

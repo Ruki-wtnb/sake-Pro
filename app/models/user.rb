@@ -11,4 +11,5 @@ class User < ApplicationRecord
   
   has_many :jsakes
   has_many :favorites
+  has_many :search_histories
 end

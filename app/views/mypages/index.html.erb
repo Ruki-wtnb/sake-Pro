@@ -83,6 +83,6 @@
       <div class="tab-pane" id="reg">test2</div>
       <div class="tab-pane" id="plot">test3</div>
     </div>
-    
+
     <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
-    <%= scatter_chart @plot, xtitle: "日本酒度", ytitle:"酸度" %>
+    <%= scatter_chart @plot, xtitle: "日本酒度", ytitle:"酸度", width:"800px", height:"800px" %>
