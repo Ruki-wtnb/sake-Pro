@@ -1,9 +1,12 @@
 
- <div class"container-fluid top_serch">
+ <div class"container-fluid top_search">
    <div class="row">
      <div class="col-md-offset-4 col-md-4">
-       <div class="form-group">
-
+       <div class="form-group top_search">
+         <%= form_tag(search_tops_path, method: :get) do %>
+         <%= text_field :word, class: 'form-control' %>
+         <%= submit_tag "検索" %>
+         <% end %>
        </div>
      </div>
    </div>
@@ -11,7 +14,7 @@
 
 
   <div class="container-fluid mypage-index-wrapper top_list">
-    
+
     <%= will_paginate %>
     
     <div class="row">

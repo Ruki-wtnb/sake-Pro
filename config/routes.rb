@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   get 'users/new'
   
   root 'tops#index'
+  resources :tops do
+    collection{get "search"}
+  end
+  
   resources :users
   resources :jsakes
   
