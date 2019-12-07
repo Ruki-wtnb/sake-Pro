@@ -6,8 +6,9 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    
+    <script src="./asset/bootstrap-tab.js"></script>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+   
   </head>
 
   <body>
@@ -29,19 +30,19 @@
           
           <li>
             <%= link_to mypage_path do %>
-            <%= image_tag "icons/sake_my_page.png", class: 'icon' %>
+            <%= image_tag "icons/sake_my_page.png", class: 'icon-nav' %>
             <% end %>
           </li>
           
           <li>
             <%= link_to new_jsake_path do %>
-            <%= image_tag "icons/reg-sake.png", class: 'icon' %>
+            <%= image_tag "icons/reg-sake.png", class: 'icon-nav' %>
             <% end %>
           </li>
           
           <li>
             <%= link_to logout_path, method: :delete do %>
-            <%= image_tag "icons/sake-logout.png", class: 'icon' %>
+            <%= image_tag "icons/sake-logout.png", class: 'icon-nav' %>
             <% end %>
           </li>
 
@@ -49,12 +50,12 @@
           
           <li>
             <%= link_to login_path do %>
-            <%= image_tag "icons/sake-login.png", class: "icon" %>
+            <%= image_tag "icons/sake-login.png", class: "icon-nav" %>
             <% end %>
           </li>
           <li>
             <%= link_to users_new_path do %>
-            <%= image_tag "icons/sake-reg.png", class: "icon" %>
+            <%= image_tag "icons/sake-reg.png", class: "icon-nav" %>
             <% end %>
           </li>
           <% end %>
@@ -73,6 +74,7 @@
   });
  </script>
  
+  
     
   </body>
 </html>

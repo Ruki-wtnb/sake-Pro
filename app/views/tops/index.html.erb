@@ -3,9 +3,11 @@
    <div class="row">
      <div class="col-md-offset-4 col-md-4">
        <div class="form-group top_search">
-         <%= form_tag(search_tops_path, method: :get) do %>
-         <%= text_field :word, params[:word], class: 'form-control' %>
-         <%= submit_tag "検索" %>
+         
+         <%= form_for @search, url: '/tops/search' do |f| %>
+         <%= f.label :word, "検索"%>
+         <%= f.text_field :word, class: 'form-control' %>
+         <%= f.submit "検索" %>
          <% end %>
        </div>
      </div>

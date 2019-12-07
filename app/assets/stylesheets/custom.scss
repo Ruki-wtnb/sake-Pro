@@ -79,7 +79,7 @@ h1, h2 {
   padding-left: 100px;
 }
 
-.icon{
+.icon-nav{
   height: 60px;
   width: 60px;
 
@@ -114,13 +114,19 @@ h1, h2 {
 }
 
 .topic-index-single{
+  
+.sns-icon{
+  height: 30px;
+  width: 30px;
+  padding: 0;
+}
 
 img{
-  height: 300px;
-  width: 300px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 20px;
+    height: 300px;
+    width: 300px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px; 
 }
 
 h4{
@@ -143,3 +149,6 @@ h4{
 .top_search{
   padding-top: 100px;
 }
+
+
+

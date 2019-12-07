@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   
   root 'tops#index'
   resources :tops do
-    collection{get "search"}
+    collection{post "search"}
   end
   
   resources :users

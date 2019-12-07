@@ -10,6 +10,9 @@ class User < ApplicationRecord
   has_secure_password
   
   has_many :jsakes
+  
   has_many :favorites
+  has_many :favorite_jsakes, through: :favorites, source: 'jsake'
+  
   has_many :search_histories
 end

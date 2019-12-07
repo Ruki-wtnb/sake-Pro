@@ -4,16 +4,22 @@
     
     <%= will_paginate %>
     
-    <div class="row">
     <% @mypages.each_slice(4) do |sake1, sake2, sake3, sake4| %>
-      
+    <div class="row">
       <div class="col-md-3">
         <% if sake1 != nil %>
         <div class="thumbnail shadow topic-index-single">
-        <%= image_tag sake1.image_url.url %>
+        <%= image_tag sake1.image_url.url, class: 'sake' %>
         <br>
         <div class="caption">
-        <h4 class="well"><%= sake1.meigara %></h4>  
+        <h4 class="well"><%= sake1.meigara %></h4>
+        
+          <%= link_to favorites_path(jsake_id: sake1.id), method: :post do %>
+          <%= image_tag 'icons/blank-heart.png', class: 'sns-icon' %>
+          <% end %>
+        
+        <%= image_tag 'icons/comment.png', class: 'sns-icon' %>
+        
         <h5>産地：<%= sake1.locaility %>&emsp;&emsp;精米歩合：<%= sake1.seimai_buai %></h5>
         <h5>アルコール度数：<%= sake1.alcohol_degree %></h5>
         <h5>日本酒度：<%= sake1.sake_meter_value %>&emsp;&emsp;酸度：<%= sake1.acidity%></h5>
@@ -25,10 +31,14 @@
       <div class="col-md-3">
         <% if sake2 != nil %>
         <div class="thumbnail shadow topic-index-single">
-        <%= image_tag sake2.image_url.url %>
+        <%= image_tag sake2.image_url.url, class: 'sake' %>
         <br>
         <div class="caption">
-        <h4 class="well"><%= sake2.meigara %></h4>  
+        <h4 class="well"><%= sake2.meigara %></h4>
+        
+        <%= image_tag 'icons/blank-heart.png', class: 'sns-icon' %>
+        <%= image_tag 'icons/comment.png', class: 'sns-icon' %>
+        
         <h5>産地：<%= sake2.locaility %>&emsp;&emsp;精米歩合：<%= sake2.seimai_buai %></h5>
         <h5>アルコール度数：<%= sake2.alcohol_degree %></h5>
         <h5>日本酒度：<%= sake2.sake_meter_value %>&emsp;&emsp;酸度：<%= sake2.acidity%></h5>
@@ -40,10 +50,14 @@
       <div class="col-md-3">
         <% if sake3 != nil %>
         <div class="thumbnail shadow topic-index-single">
-        <%= image_tag sake3.image_url.url %>
+        <%= image_tag sake3.image_url.url, class: 'sake' %>
         <br>
         <div class="caption">
-        <h4 class="well"><%= sake3.meigara %></h4>  
+        <h4 class="well"><%= sake3.meigara %></h4>
+        
+        <%= image_tag 'icons/blank-heart.png', class: 'sns-icon' %>
+        <%= image_tag 'icons/comment.png', class: 'sns-icon' %>
+        
         <h5>産地：<%= sake3.locaility %>&emsp;&emsp;精米歩合：<%= sake3.seimai_buai %></h5>
         <h5>アルコール度数：<%= sake3.alcohol_degree %></h5>
         <h5>日本酒度：<%= sake3.sake_meter_value %>&emsp;&emsp;酸度：<%= sake3.acidity%></h5>
@@ -51,14 +65,18 @@
         <% end %>
         </div>
       </div>
-      
+
       <div class="col-md-3">
         <% if sake4 != nil %>
         <div class="thumbnail shadow topic-index-single">
-        <%= image_tag sake4.image_url.url %>
+        <%= image_tag sake4.image_url.url, class: 'sake' %>
         <br>
         <div class="caption">
-        <h4 class="well"><%= sake4.meigara %></h4>  
+        <h4 class="well"><%= sake4.meigara %></h4>
+        
+        <%= image_tag 'icons/blank-heart.png', class: 'sns-icon' %>
+        <%= image_tag 'icons/comment.png', class: 'sns-icon' %>
+        
         <h5>産地：<%= sake4.locaility %>&emsp;&emsp;精米歩合：<%= sake4.seimai_buai %></h5>
         <h5>アルコール度数：<%= sake4.alcohol_degree %></h5>
         <h5>日本酒度：<%= sake4.sake_meter_value %>&emsp;&emsp;酸度：<%= sake4.acidity%></h5>
@@ -67,8 +85,10 @@
         </div>
       </div>
 
+
     <% end %>
-    
+    </div>
+  </div>
     <%= will_paginate %>
     
     
@@ -79,10 +99,12 @@
     </ul>
     
     <div class="tab-content">
-      <div class="tab-pane active" id="favo">test</div>
-      <div class="tab-pane" id="reg">test2</div>
-      <div class="tab-pane" id="plot">test3</div>
+      <div class="tab-pane active" id="favo"><p>test</p></div>
+      <div class="tab-pane" id="reg"><p>test2</p></div>
+      <div class="tab-pane" id="plot"><p>test3</p></div>
     </div>
 
     <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
-    <%= scatter_chart @plot, xtitle: "日本酒度", ytitle:"酸度", width:"800px", height:"800px" %>
+    <%= scatter_chart @plot, xtitle: "日本酒度", ytitle:"酸度", width:"800px", height:"800px", label: "Lavel" %>
+    
+    
