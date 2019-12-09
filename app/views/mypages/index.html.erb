@@ -14,10 +14,19 @@
         <div class="caption">
         <h4 class="well"><%= sake1.meigara %></h4>
         
+       
+        
+        <% if !sake1.favorite_users.include?(current_user) %>
           <%= link_to favorites_path(jsake_id: sake1.id), method: :post do %>
           <%= image_tag 'icons/blank-heart.png', class: 'sns-icon' %>
           <% end %>
-        
+        <% else %>
+          <%= link_to unfavorites_path(jsake_id: sake1.id), method: :delete do %>
+          <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
+          <% end %>
+        <% end %>
+         <%= sake1.favorite_users.count %>
+         
         <%= image_tag 'icons/comment.png', class: 'sns-icon' %>
         
         <h5>産地：<%= sake1.locaility %>&emsp;&emsp;精米歩合：<%= sake1.seimai_buai %></h5>

@@ -17,5 +17,5 @@ Rails.application.routes.draw do
   
   get '/mypage', to: 'mypages#index'
   post '/favorites', to: "mypages#create"
-  
+  delete '/unfavorites', to: "mypages#destroy"
 end

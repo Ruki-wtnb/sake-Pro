@@ -11,5 +11,6 @@ class Jsake < ApplicationRecord
   mount_uploader :image_url, ImageUploader
   
   has_many :favorites
+  has_many :favorite_users, through: :favorites, source: 'user'
   
 end
