@@ -2,9 +2,9 @@ class MypagesController < ApplicationController
   
   def index
     @mypages = current_user.jsakes.paginate(page: params[:page], per_page: 28)
-    @favorite_jsakes = current_user.favorite_jsakes
     @plot = @mypages.pluck(:sake_meter_value, :acidity)
-    
+    @favorite_jsakes = current_user.favorite_jsakes.paginate(page: params[:page], per_page: 28)
+
     #binding.pry
   end
   
