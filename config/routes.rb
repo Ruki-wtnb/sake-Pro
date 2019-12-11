@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'comments/new'
   get 'jsakes/new'
   get 'sessions/new'
   get 'users/new'
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
   
   resources :users
   resources :jsakes
+  resources :comments
   
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

@@ -15,4 +15,6 @@ class User < ApplicationRecord
   has_many :favorite_jsakes, through: :favorites, source: 'jsake'
   
   has_many :search_histories
+  
+  has_many :comments
 end

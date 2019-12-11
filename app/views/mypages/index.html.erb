@@ -6,147 +6,49 @@
     
     <!---登録銘柄一覧--->
     <div class="row">
-    <% @mypages.each_slice(4) do |sake1, sake2, sake3, sake4| %>
+    <% @mypages.each_slice(4) do |reg_sake1, reg_sake2, reg_sake3, reg_sake4| %>
     
-    <!---登録スライス1--->
+      <% [reg_sake1, reg_sake2, reg_sake3, reg_sake4].each do |sake|%>
       <div class="col-md-3">
-        <% if sake1 != nil %> <!---sake1が空白でない(each.sliceのエラー対策)--->
+        <% if sake != nil %> <!---sake1が空白でない(each.sliceのエラー対策)--->
         <div class="thumbnail shadow topic-index-single">
         
         <!---画像と銘柄名--->
-        <%= image_tag sake1.image_url.url, class: 'sake' %>
+        <%= image_tag sake.image_url.url, class: 'sake' %>
         <br>
         <div class="caption">
-        <h4 class="well"><%= sake1.meigara %></h4>
+        <h4 class="well"><%= sake.meigara %></h4>
         
         <!---いいねのハートマークとカウント,コメントリンク--->
-        <% if !sake1.favorite_users.include?(current_user) %>　<!---current_userがいいねしてたら黒、していなかったら空白--->
-          <%= link_to favorites_path(jsake_id: sake1.id), method: :post do %>
+        <% if !sake.favorite_users.include?(current_user) %>　<!---current_userがいいねしてたら黒、していなかったら空白--->
+          <%= link_to favorites_path(jsake_id: sake.id), method: :post do %>
           <%= image_tag 'icons/blank-heart.png', class: 'sns-icon' %>
           <% end %>
         <% else %>
-          <%= link_to unfavorites_path(jsake_id: sake1.id), method: :delete do %>
+          <%= link_to unfavorites_path(jsake_id: sake.id), method: :delete do %>
           <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
           <% end %>
         <% end %>
-         <%= sake1.favorite_users.count %>
-        <%= image_tag 'icons/comment.png', class: 'sns-icon' %>
+         <%= sake.favorite_users.count %>
+         <%= link_to new_comment_path(jsake_id: sake.id), method: :get do %>
+
+         <%= image_tag 'icons/comment.png', class: 'sns-icon' %>
+         <% end %>
         
         <!---産地～酸度--->
-        <h5>産地：<%= sake1.locaility %>&emsp;&emsp;精米歩合：<%= sake1.seimai_buai %></h5>
-        <h5>アルコール度数：<%= sake1.alcohol_degree %></h5>
-        <h5>日本酒度：<%= sake1.sake_meter_value %>&emsp;&emsp;酸度：<%= sake1.acidity%></h5>
-        </div>
-        <% end %>
-        </div>
-      </div>
-      
-    <!---登録スライス2--->
-      <div class="col-md-3">
-        <% if sake2 != nil %> <!---sake2が空白でない(each.sliceのエラー対策)--->
-        <div class="thumbnail shadow topic-index-single">
-        
-        <!---画像と銘柄名--->
-        <%= image_tag sake2.image_url.url, class: 'sake' %>
-        <br>
-        <div class="caption">
-        <h4 class="well"><%= sake2.meigara %></h4>
-        
-        <!---いいねのハートマークとカウント,コメントリンク--->
-        <% if !sake2.favorite_users.include?(current_user) %>　<!---current_userがいいねしてたら黒、していなかったら空白--->
-          <%= link_to favorites_path(jsake_id: sake2.id), method: :post do %>
-          <%= image_tag 'icons/blank-heart.png', class: 'sns-icon' %>
-          <% end %>
-        <% else %>
-          <%= link_to unfavorites_path(jsake_id: sake2.id), method: :delete do %>
-          <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
-          <% end %>
-        <% end %>
-         <%= sake2.favorite_users.count %>
-        <%= image_tag 'icons/comment.png', class: 'sns-icon' %>
-        
-        <!---産地～酸度--->
-        <h5>産地：<%= sake2.locaility %>&emsp;&emsp;精米歩合：<%= sake2.seimai_buai %></h5>
-        <h5>アルコール度数：<%= sake2.alcohol_degree %></h5>
-        <h5>日本酒度：<%= sake2.sake_meter_value %>&emsp;&emsp;酸度：<%= sake2.acidity%></h5>
-        </div>
-        <% end %>
-        </div>
-      </div>
- 
-     <!---登録スライス3--->
-      <div class="col-md-3">
-        <% if sake3 != nil %> <!---sake3が空白でない(each.sliceのエラー対策)--->
-        <div class="thumbnail shadow topic-index-single">
-        
-        <!---画像と銘柄名--->
-        <%= image_tag sake3.image_url.url, class: 'sake' %>
-        <br>
-        <div class="caption">
-        <h4 class="well"><%= sake3.meigara %></h4>
-        
-        <!---いいねのハートマークとカウント,コメントリンク--->
-        <% if !sake3.favorite_users.include?(current_user) %>　<!---current_userがいいねしてたら黒、していなかったら空白--->
-          <%= link_to favorites_path(jsake_id: sake3.id), method: :post do %>
-          <%= image_tag 'icons/blank-heart.png', class: 'sns-icon' %>
-          <% end %>
-        <% else %>
-          <%= link_to unfavorites_path(jsake_id: sake3.id), method: :delete do %>
-          <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
-          <% end %>
-        <% end %>
-         <%= sake3.favorite_users.count %>
-        <%= image_tag 'icons/comment.png', class: 'sns-icon' %>
-        
-        <!---産地～酸度--->
-        <h5>産地：<%= sake3.locaility %>&emsp;&emsp;精米歩合：<%= sake3.seimai_buai %></h5>
-        <h5>アルコール度数：<%= sake3.alcohol_degree %></h5>
-        <h5>日本酒度：<%= sake3.sake_meter_value %>&emsp;&emsp;酸度：<%= sake3.acidity%></h5>
-        </div>
-        <% end %>
-        </div>
-      </div>
-      
-    <!---登録スライス4--->
-      <div class="col-md-3">
-        <% if sake4 != nil %> <!---sake4が空白でない(each.sliceのエラー対策)--->
-        <div class="thumbnail shadow topic-index-single">
-        
-        <!---画像と銘柄名--->
-        <%= image_tag sake4.image_url.url, class: 'sake' %>
-        <br>
-        <div class="caption">
-        <h4 class="well"><%= sake4.meigara %></h4>
-        
-        <!---いいねのハートマークとカウント,コメントリンク--->
-        <% if !sake4.favorite_users.include?(current_user) %>　<!---current_userがいいねしてたら黒、していなかったら空白--->
-          <%= link_to favorites_path(jsake_id: sake4.id), method: :post do %>
-          <%= image_tag 'icons/blank-heart.png', class: 'sns-icon' %>
-          <% end %>
-        <% else %>
-          <%= link_to unfavorites_path(jsake_id: sake4.id), method: :delete do %>
-          <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
-          <% end %>
-        <% end %>
-         <%= sake4.favorite_users.count %>
-        <%= image_tag 'icons/comment.png', class: 'sns-icon' %>
-        
-        <!---産地～酸度--->
-        <h5>産地：<%= sake4.locaility %>&emsp;&emsp;精米歩合：<%= sake4.seimai_buai %></h5>
-        <h5>アルコール度数：<%= sake4.alcohol_degree %></h5>
-        <h5>日本酒度：<%= sake4.sake_meter_value %>&emsp;&emsp;酸度：<%= sake4.acidity%></h5>
+        <h5>産地：<%= sake.locaility %>&emsp;&emsp;精米歩合：<%= sake.seimai_buai %></h5>
+        <h5>アルコール度数：<%= sake.alcohol_degree %></h5>
+        <h5>日本酒度：<%= sake.sake_meter_value %>&emsp;&emsp;酸度：<%= sake.acidity%></h5>
         </div>
         <% end %>
         </div>
       </div>
 
- 
- 
-
-
+      <% end %>
     <% end %>
     </div>
   </div>
+  
     <%= will_paginate %>
     
     
@@ -172,135 +74,45 @@
     <div class="row">
     <!--- お気に入り一覧を4つずつ取り出す--->
     <% @favorite_jsakes.each_slice(4) do |favo_sake1, favo_sake2, favo_sake3, favo_sake4| %>
-    
       
-           <!---お気に入りスライス1--->
+      <% [favo_sake1, favo_sake2, favo_sake3, favo_sake4].each do |sake|%>
+        
         <div class="col-md-3">
-        <% if favo_sake1 != nil %>
-        <div class="thumbnail shadow topic-index-single">
-        <!---画像と銘柄名--->
-        <%= image_tag favo_sake1.image_url.url, class: 'sake' %>
-        <br>
-        <div class="caption">
-        <h4 class="well"><%= favo_sake1.meigara %></h4>
+        <% if sake != nil %>
+          <div class="thumbnail shadow topic-index-single">
+            <!---画像と銘柄名--->
+            <%= image_tag sake.image_url.url, class: 'sake' %>
+            <br>
+            <div class="caption">
+            <h4 class="well"><%= sake.meigara %></h4>
+            
+            <!---いいねのハートマークとカウント,コメントリンク--->
+            <% if !sake.favorite_users.include?(current_user) %> <!---current_userがいいねしてたら黒、していなかったら空白--->
+            
+            <%= link_to favorites_path(jsake_id: sake.id), method: :post do %>
+            <%= image_tag 'icons/blank-heart.png', class: 'sns-icon' %>
+            <% end %>
+            
+            <% else %>
+            
+            <%= link_to unfavorites_path(jsake_id: sake.id), method: :delete do %>
+            <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
+            <% end %>
+            <% end %>
+            
+            <%= sake.favorite_users.count %>
+            <%= image_tag 'icons/comment.png', class: 'sns-icon' %>
+            
+            <!---産地～酸度--->
+            <h5>産地：<%= sake.locaility %>&emsp;&emsp;精米歩合：<%= sake.seimai_buai %></h5>
+            <h5>アルコール度数：<%= sake.alcohol_degree %></h5>
+            <h5>日本酒度：<%= sake.sake_meter_value %>&emsp;&emsp;酸度：<%= sake.acidity%></h5>
+            </div>
+            <% end %>
+          </div>
+        </div>
         
-        <!---いいねのハートマークとカウント,コメントリンク--->
-        <% if !favo_sake1.favorite_users.include?(current_user) %> <!---current_userがいいねしてたら黒、していなかったら空白--->
-          <%= link_to favorites_path(jsake_id: favo_sake1.id), method: :post do %>
-          <%= image_tag 'icons/blank-heart.png', class: 'sns-icon' %>
-          <% end %>
-        <% else %>
-          <%= link_to unfavorites_path(jsake_id: favo_sake1.id), method: :delete do %>
-          <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
-          <% end %>
         <% end %>
-         <%= favo_sake1.favorite_users.count %>
-         <%= image_tag 'icons/comment.png', class: 'sns-icon' %>
-        
-        <!---産地～酸度--->
-        <h5>産地：<%= favo_sake1.locaility %>&emsp;&emsp;精米歩合：<%= favo_sake1.seimai_buai %></h5>
-        <h5>アルコール度数：<%= favo_sake1.alcohol_degree %></h5>
-        <h5>日本酒度：<%= favo_sake1.sake_meter_value %>&emsp;&emsp;酸度：<%= favo_sake1.acidity%></h5>
-        </div>
-        <% end %>
-        </div>
-      </div>
-      
-      <!---お気に入りスライス2--->
-        <div class="col-md-3">
-        <% if favo_sake2 != nil %>
-        <div class="thumbnail shadow topic-index-single">
-        <!---画像と銘柄名--->
-        <%= image_tag favo_sake2.image_url.url, class: 'sake' %>
-        <br>
-        <div class="caption">
-        <h4 class="well"><%= favo_sake2.meigara %></h4>
-        
-        <!---いいねのハートマークとカウント,コメントリンク--->
-        <% if !favo_sake2.favorite_users.include?(current_user) %> <!---current_userがいいねしてたら黒、していなかったら空白--->
-          <%= link_to favorites_path(jsake_id: favo_sake2.id), method: :post do %>
-          <%= image_tag 'icons/blank-heart.png', class: 'sns-icon' %>
-          <% end %>
-        <% else %>
-          <%= link_to unfavorites_path(jsake_id: favo_sake2.id), method: :delete do %>
-          <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
-          <% end %>
-        <% end %>
-         <%= favo_sake2.favorite_users.count %>
-         <%= image_tag 'icons/comment.png', class: 'sns-icon' %>
-        
-        <!---産地～酸度--->
-        <h5>産地：<%= favo_sake2.locaility %>&emsp;&emsp;精米歩合：<%= favo_sake2.seimai_buai %></h5>
-        <h5>アルコール度数：<%= favo_sake2.alcohol_degree %></h5>
-        <h5>日本酒度：<%= favo_sake2.sake_meter_value %>&emsp;&emsp;酸度：<%= favo_sake2.acidity%></h5>
-        </div>
-        <% end %>
-        </div>
-        </div>
-        
-       <!---お気に入りスライス3--->
-        <div class="col-md-3">
-        <% if favo_sake3 != nil %>
-        <div class="thumbnail shadow topic-index-single">
-        <!---画像と銘柄名--->
-        <%= image_tag favo_sake3.image_url.url, class: 'sake' %>
-        <br>
-        <div class="caption">
-        <h4 class="well"><%= favo_sake3.meigara %></h4>
-        
-        <!---いいねのハートマークとカウント,コメントリンク--->
-        <% if !favo_sake3.favorite_users.include?(current_user) %> <!---current_userがいいねしてたら黒、していなかったら空白--->
-          <%= link_to favorites_path(jsake_id: favo_sake3.id), method: :post do %>
-          <%= image_tag 'icons/blank-heart.png', class: 'sns-icon' %>
-          <% end %>
-        <% else %>
-          <%= link_to unfavorites_path(jsake_id: favo_sake3.id), method: :delete do %>
-          <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
-          <% end %>
-        <% end %>
-         <%= favo_sake3.favorite_users.count %>
-         <%= image_tag 'icons/comment.png', class: 'sns-icon' %>
-        
-        <!---産地～酸度--->
-        <h5>産地：<%= favo_sake3.locaility %>&emsp;&emsp;精米歩合：<%= favo_sake3.seimai_buai %></h5>
-        <h5>アルコール度数：<%= favo_sake3.alcohol_degree %></h5>
-        <h5>日本酒度：<%= favo_sake3.sake_meter_value %>&emsp;&emsp;酸度：<%= favo_sake3.acidity%></h5>
-        </div>
-        <% end %>
-        </div>
-      </div>
-      
-                 <!---お気に入りスライス4--->
-        <div class="col-md-3">
-        <% if favo_sake4 != nil %>
-        <div class="thumbnail shadow topic-index-single">
-        <!---画像と銘柄名--->
-        <%= image_tag favo_sake4.image_url.url, class: 'sake' %>
-        <br>
-        <div class="caption">
-        <h4 class="well"><%= favo_sake4.meigara %></h4>
-        
-        <!---いいねのハートマークとカウント,コメントリンク--->
-        <% if !favo_sake4.favorite_users.include?(current_user) %> <!---current_userがいいねしてたら黒、していなかったら空白--->
-          <%= link_to favorites_path(jsake_id: favo_sake4.id), method: :post do %>
-          <%= image_tag 'icons/blank-heart.png', class: 'sns-icon' %>
-          <% end %>
-        <% else %>
-          <%= link_to unfavorites_path(jsake_id: favo_sake4.id), method: :delete do %>
-          <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
-          <% end %>
-        <% end %>
-         <%= favo_sake4.favorite_users.count %>
-         <%= image_tag 'icons/comment.png', class: 'sns-icon' %>
-        
-        <!---産地～酸度--->
-        <h5>産地：<%= favo_sake4.locaility %>&emsp;&emsp;精米歩合：<%= favo_sake4.seimai_buai %></h5>
-        <h5>アルコール度数：<%= favo_sake4.alcohol_degree %></h5>
-        <h5>日本酒度：<%= favo_sake4.sake_meter_value %>&emsp;&emsp;酸度：<%= favo_sake4.acidity%></h5>
-        </div>
-        <% end %>
-        </div>
-      </div>
 
     <% end %>
     </div>
