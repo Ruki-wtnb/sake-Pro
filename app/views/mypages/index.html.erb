@@ -1,16 +1,41 @@
 
- 
-  <div class="container-fluid mypage-index-wrapper">
+<div class="container-fluid tab-menu">
+  <div class="row">
+    <ul class="nav nav-pills nav-justified">
+       <li class="active"><a href="#favo" data-target="#favo" data-toggle="tab">お気に入り</a></li>
+       <li><a href="#reg" data-target="#reg" data-toggle="tab">登録</a></li>
+       <li><a href="#plot" data-target="#plot" data-toggle="tab">プロット</a></li>
+    </ul>
+  </div>
+</div>
+    
+    <div class="tab-content">
+      <div class="tab-pane active" id="favo"><p>test</p></div>
+      <div class="tab-pane" id="reg"><p>test2</p></div>
+      <div class="tab-pane" id="plot">
+        <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+        <%= scatter_chart @plot, xtitle: "日本酒度", ytitle:"酸度", width:"800px", height:"800px", label: "Lavel" %>
+      </div>
+    </div>
+
+
+
+
+ <div class="container-fluid mypage-index-wrapper">
     
     <%= will_paginate %>
     
-    <!---登録銘柄一覧--->
+    <!--登録銘柄一覧-->
     <div class="row">
-    <% @mypages.each_slice(4) do |reg_sake1, reg_sake2, reg_sake3, reg_sake4| %>
+    <!--登録した酒を4つずつ取得-->
+    <% @mypages.each_slice(4) do |reg_sake1, reg_sake2, reg_sake3, reg_sake4| %> 
     
-      <% [reg_sake1, reg_sake2, reg_sake3, reg_sake4].each do |sake|%>
+    <!--4つを1つずつ処理-->
+      <% [reg_sake1, reg_sake2, reg_sake3, reg_sake4].each do |sake|%> 
+    
+    <!--sakeが空値でない(each.sliceのエラー対策)-->
+      <% if sake != nil %>
       <div class="col-md-3">
-        <% if sake != nil %> <!---sake1が空白でない(each.sliceのエラー対策)--->
         <div class="thumbnail shadow topic-index-single">
         
         <!---画像と銘柄名--->
@@ -20,7 +45,8 @@
         <h4 class="well"><%= sake.meigara %></h4>
         
         <!---いいねのハートマークとカウント,コメントリンク--->
-        <% if !sake.favorite_users.include?(current_user) %>　<!---current_userがいいねしてたら黒、していなかったら空白--->
+        <!---current_userがいいねしてたら黒、していなかったら空白のハート--->
+        <% if !sake.favorite_users.include?(current_user) %>
           <%= link_to favorites_path(jsake_id: sake.id), method: :post do %>
           <%= image_tag 'icons/blank-heart.png', class: 'sns-icon' %>
           <% end %>
@@ -29,9 +55,11 @@
           <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
           <% end %>
         <% end %>
+        <!--いいね数の表示-->
          <%= sake.favorite_users.count %>
+        
+        <!--コメント-->
          <%= link_to new_comment_path(jsake_id: sake.id), method: :get do %>
-
          <%= image_tag 'icons/comment.png', class: 'sns-icon' %>
          <% end %>
         
@@ -40,6 +68,19 @@
         <h5>アルコール度数：<%= sake.alcohol_degree %></h5>
         <h5>日本酒度：<%= sake.sake_meter_value %>&emsp;&emsp;酸度：<%= sake.acidity%></h5>
         </div>
+        
+        <div class="btn-group">
+          <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            コメント<span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <% sake.comments.each do |c|%>
+            <li><%= c.body %></li>
+            <% end %>
+          </ul>
+        </div>
+        
+        
         <% end %>
         </div>
       </div>
@@ -47,73 +88,75 @@
       <% end %>
     <% end %>
     </div>
+      <%= will_paginate %>
   </div>
-  
-    <%= will_paginate %>
     
+ <div class="container-fluid mypage-index-wrapper">
     
-     <ul class="nav nav-pills">
-       <li class="active"><a href="#favo" data-target="#favo" data-toggle="tab">お気に入り</a></li>
-       <li><a href="#reg" data-target="#reg" data-toggle="tab">登録</a></li>
-       <li><a href="#plot" data-target="#plot" data-toggle="tab">プロット</a></li>
-    </ul>
+    <%= will_paginate @favorite_jsakes %>
     
-    <div class="tab-content">
-      <div class="tab-pane active" id="favo"><p>test</p></div>
-      <div class="tab-pane" id="reg"><p>test2</p></div>
-      <div class="tab-pane" id="plot"><p>test3</p></div>
-    </div>
-
-    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
-    <%= scatter_chart @plot, xtitle: "日本酒度", ytitle:"酸度", width:"800px", height:"800px", label: "Lavel" %>
-    
-    <div class="container-fluid mypage-index-wrapper">
-    
-    <!--- お気に入り一覧の記述--->
-    <%= will_paginate @favorite_jsakes%>
+    <!--登録銘柄一覧-->
     <div class="row">
-    <!--- お気に入り一覧を4つずつ取り出す--->
-    <% @favorite_jsakes.each_slice(4) do |favo_sake1, favo_sake2, favo_sake3, favo_sake4| %>
-      
-      <% [favo_sake1, favo_sake2, favo_sake3, favo_sake4].each do |sake|%>
+    <!--登録した酒を4つずつ取得-->
+    <% @favorite_jsakes.each_slice(4) do |favo_sake1, favo_sake2, favo_sake3, favo_sake4| %> 
+    
+    <!--4つを1つずつ処理-->
+      <% [favo_sake1, favo_sake2, favo_sake3, favo_sake4].each do |sake|%> 
+    
+    <!--sakeが空値でない(each.sliceのエラー対策)-->
+      <% if sake != nil %>
+      <div class="col-md-3">
+        <div class="thumbnail shadow topic-index-single">
         
-        <div class="col-md-3">
-        <% if sake != nil %>
-          <div class="thumbnail shadow topic-index-single">
-            <!---画像と銘柄名--->
-            <%= image_tag sake.image_url.url, class: 'sake' %>
-            <br>
-            <div class="caption">
-            <h4 class="well"><%= sake.meigara %></h4>
-            
-            <!---いいねのハートマークとカウント,コメントリンク--->
-            <% if !sake.favorite_users.include?(current_user) %> <!---current_userがいいねしてたら黒、していなかったら空白--->
-            
-            <%= link_to favorites_path(jsake_id: sake.id), method: :post do %>
-            <%= image_tag 'icons/blank-heart.png', class: 'sns-icon' %>
-            <% end %>
-            
-            <% else %>
-            
-            <%= link_to unfavorites_path(jsake_id: sake.id), method: :delete do %>
-            <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
-            <% end %>
-            <% end %>
-            
-            <%= sake.favorite_users.count %>
-            <%= image_tag 'icons/comment.png', class: 'sns-icon' %>
-            
-            <!---産地～酸度--->
-            <h5>産地：<%= sake.locaility %>&emsp;&emsp;精米歩合：<%= sake.seimai_buai %></h5>
-            <h5>アルコール度数：<%= sake.alcohol_degree %></h5>
-            <h5>日本酒度：<%= sake.sake_meter_value %>&emsp;&emsp;酸度：<%= sake.acidity%></h5>
-            </div>
-            <% end %>
-          </div>
+        <!---画像と銘柄名--->
+        <%= image_tag sake.image_url.url, class: 'sake' %>
+        <br>
+        <div class="caption">
+        <h4 class="well"><%= sake.meigara %></h4>
+        
+        <!---いいねのハートマークとカウント,コメントリンク--->
+        <!---current_userがいいねしてたら黒、していなかったら空白のハート--->
+        <% if !sake.favorite_users.include?(current_user) %>
+          <%= link_to favorites_path(jsake_id: sake.id), method: :post do %>
+          <%= image_tag 'icons/blank-heart.png', class: 'sns-icon' %>
+          <% end %>
+        <% else %>
+          <%= link_to unfavorites_path(jsake_id: sake.id), method: :delete do %>
+          <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
+          <% end %>
+        <% end %>
+        <!--いいね数の表示-->
+         <%= sake.favorite_users.count %>
+        
+        <!--コメント-->
+         <%= link_to new_comment_path(jsake_id: sake.id), method: :get do %>
+         <%= image_tag 'icons/comment.png', class: 'sns-icon' %>
+         <% end %>
+        
+        <!---産地～酸度--->
+        <h5>産地：<%= sake.locaility %>&emsp;&emsp;精米歩合：<%= sake.seimai_buai %></h5>
+        <h5>アルコール度数：<%= sake.alcohol_degree %></h5>
+        <h5>日本酒度：<%= sake.sake_meter_value %>&emsp;&emsp;酸度：<%= sake.acidity%></h5>
         </div>
         
-        <% end %>
+        <div class="btn-group">
+          <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            コメント<span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <% sake.comments.each do |c|%>
+            <li><%= c.body %></li>
+            <% end %>
+          </ul>
+          <%= sake.comments.count %>
+        </div>
 
+        <% end %>
+        </div>
+      </div>
+
+      <% end %>
     <% end %>
     </div>
+      <%= will_paginate @favorite_jsakes %>
   </div>
