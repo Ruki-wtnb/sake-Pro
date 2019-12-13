@@ -113,7 +113,7 @@ h1, h2 {
   padding-top: 150px;
 }
 
-.mypage-index-wrapper{
+.reg_content{
   padding-top: 150px;
 }
 
@@ -146,6 +146,7 @@ h4{
 }
 
 
+
 //tops
 .top_list{
   padding-top: 400px;
@@ -160,4 +161,25 @@ h4{
 
 .comment-new-wrapper{
   margin-top:100px;
+}
+
+table{
+  border-color: white;
+}
+
+th{
+  text-align: center;
+  vertical-align: middle;
+  height: 40px;
+  background-color: #769164;
+  color: white;
+}
+
+td{
+  text-align: center;
+  vertical-align: middle;
+  background-color: #769164;
+  opacity: 0.5;
+  height: 40px;
+  color: white;
 }

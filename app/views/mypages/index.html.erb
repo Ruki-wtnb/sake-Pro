@@ -21,15 +21,16 @@
 
 
 
- <div class="container-fluid mypage-index-wrapper">
+
     
     <%= will_paginate %>
     
     <!--登録銘柄一覧-->
-    <div class="row">
+    <div class="reg_content">
     <!--登録した酒を4つずつ取得-->
     <% @mypages.each_slice(4) do |reg_sake1, reg_sake2, reg_sake3, reg_sake4| %> 
-    
+   <div class="container-fluid mypage-index-wrapper">
+    <div class="row">
     <!--4つを1つずつ処理-->
       <% [reg_sake1, reg_sake2, reg_sake3, reg_sake4].each do |sake|%> 
     
@@ -52,33 +53,41 @@
           <% end %>
         <% else %>
           <%= link_to unfavorites_path(jsake_id: sake.id), method: :delete do %>
-          <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
+          <%= image_tag 'icons/red-heart.png', class: 'sns-icon' %>
           <% end %>
         <% end %>
         <!--いいね数の表示-->
          <%= sake.favorite_users.count %>
         
-        <!--コメント-->
+        <!--コメント入力へのリンク-->
          <%= link_to new_comment_path(jsake_id: sake.id), method: :get do %>
          <%= image_tag 'icons/comment.png', class: 'sns-icon' %>
          <% end %>
         
         <!---産地～酸度--->
-        <h5>産地：<%= sake.locaility %>&emsp;&emsp;精米歩合：<%= sake.seimai_buai %></h5>
-        <h5>アルコール度数：<%= sake.alcohol_degree %></h5>
-        <h5>日本酒度：<%= sake.sake_meter_value %>&emsp;&emsp;酸度：<%= sake.acidity%></h5>
+        <!--テーブル作成テスト-->
+          <table border="1" width="270">
+            <tr><th>産地</th><td><%= sake.locaility %></td><th>精米歩合</th><td><%= sake.seimai_buai %></td></tr>
+            <tr><th colspan="2">アルコール度数</th><td colspan="2"><%= sake.alcohol_degree %></td></tr>
+            <tr><th>日本酒度</th><td><%= sake.sake_meter_value %></td><th>酸度</th><td><%= sake.acidity %></td></tr>
+          </table>
+        
         </div>
         
-        <div class="btn-group">
-          <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-            コメント<span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu">
-            <% sake.comments.each do |c|%>
-            <li><%= c.body %></li>
-            <% end %>
-          </ul>
-        </div>
+        <!--アコーディオン形式採用&レイアウト整理予定(レイアウト崩れないか要確認)-->
+          <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#reg_sake<%= sake.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
+              コメントを見る
+            </a>
+          </p>
+          
+          <div class="collapse" id="reg_sake<%= sake.id%>">
+            <div class="card card-body">
+              <% sake.comments.each do |c|%>
+              <div><%= c.body %></div>
+              <% end %>
+            </div>
+          </div>
         
         
         <% end %>
@@ -86,10 +95,12 @@
       </div>
 
       <% end %>
+      </div>
+      </div>
     <% end %>
-    </div>
-      <%= will_paginate %>
   </div>
+      <%= will_paginate %>
+  
     
  <div class="container-fluid mypage-index-wrapper">
     
@@ -122,7 +133,7 @@
           <% end %>
         <% else %>
           <%= link_to unfavorites_path(jsake_id: sake.id), method: :delete do %>
-          <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
+          <%= image_tag 'icons/red-heart.png', class: 'sns-icon' %>
           <% end %>
         <% end %>
         <!--いいね数の表示-->
@@ -138,20 +149,8 @@
         <h5>アルコール度数：<%= sake.alcohol_degree %></h5>
         <h5>日本酒度：<%= sake.sake_meter_value %>&emsp;&emsp;酸度：<%= sake.acidity%></h5>
         </div>
-        
-        <div class="btn-group">
-          <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-            コメント<span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu">
-            <% sake.comments.each do |c|%>
-            <li><%= c.body %></li>
-            <% end %>
-          </ul>
-          <%= sake.comments.count %>
-        </div>
 
-        <% end %>
+          <% end %>
         </div>
       </div>
 
@@ -160,3 +159,5 @@
     </div>
       <%= will_paginate @favorite_jsakes %>
   </div>
+  
+  
