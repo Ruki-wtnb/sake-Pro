@@ -14,15 +14,16 @@
       <div class="tab-pane" id="reg"><p>test2</p></div>
       <div class="tab-pane" id="plot">
         <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
-        <%= scatter_chart @plot, xtitle: "日本酒度", ytitle:"酸度", width:"800px", height:"800px", label: "Lavel" %>
+        <%= scatter_chart @plot,
+        xtitle: "日本酒度",ytitle:"酸度",
+        xmin: -30,xmax: 30,
+        max: 2.4, width:"800px", height:"800px"%>
       </div>
     </div>
 
-
-
-
-
+  </div>
     
+
     <%= will_paginate %>
     
     <!--登録銘柄一覧-->
@@ -41,11 +42,20 @@
         
         <!---画像と銘柄名--->
         <%= image_tag sake.image_url.url, class: 'sake' %>
-        <br>
         <div class="caption">
         <h4 class="well"><%= sake.meigara %></h4>
         
-        <!---いいねのハートマークとカウント,コメントリンク--->
+        <!---産地～酸度--->
+        <!--テーブル作成テスト-->
+          <table border="1" width="270">
+            <tr><th>産地</th><td><%= sake.locaility %></td><th>精米歩合</th><td><%= sake.seimai_buai %></td></tr>
+            <tr><th colspan="2">アルコール度数</th><td colspan="2"><%= sake.alcohol_degree %></td></tr>
+            <tr><th>日本酒度</th><td><%= sake.sake_meter_value %></td><th>酸度</th><td><%= sake.acidity %></td></tr>
+          </table>
+        
+        </div>
+        
+                <!---いいねのハートマークとカウント,コメントリンク--->
         <!---current_userがいいねしてたら黒、していなかったら空白のハート--->
         <% if !sake.favorite_users.include?(current_user) %>
           <%= link_to favorites_path(jsake_id: sake.id), method: :post do %>
@@ -64,15 +74,6 @@
          <%= image_tag 'icons/comment.png', class: 'sns-icon' %>
          <% end %>
         
-        <!---産地～酸度--->
-        <!--テーブル作成テスト-->
-          <table border="1" width="270">
-            <tr><th>産地</th><td><%= sake.locaility %></td><th>精米歩合</th><td><%= sake.seimai_buai %></td></tr>
-            <tr><th colspan="2">アルコール度数</th><td colspan="2"><%= sake.alcohol_degree %></td></tr>
-            <tr><th>日本酒度</th><td><%= sake.sake_meter_value %></td><th>酸度</th><td><%= sake.acidity %></td></tr>
-          </table>
-        
-        </div>
         
         <!--アコーディオン形式採用&レイアウト整理予定(レイアウト崩れないか要確認)-->
           <p>
@@ -121,12 +122,12 @@
         
         <!---画像と銘柄名--->
         <%= image_tag sake.image_url.url, class: 'sake' %>
-        <br>
+        
         <div class="caption">
         <h4 class="well"><%= sake.meigara %></h4>
         
         <!---いいねのハートマークとカウント,コメントリンク--->
-        <!---current_userがいいねしてたら黒、していなかったら空白のハート--->
+        <!---current_userがいいねしてたら赤、していなかったら空白のハート--->
         <% if !sake.favorite_users.include?(current_user) %>
           <%= link_to favorites_path(jsake_id: sake.id), method: :post do %>
           <%= image_tag 'icons/blank-heart.png', class: 'sns-icon' %>
