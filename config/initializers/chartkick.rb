@@ -6,6 +6,6 @@ Chartkick.options = {
   xmax: 30,
   max: 2.4,
   width:"800px",
-  height:"800px"
+  height:"800px",
   
 }

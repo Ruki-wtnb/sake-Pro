@@ -10,14 +10,13 @@
 </div>
     
     <div class="tab-content">
-      <div class="tab-pane active" id="favo"><p>test</p></div>
+      <div class="tab-pane active" id="favo"><p>
+        <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+        <%= scatter_chart @plot, messages: {empty: "いいねしている日本酒がありません"},legend: false, discrete: true %>
+      </p></div>
       <div class="tab-pane" id="reg"><p>test2</p></div>
       <div class="tab-pane" id="plot">
-        <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
-        <%= scatter_chart @plot,
-        xtitle: "日本酒度",ytitle:"酸度",
-        xmin: -30,xmax: 30,
-        max: 2.4, width:"800px", height:"800px"%>
+
       </div>
     </div>
 

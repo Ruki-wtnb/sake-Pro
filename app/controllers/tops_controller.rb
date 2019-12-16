@@ -5,8 +5,10 @@ class TopsController < ApplicationController
   end
   
   def search
-    search_history_save
+    key_word = params_word[:word]
     binding.pry
+    search_history_save
+    
   end
   
   def search_history_save
