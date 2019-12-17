@@ -15,11 +15,14 @@
  </div>
 
   <div class="container-fluid mypage-index-wrapper top_list">
-    <%= will_paginate %>
+    
+ 
+
+ 
     
         <!---登録銘柄一覧--->
     <div class="row">
-    <% @tops.each_slice(4) do |all_sake1, all_sake2, all_sake3, all_sake4| %>
+      <% @tops.each_slice(4) do |all_sake1, all_sake2, all_sake3, all_sake4| %>
     
       <% [all_sake1, all_sake2, all_sake3, all_sake4].each do |sake|%>
       <div class="col-md-3">
@@ -58,14 +61,17 @@
     <% end %>
     </div>
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <%= will_paginate %>
+
   </div>
+
+  
+    <div class="container-fluid mypage-index-wrapper top_list">
+      <div class="row">
+      <%if !@result.nil? %>
+        <% @result.each do |r| %>
+          <div><%= r %></div>
+        <% end %>
+      <% end %>
+      </div>
+    </div>

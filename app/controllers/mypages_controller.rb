@@ -6,7 +6,7 @@ class MypagesController < ApplicationController
     
     @favorite_jsakes = current_user.favorite_jsakes.paginate(page: params[:page], per_page: 28)
     @favo_sake = @favorite_jsakes.pluck(:meigara, :sake_meter_value, :acidity)
-    
+    #binding.pry
     p = []
 
     @favo_sake.each do |sake|
