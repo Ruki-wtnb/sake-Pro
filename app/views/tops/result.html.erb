@@ -1,0 +1,38 @@
+
+
+<div class="container-fluid mypage-index-wrapper top_list">
+  <div>
+  <% @result.each do |r| %>
+    <div><%= r["id"]%></div>
+  <% end %>
+</div>
+  
+
+  <div>
+    <%= @result2[0] %>
+  </div>
+  
+  <div>
+    <%= @result2[0][0] %>
+  </div>
+  
+  <div>
+    <%=image_tag @result2[0][0]["image_url"]["url"] %>
+  </div>
+  
+  <div>
+    <%=image_tag @result2[1][0]["image_url"]["url"] %>
+  </div>
+
+
+</div>
+
+  <div>
+    <%= @result2 %>
+  </div>
+  
+  <div>
+    <% @result2.each do |re| %>
+      <%=image_tag re[0]["image_url"]["url"]%>
+    <% end %>
+  </div>

@@ -1,0 +1,31 @@
+
+[1mFrom:[0m /home/ec2-user/environment/sake/app/controllers/tops_controller.rb @ line 38 TopsController#search:
+
+    [1;34m12[0m: [32mdef[0m [1;34msearch[0m
+    [1;34m13[0m:   redirect_to root_path [32mif[0m params_word[[33m:word[0m] == [31m[1;31m"[0m[31m[1;31m"[0m[31m[0m [1;34m#検索ワードが空ならトップページ[0m
+    [1;34m14[0m: 
+    [1;34m15[0m:   split_word = params_word[[33m:word[0m].split([35m[1;35m/[0m[35m[[:blank:]]+[1;35m/[0m[35m[0m) [1;34m#検索ワードを空白で分割する[0m
+    [1;34m16[0m:   
+    [1;34m17[0m:   result = [] [1;34m#検索結果用の配列[0m
+    [1;34m18[0m:   
+    [1;34m19[0m:   split_word.each [32mdo[0m |word|
+    [1;34m20[0m:     key_word = [1;34;4mJsake[0m.where([31m[1;31m'[0m[31mmeigara LIKE(?)[1;31m'[0m[31m[0m, [31m[1;31m"[0m[31m%#{word}[0m[31m%[1;31m"[0m[31m[0m) [1;34m#Jsakeから検索[0m
+    [1;34m21[0m:     words = key_word.pluck([33m:id[0m, [33m:user_id[0m, [33m:meigara[0m, [33m:seimai_buai[0m, [33m:locaility[0m, [33m:alcohol_degree[0m, [33m:sake_meter_value[0m, [33m:acidity[0m)
+    [1;34m22[0m:     [32mnext[0m [32mif[0m words == [31m[1;31m"[0m[31m[1;31m"[0m[31m[0m
+    [1;34m23[0m:       words.each [32mdo[0m |w|
+    [1;34m24[0m:         result.push({[35mid[0m: w[[1;34m0[0m], [35muser_id[0m: w[[1;34m1[0m], [35mmeigara[0m: w[[1;34m2[0m], [35mseimai_buai[0m: w[[1;34m3[0m], [35mlocaility[0m: w[[1;34m4[0m], [35malcohol_degree[0m: w[[1;34m5[0m], [35msake_meter_value[0m: w[[1;34m6[0m], [35macidity[0m: w[[1;34m7[0m]})
+    [1;34m25[0m:       [32mend[0m
+    [1;34m26[0m:   [32mend[0m
+    [1;34m27[0m:   
+    [1;34m28[0m:   results = []
+    [1;34m29[0m:   
+    [1;34m30[0m:   result.each [32mdo[0m |r|
+    [1;34m31[0m:     results.push({[35mid[0m: r[[33m:id[0m], [35muser_id[0m: r[[33m:user_id[0m], [35mmeigara[0m: r[[33m:meigara[0m], [35mseimai_buai[0m: r[[33m:seimai_buai[0m], [35mlocaility[0m: r[[33m:locaility[0m], [35malcohol_degree[0m: r[[33m:alcohol_degree[0m], [35msake_meter_value[0m: r[[33m:alcohol_degree[0m], [35macidity[0m: r[[33m:acidity[0m] })
+    [1;34m32[0m:   [32mend[0m
+    [1;34m33[0m:   
+    [1;34m34[0m:   search_result result
+    [1;34m35[0m:   redirect_to root_path
+    [1;34m36[0m: 
+    [1;34m37[0m:   binding.pry
+ => [1;34m38[0m: [32mend[0m
+

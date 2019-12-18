@@ -9,6 +9,7 @@
          <%= f.text_field :word, class: 'form-control' %>
          <%= f.submit "検索" %>
          <% end %>
+
        </div>
      </div>
    </div>
@@ -31,6 +32,8 @@
         
         <!---画像と銘柄名--->
         <%= image_tag sake.image_url.url, class: 'sake' %>
+        <%= debug sake.image_url.url %>
+        <%= debug sake.image_url %>
         <br>
         <div class="caption">
         <h4 class="well"><%= sake.meigara %></h4>
@@ -64,14 +67,3 @@
     <%= will_paginate %>
 
   </div>
-
-  
-    <div class="container-fluid mypage-index-wrapper top_list">
-      <div class="row">
-      <%if !@result.nil? %>
-        <% @result.each do |r| %>
-          <div><%= r %></div>
-        <% end %>
-      <% end %>
-      </div>
-    </div>

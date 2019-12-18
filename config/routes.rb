@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'users/new'
   
   root 'tops#index'
+  get 'tops/result'
+  
   resources :tops do
     collection{post "search"}
   end
