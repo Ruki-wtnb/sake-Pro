@@ -36,10 +36,13 @@ class TopsController < ApplicationController
       result2.push(key_word)
     end
     
-    #binding.pry
+    
+    result3 = result2.uniq
     
     search_result result
     test result2
+    
+    #binding.pry
     
     redirect_to action: 'result'
   

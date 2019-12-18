@@ -28,11 +28,11 @@
 </div>
 
   <div>
-    <%= @result2 %>
+    <%= @result2.uniq %>
   </div>
   
   <div>
-    <% @result2.each do |re| %>
+    <% @result2.uniq.each do |re| %>
       <%=image_tag re[0]["image_url"]["url"]%>
     <% end %>
   </div>
