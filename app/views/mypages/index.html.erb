@@ -1,25 +1,23 @@
-
-<div class="container-fluid tab-menu">
-  <div class="row">
-    <ul class="nav nav-pills nav-justified">
+<div class="container">
+  <div class="container-fluid tab-menu">
+    <div class="row">
+      <ul class="nav nav-pills nav-justified">
        <li class="active"><a href="#favo" data-target="#favo" data-toggle="tab">お気に入り</a></li>
        <li><a href="#reg" data-target="#reg" data-toggle="tab">登録</a></li>
        <li><a href="#plot" data-target="#plot" data-toggle="tab">プロット</a></li>
-    </ul>
+      </ul>
+    </div>
   </div>
-</div>
-    
+
+  <div class="row">
     <div class="tab-content">
       <div class="tab-pane active" id="favo"><p>
         <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
         <%= scatter_chart @plot, messages: {empty: "いいねしている日本酒がありません"},legend: false,discrete: true %>
       </p></div>
       <div class="tab-pane" id="reg"><p>test2</p></div>
-      <div class="tab-pane" id="plot">
-
-      </div>
+      <div class="tab-pane" id="plot"></div>
     </div>
-
   </div>
     
 
@@ -161,3 +159,4 @@
   </div>
   
   
+</div>

@@ -1,38 +1,55 @@
 
+ <div class"container-fluid top_search">
+   <div class="row">
+     <div class="col-md-offset-4 col-md-4">
+       <div class="form-group top_search">
+         
+         <%= form_for @search, url: '/tops/search' do |f| %>
+         <%= f.label :word, "検索"%>
+         <%= f.text_field :word, class: 'form-control' %>
+         <%= f.submit "検索" %>
+         <% end %>
 
-<div class="container-fluid mypage-index-wrapper top_list">
-  <div>
-  <% @result.each do |r| %>
-    <div><%= r["id"]%></div>
-  <% end %>
+       </div>
+     </div>
+   </div>
+ </div>
+ 
+ <%= search_form_for @ran_search do |f| %>
+ <%= f.label :meigara_cont_any %>
+ <%= f.search_field :meigara_cont_any %>
+ <%= f.submit '検索'%>
+ 
+ <% end %>
+
+
+<div class="container-fluid result-index-wrapper top_list">
+  
+    
+    <!---検索結果の銘柄一覧--->
+    <div class="row">
+      <!--検索結果を4つずつ出力-->
+      <% @result.uniq.each_slice(4) do |ret_sake1, ret_sake2, ret_sake3, ret_sake4| %>
+        <% [ret_sake1, ret_sake2, ret_sake3, ret_sake4].each do |sake| %>
+          <div class="col-md-3">
+            <% if sake != nil %>
+              <div class="thumbnail shadow topic-index-single">
+                <%= image_tag sake.image_url.url, class: 'sake' %>
+                <br>
+                <div class="caption">
+                  <h4 class="well"><%= sake.meigara %></h4>
+                  <%= sake.favorite_users.count %>
+                    <!---産地～酸度--->
+                    <h5>産地：<%= sake.locaility %>&emsp;&emsp;精米歩合：<%= sake.seimai_buai %></h5>
+                    <h5>アルコール度数：<%= sake.alcohol_degree %></h5>
+                    <h5>日本酒度：<%= sake.sake_meter_value %>&emsp;&emsp;酸度：<%= sake.acidity %></h5>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    
+  
 </div>
-  
-
-  <div>
-    <%= @result2[0] %>
-  </div>
-  
-  <div>
-    <%= @result2[0][0] %>
-  </div>
-  
-  <div>
-    <%=image_tag @result2[0][0]["image_url"]["url"] %>
-  </div>
-  
-  <div>
-    <%=image_tag @result2[1][0]["image_url"]["url"] %>
-  </div>
-
-
-</div>
-
-  <div>
-    <%= @result2.uniq %>
-  </div>
-  
-  <div>
-    <% @result2.uniq.each do |re| %>
-      <%=image_tag re[0]["image_url"]["url"]%>
-    <% end %>
-  </div>

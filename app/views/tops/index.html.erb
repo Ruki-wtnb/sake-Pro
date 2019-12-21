@@ -15,11 +15,16 @@
    </div>
  </div>
 
-  <div class="container-fluid mypage-index-wrapper top_list">
-    
+ <%= search_form_for @ran_search, url: tops_r_path do |f| %>
+ <%= f.label :meigara_cont_any %>
+ <%= f.search_field :meigara_cont_any %>
+ <%= f.submit '検索'%>
  
+ <% end %>
 
- 
+
+
+  <div class="container-fluid mypage-index-wrapper top_list">
     
         <!---登録銘柄一覧--->
     <div class="row">
@@ -32,8 +37,6 @@
         
         <!---画像と銘柄名--->
         <%= image_tag sake.image_url.url, class: 'sake' %>
-        <%= debug sake.image_url.url %>
-        <%= debug sake.image_url %>
         <br>
         <div class="caption">
         <h4 class="well"><%= sake.meigara %></h4>

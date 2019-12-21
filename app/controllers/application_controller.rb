@@ -14,4 +14,12 @@ class ApplicationController < ActionController::Base
   def logged_in?
     !current_user.nil? #current_userが空ではない？
   end
+  
+  before_action :set_search
+  
+  def set_search
+    @ran_search = Jsake.ransack(params[:q])  
+  end
+  
+  
 end

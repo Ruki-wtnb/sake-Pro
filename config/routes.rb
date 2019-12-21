@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   
   root 'tops#index'
   get 'tops/result'
+  get 'tops/r'
   
   resources :tops do
     collection{post "search"}
