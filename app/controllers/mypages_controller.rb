@@ -18,7 +18,7 @@ class MypagesController < ApplicationController
       @plot.push({name: [pl[:meigara]], data: [pl[:xy]]})
     end
     
-    binding.pry
+    #binding.pry
     
   end
   

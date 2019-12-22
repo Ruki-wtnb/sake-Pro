@@ -3,12 +3,15 @@ class TopsController < ApplicationController
   def index
       @tops = Jsake.paginate(page: params[:page], per_page: 28)
       @search = SearchHistory.new
+      
+      if current_user != nil
+      @search_history = SearchHistory.where(user_id: current_user.id)
+      end
       #binding.pry
   end
   
   def result #検索結果を表示
-    @result = session[:search_result].uniq.paginate(page: params[:page], per_page: 28)
-    @search = SearchHistory.new
+    @search_history = SearchHistory.where(user_id: current_user.id)
   end
   
   def search #自作の検索メソッド
@@ -25,8 +28,8 @@ class TopsController < ApplicationController
         @result.push(key)
       end
     end
-
-   
+    
+    @search_history = SearchHistory.where(user_id: current_user.id)
     
     search_history_save
 
@@ -36,23 +39,18 @@ class TopsController < ApplicationController
 
   end
   
-  def r #ransackでの実装
-  
-    params[:q]['meigara_cont_any'] = params[:q]['meigara_cont_any'].split(/[[:blank:]]+/)
-    @ran_search = Jsake.ransack(params[:q])
-    @ran_result = @ran_search.result
-    #binding.pry
-    
-  end
-  
-  
-  
   def search_history_save
-    
     @search = SearchHistory.new
     @search.user_id = current_user.id
     @search.word = params_word[:word]
-  
+    
+    check = SearchHistory.where(user_id: current_user.id)
+    
+    if check.count >= 5
+      check.limit(1).delete_all
+    end
+    
+    @search.save
   end
   
   private
