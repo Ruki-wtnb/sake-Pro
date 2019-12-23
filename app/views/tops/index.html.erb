@@ -6,7 +6,7 @@
          
          <%= form_for @search, url: '/tops/search' do |f| %>
          <%= f.label :word, "検索"%>
-         <%= f.text_field :word, class: 'form-control', list: "search_history" %>
+         <%= f.text_field :word, class: 'form-control', list: "search_history", autocomplete: 'off' %>
          <%= f.submit "検索", class: 'btn btn-primary' %>
          <% end %>
 

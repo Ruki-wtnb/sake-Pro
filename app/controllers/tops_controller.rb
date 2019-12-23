@@ -45,12 +45,13 @@ class TopsController < ApplicationController
     @search.word = params_word[:word]
     
     check = SearchHistory.where(user_id: current_user.id)
-    
-    if check.count >= 5
+    word = SearchHistory.where(user_id: current_user.id, word: @search.word)
+    binding.pry
+    if check.count >= 5 && word.empty?
       check.limit(1).delete_all
+      @search.save
     end
-    
-    @search.save
+
   end
   
   private
