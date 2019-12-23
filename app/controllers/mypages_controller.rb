@@ -28,13 +28,9 @@ class MypagesController < ApplicationController
     favorite.jsake_id = params[:jsake_id]
     
     if favorite.save
-      flash.now[:success] = 'いいねしました'
-      index
-      render :index
+      redirect_to params[:now_url], success: 'いいねしました'
     else
-      flash.now[:danger] = 'いいねに失敗しました'
-      index
-      render :index
+      redirect_to params[:now_url], danger: 'いいねに失敗しました'
     end
     
   end
@@ -44,13 +40,9 @@ class MypagesController < ApplicationController
     unfavorite = Favorite.find_by(user_id: current_user.id, jsake_id: params[:jsake_id].to_i) #レコードの検索
     
     if unfavorite.destroy
-      flash.now[:success] = 'いいねを削除しました'
-      index
-      render :index
+      redirect_to params[:now_url], success: 'いいねを削除しました'
     else
-      flash.now[:danger] = 'いいねの削除に失敗しました'
-      index
-      render :index
+      redirect_to params[:now_url], success: 'いいねの削除に失敗しました'
     end
   end
 

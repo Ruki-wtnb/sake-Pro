@@ -6,7 +6,7 @@
          
          <%= form_for @search, url: '/tops/search' do |f| %>
          <%= f.label :word, "検索"%>
-         <%= f.text_field :word, class: 'form-control' %>
+         <%= f.text_field :word, class: 'form-control', list: "search_history" %>
          <%= f.submit "検索", class: 'btn btn-primary' %>
          <% end %>
 
@@ -15,10 +15,13 @@
    </div>
  </div>
 
+<!--ログインしていたら、検索履歴を表示-->
 <% if current_user != nil %>
- <% @search_history.each do |sh| %>
-     <div><%= sh.word%></div>
- <% end %>
+<datalist id="search_history">
+    <% @search_history.each do |sh| %>
+    <option><%= sh.word%></option>
+    <% end %>
+</datalist>
 <% end %>
 
 
@@ -44,11 +47,11 @@
         
         <!---いいねのハートマークとカウント,コメントリンク--->
         <% if !sake.favorite_users.include?(current_user) %>　<!---current_userがいいねしてたら黒、していなかったら空白--->
-          <%= link_to favorites_path(jsake_id: sake.id), method: :post do %>
+          <%= link_to favorites_path(jsake_id: sake.id, now_url: request.url), method: :post do %>
           <%= image_tag 'icons/blank-heart.png', class: 'sns-icon' %>
           <% end %>
         <% else %>
-          <%= link_to unfavorites_path(jsake_id: sake.id), method: :delete do %>
+          <%= link_to unfavorites_path(jsake_id: sake.id, now_url: request.url), method: :delete do %>
           <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
           <% end %>
         <% end %>

@@ -1,4 +1,4 @@
-<div class="container">
+
   <div class="container-fluid tab-menu">
     <div class="row">
       <ul class="nav nav-pills nav-justified">
@@ -21,14 +21,15 @@
   </div>
     
 
+<div class="container-fluid mypage-index-wrapper">
+    
     <%= will_paginate %>
     
     <!--登録銘柄一覧-->
-    <div class="reg_content">
+    <div class="row">
     <!--登録した酒を4つずつ取得-->
     <% @mypages.each_slice(4) do |reg_sake1, reg_sake2, reg_sake3, reg_sake4| %> 
-   <div class="container-fluid mypage-index-wrapper">
-    <div class="row">
+
     <!--4つを1つずつ処理-->
       <% [reg_sake1, reg_sake2, reg_sake3, reg_sake4].each do |sake|%> 
     
@@ -55,11 +56,11 @@
                 <!---いいねのハートマークとカウント,コメントリンク--->
         <!---current_userがいいねしてたら黒、していなかったら空白のハート--->
         <% if !sake.favorite_users.include?(current_user) %>
-          <%= link_to favorites_path(jsake_id: sake.id), method: :post do %>
+          <%= link_to favorites_path(jsake_id: sake.id, now_url: request.url), method: :post do %>
           <%= image_tag 'icons/blank-heart.png', class: 'sns-icon' %>
           <% end %>
         <% else %>
-          <%= link_to unfavorites_path(jsake_id: sake.id), method: :delete do %>
+          <%= link_to unfavorites_path(jsake_id: sake.id, now_url: request.url), method: :delete do %>
           <%= image_tag 'icons/red-heart.png', class: 'sns-icon' %>
           <% end %>
         <% end %>
@@ -93,7 +94,7 @@
       </div>
 
       <% end %>
-      </div>
+      
       </div>
     <% end %>
   </div>
@@ -126,11 +127,11 @@
         <!---いいねのハートマークとカウント,コメントリンク--->
         <!---current_userがいいねしてたら赤、していなかったら空白のハート--->
         <% if !sake.favorite_users.include?(current_user) %>
-          <%= link_to favorites_path(jsake_id: sake.id), method: :post do %>
+          <%= link_to favorites_path(jsake_id: sake.id, now_url: request.url), method: :post do %>
           <%= image_tag 'icons/blank-heart.png', class: 'sns-icon' %>
           <% end %>
         <% else %>
-          <%= link_to unfavorites_path(jsake_id: sake.id), method: :delete do %>
+          <%= link_to unfavorites_path(jsake_id: sake.id, now_url: request.url), method: :delete do %>
           <%= image_tag 'icons/red-heart.png', class: 'sns-icon' %>
           <% end %>
         <% end %>
@@ -159,4 +160,3 @@
   </div>
   
   
-</div>
