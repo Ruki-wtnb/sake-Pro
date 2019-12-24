@@ -72,6 +72,10 @@
          <%= image_tag 'icons/comment.png', class: 'sns-icon' %>
          <% end %>
         
+        <!--編集へのリンク-->
+        <%= link_to jsake_path(id: sake.id), method: :patch do %>
+        <%= image_tag 'icons/edit.png', class: 'sns-icon' %>
+        <% end %>
         
         <!--アコーディオン形式採用&レイアウト整理予定(レイアウト崩れないか要確認)-->
           <p>

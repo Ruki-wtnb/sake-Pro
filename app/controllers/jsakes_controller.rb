@@ -17,10 +17,27 @@ class JsakesController < ApplicationController
     end
   end
   
+  def update
+    @update_id = params[:id]
+    @jsake = Jsake.find(@update_id)
+    #binding.pry
+  end
+  
+  def edit
+    @jsake = Jsake.find(@update_id)
+    
+    if @jsake.update(jsake_params)
+    end
+    
+  end
+  
+  
   private
   def jsake_params
     params.require(:jsake).permit(:image_url, :meigara, :seimai_buai, :locaility, :alcohol_degree, :sake_meter_value, :acidity)
+  binding.pry
   end
+  
   
   
   

@@ -39,7 +39,7 @@ class TopsController < ApplicationController
 
   end
   
-  def search_history_save
+  def search_history_save #検索履歴の保存
     @search = SearchHistory.new
     @search.user_id = current_user.id
     @search.word = params_word[:word]

@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   
   root 'tops#index'
   get 'tops/result'
-  get 'tops/r'
   
   resources :tops do
     collection{post "search"}
@@ -15,6 +14,8 @@ Rails.application.routes.draw do
   resources :users
   resources :jsakes
   resources :comments
+  
+  
   
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
