@@ -73,7 +73,7 @@
          <% end %>
         
         <!--編集へのリンク-->
-        <%= link_to jsake_path(id: sake.id), method: :patch do %>
+        <%= link_to  edit_jsake_path(id: sake.id) do %>
         <%= image_tag 'icons/edit.png', class: 'sns-icon' %>
         <% end %>
         

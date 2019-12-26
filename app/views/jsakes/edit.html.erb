@@ -4,9 +4,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-offset-4 col-md-4">
-        <%= form_for @jsake, :url => {action: "edit" } do |f| %>
         
-        <div>
+        <%= form_for @jsake, :url => {action: "update" } do |f| %>
+        
+        <div class='form-group'>
+            <% f.hidden_field :id, value: @update_id %>
+        </div>
+        
+        <div class='form-group'>
             <%= f.label :image_url %>
             <%= f.file_field :image_url %>
         </div>

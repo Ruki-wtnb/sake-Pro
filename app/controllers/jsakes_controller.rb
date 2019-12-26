@@ -17,17 +17,22 @@ class JsakesController < ApplicationController
     end
   end
   
-  def update
+  def edit
     @update_id = params[:id]
     @jsake = Jsake.find(@update_id)
-    #binding.pry
   end
   
-  def edit
-    @jsake = Jsake.find(@update_id)
+  def update
+
+    @jsake = Jsake.find(params[:id])
     
     if @jsake.update(jsake_params)
+      redirect_to controller: 'mypages', action: 'index', success: '銘柄を修正しました'
+    else
+      flash.now[:danger] = '銘柄の修正に失敗しました。入力内容を確認してください。'
+      render :edit
     end
+    #binding.pry
     
   end
   
@@ -35,9 +40,13 @@ class JsakesController < ApplicationController
   private
   def jsake_params
     params.require(:jsake).permit(:image_url, :meigara, :seimai_buai, :locaility, :alcohol_degree, :sake_meter_value, :acidity)
-  binding.pry
   end
   
+  
+  private
+  def update_params
+    params.require(:jsake).permit(:image_url, :meigara, :seimai_buai, :locaility, :alcohol_degree, :sake_meter_value, :acidity)
+  end
   
   
   
