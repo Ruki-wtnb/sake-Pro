@@ -4,8 +4,8 @@ Chartkick.options = {
   ytitle:"酸度",
   xmin: -30,
   xmax: 30,
-  max: 2.4,
-  width:"800px",
-  height:"800px",
+  max: 2.5,
+  width:"600px",
+  height:"600px",
   
 }

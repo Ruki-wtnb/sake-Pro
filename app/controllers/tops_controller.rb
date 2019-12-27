@@ -33,8 +33,6 @@ class TopsController < ApplicationController
     
     search_history_save
 
-    #binding.pry
-    
     render :result
 
   end
@@ -46,7 +44,7 @@ class TopsController < ApplicationController
     
     check = SearchHistory.where(user_id: current_user.id)
     word = SearchHistory.where(user_id: current_user.id, word: @search.word)
-    binding.pry
+    
     if check.count >= 5 && word.empty?
       check.limit(1).delete_all
       @search.save

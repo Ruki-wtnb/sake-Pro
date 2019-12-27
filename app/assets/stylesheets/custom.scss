@@ -11,6 +11,18 @@
 }
 
 
+//top_result
+.result-index-wrapper{
+  margin-top: 50px;
+}
+
+canvas{
+  background-image: image-url('graph.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
 h1, h2 {
   font-weight: 100;
 }
