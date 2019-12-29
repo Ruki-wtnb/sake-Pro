@@ -1,74 +1,84 @@
-
- <div class"container-fluid top_search">
+<!--検索用テキストフィールド-->
+ <div class"container top_search">
    <div class="row">
-     <div class="col-md-offset-3 col-md-6 top_search form-inline">
+     <div class="col-md-offset-2 col-md-8 form-inline top_search">
          
          <%= form_for @search, url: '/tops/search' do |f| %>
-         
          <%= f.text_field :word, class:'form-control', list: "search_history", autocomplete: 'off', size: '60' %>
          <%= f.submit "検索", class: 'btn-lg btn-primary' %>
          <% end %>
-
+         
      </div>
    </div>
  </div>
+ 
+ <div class="container top-search">
+   <div class="row">
 
-<!--ログインしていたら、検索履歴を表示-->
+     <div class="col-md-offset-2 col-md-8 form-inline blue">
+          <%= form_for @search, url: '/tops/search' do |f| %>
+         <%= f.text_field :word, class:'form-control', list: "search_history", autocomplete: 'off', size: '80' %>
+         <%= f.submit "検索", class: 'btn-lg btn-primary' %>
+         <% end %>
+     </div>
+
+    </div>
+  </div>
+
+<!--ログインしていたら、検索履歴をテキストフィールドに表示-->
 <% if current_user != nil %>
-<datalist id="search_history">
+  <datalist id="search_history">
     <% @search_history.each do |sh| %>
-    <option><%= sh.word%></option>
+      <option><%= sh.word%></option>
     <% end %>
-</datalist>
+  </datalist>
 <% end %>
 
 
+<div class="container-fluid index-with-search">
+  <%= will_paginate %>
+      <!--銘柄全件表示-->
 
-
-
-  <div class="container-fluid top-index-wrapper">
-    
-        <!---登録銘柄一覧--->
-    <div class="row">
       <% @tops.each_slice(4) do |all_sake1, all_sake2, all_sake3, all_sake4| %>
-    
-      <% [all_sake1, all_sake2, all_sake3, all_sake4].each do |sake|%>
-      <div class="col-md-3">
-        <% if sake != nil %> <!---sake1が空白でない(each.sliceのエラー対策)--->
-        <div class="thumbnail shadow topic-index-single">
-        
-        <!---画像と銘柄名--->
-        <%= image_tag sake.image_url.url, class: 'sake' %>
-        <br>
-        <div class="caption">
-        <h4 class="well"><%= sake.meigara %></h4>
-        
-        <!---いいねのハートマークとカウント,コメントリンク--->
-        <% if !sake.favorite_users.include?(current_user) %>　<!---current_userがいいねしてたら黒、していなかったら空白--->
-          <%= link_to favorites_path(jsake_id: sake.id, now_url: request.url), method: :post do %>
-          <%= image_tag 'icons/blank-heart.png', class: 'sns-icon' %>
+        <div class="row index-row">
+          <% [all_sake1, all_sake2, all_sake3, all_sake4].each do |sake|%>
+          
+            <div class="col-md-3">
+              <% if sake != nil %> <!--sake1が空白でない(each.sliceのエラー対策)-->
+                <div class="thumbnail shadow topic-index-single">
+                  <!--画像と銘柄名-->
+                  <%= image_tag sake.image_url.url, class: 'sake' %>
+                  <span class="caption">
+                    <h4><%= sake.meigara %></h4>
+                    
+                    <!--いいねのハートマークとカウント,コメントリンク-->
+                    <% if !sake.favorite_users.include?(current_user) %>
+                      <!---current_userがいいねしてたら黒、していなかったら空白--->
+                      <%= link_to favorites_path(jsake_id: sake.id, now_url: request.url), method: :post do %>
+                        <%= image_tag 'icons/blank-heart.png', class: 'sns-icon' %>
+                      <% end %>
+                    <% else %>
+                      <%= link_to unfavorites_path(jsake_id: sake.id, now_url: request.url), method: :delete do %>
+                        <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
+                      <% end %>
+                    <% end %>
+                    <span class="badge"><%= sake.favorite_users.count %></span>
+                    <%= image_tag 'icons/comment.png', class: 'sns-icon' %>
+                    
+                    <table border="1" class="table text-nowrap">
+                      <tr><th>産地</th><td><%= sake.locaility %></td></tr>
+                      <tr><th>精米歩合</th><td><%= sake.seimai_buai %></td></tr>
+                      <tr><th>アルコール度数</th><td><%= sake.alcohol_degree %></td></tr>
+                      <tr><th>日本酒度</th><td><%= sake.sake_meter_value %></td></tr>
+                      <tr><th>酸度</th><td><%= sake.acidity %></td></tr>
+                    </table>
+                    
+                  </span>
+                </div>
+              <% end %>
+            </div>
           <% end %>
-        <% else %>
-          <%= link_to unfavorites_path(jsake_id: sake.id, now_url: request.url), method: :delete do %>
-          <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
-          <% end %>
-        <% end %>
-         <%= sake.favorite_users.count %>
-        <%= image_tag 'icons/comment.png', class: 'sns-icon' %>
-        
-        <!---産地～酸度--->
-        <h5>産地：<%= sake.locaility %>&emsp;&emsp;精米歩合：<%= sake.seimai_buai %></h5>
-        <h5>アルコール度数：<%= sake.alcohol_degree %></h5>
-        <h5>日本酒度：<%= sake.sake_meter_value %>&emsp;&emsp;酸度：<%= sake.acidity%></h5>
         </div>
-        <% end %>
-        </div>
-      </div>
-
-      <% end %>
     <% end %>
-    </div>
-    
-    <%= will_paginate %>
-
-  </div>
+  <%= will_paginate %>
+</div>
