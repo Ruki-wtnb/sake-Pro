@@ -1,19 +1,15 @@
 class TopsController < ApplicationController
   
-  def index
+  def index #トップページでの日本酒一覧表示
       @tops = Jsake.paginate(page: params[:page], per_page: 28)
       @search = SearchHistory.new
       
       if current_user != nil
-      @search_history = SearchHistory.where(user_id: current_user.id)
+        @search_history = SearchHistory.where(user_id: current_user.id)
       end
-      #binding.pry
+      
   end
-  
-  def result #検索結果を表示
-    @search_history = SearchHistory.where(user_id: current_user.id)
-  end
-  
+
   def search #自作の検索メソッド
     redirect_to root_path if params_word[:word] == "" #検索ワードが空ならトップページ
     
@@ -29,12 +25,17 @@ class TopsController < ApplicationController
       end
     end
     
-    @search_history = SearchHistory.where(user_id: current_user.id)
+    @search = SearchHistory.new
+    if current_user != nil
+      @search_history = SearchHistory.where(user_id: current_user.id)
+      search_history_save
+    end
     
-    search_history_save
-
     render :result
 
+  end
+  
+  def result #検索履歴を表示
   end
   
   def search_history_save #検索履歴の保存

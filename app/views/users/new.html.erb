@@ -2,32 +2,35 @@
   <div class="container">
     <div class="row">
       <div class="col-md-offset-4 col-md-4 users-new-container">
-        <h1 class="text-center text-white">登録手続き</h1>
+        <h1 class="text-center text-white">新規登録</h1>
         
         <%= form_for @user do |f| %>
-        <div class="form-group">
+        
+          <div class="form-group">
             <%= f.label :name, "氏名", class: 'text-white' %>
             <%= f.text_field :name, :placeholder => "15文字以内で入力してください", class: 'form-control'%>
-        </div>
-        
-        <div class="form-group">
-          <%= f.label :email, "メールアドレス", class: 'text-white' %>
-          <%= f.text_field :email, class: 'form-control' %>
-        </div>
-        
-        <div class="form-group">
-          <%= f.label :password, "暗号",class: 'text-white' %>
-          <%= f.password_field :password, :placeholder => "文字数字交じり,8字以上32文字以下",class: 'form-control' %>
-        </div>
-        
-        <div class="form-group">
-          <%= f.label :password_confirmation, "暗号確認用", class: 'text-white' %>
-          <%= f.password_field :password_confirmation, class: 'form-control' %>
-        </div>
-        <%= f.submit "登録", class: 'btn-block btn-white' %>
+          </div>
+          
+          <div class="form-group">
+            <%= f.label :email, "メールアドレス", class: 'text-white' %>
+            <%= f.text_field :email, class: 'form-control' %>
+          </div>
+          
+          <div class="form-group">
+            <%= f.label :password, "暗号",class: 'text-white' %>
+            <%= f.password_field :password, :placeholder => "文字数字交じり,8字以上32文字以下",class: 'form-control' %>
+          </div>
+          
+          <div class="form-group">
+            <%= f.label :password_confirmation, "暗号確認用", class: 'text-white' %>
+            <%= f.password_field :password_confirmation, class: 'form-control' %>
+          </div>
+          
+          <%= f.submit "登録", class: 'btn-block btn-white' %>
         <% end %>
         
-        <%= link_to 'ログインはこちら', '#',class: 'text-white' %>
+        <br>
+        <%= link_to 'ログインはこちら', login_path, class: 'text-white' %>
       </div>
     </div>
   </div>

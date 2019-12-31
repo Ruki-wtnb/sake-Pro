@@ -7,75 +7,73 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-   
   </head>
 
   <body>
     <% flash.each do |key, value| %>
-     <div class="alert alert-<%= key %>" role="alert"><%= value %></div> 
+      <div class="alert alert-<%= key %>" role="alert"><%= value %></div> 
     <% end %>
     
     <nav class="navbar navbar-fixed-top">
-     <div class="container-fluid">
-       <div class="row">
-
-        <%= link_to root_path do %>
-        <span><%= image_tag "icons/sake-logo.png", class: "navbar-brand logo" %></span>
-        <% end %>
-        
-        
-        
-        <div>
-        <ul class="nav navbar-nav navbar-right icon-set">
-          <% if logged_in? %>
+       <div class="container-fluid">
+         <div class="row">
           
-          <li>
-            <%= link_to mypage_path do %>
-            <%= image_tag "icons/sake_my_page.png", class: 'icon-nav' %>
-            <% end %>
-          </li>
-          
-          <li>
-            <%= link_to new_jsake_path do %>
-            <%= image_tag "icons/reg-sake.png", class: 'icon-nav' %>
-            <% end %>
-          </li>
-          
-          <li>
-            <%= link_to logout_path, method: :delete do %>
-            <%= image_tag "icons/sake-logout.png", class: 'icon-nav' %>
-            <% end %>
-          </li>
-
-          <% else %>
-          
-          <li>
-            <%= link_to login_path do %>
-            <%= image_tag "icons/sake-login.png", class: "icon-nav" %>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to users_new_path do %>
-            <%= image_tag "icons/sake-reg.png", class: "icon-nav" %>
-            <% end %>
-          </li>
+          <!--日本酒-通-のロゴ-->
+          <%= link_to root_path do %>
+            <span><%= image_tag "icons/sake-logo.png", class: "navbar-brand logo" %></span>
           <% end %>
-        </ul>
-        </div>
+          
+          <!--ログイン状態によってアイコンの表示を変更-->
+          <div>
+            <ul class="nav navbar-nav navbar-right icon-set">
+              <!--ログインしていたら、マイページ、銘柄登録、ログアウト-->
+              <% if logged_in? %>
+                <li>
+                  <%= link_to mypage_path do %>
+                    <%= image_tag "icons/sake_my_page.png", class: 'icon-nav' %>
+                  <% end %>
+                </li>
+                
+                <li>
+                  <%= link_to new_jsake_path do %>
+                    <%= image_tag "icons/reg-sake.png", class: 'icon-nav' %>
+                  <% end %>
+                </li>
+                
+                <li>
+                  <%= link_to logout_path, method: :delete do %>
+                    <%= image_tag "icons/sake-logout.png", class: 'icon-nav' %>
+                  <% end %>
+                </li>
+              
+              <% else %>
+              <!--ログインしていなかったら、ログイン、ユーザ登録-->
+              <li>
+                <%= link_to login_path do %>
+                  <%= image_tag "icons/sake-login.png", class: "icon-nav" %>
+                <% end %>
+              </li>
+              
+              <li>
+                <%= link_to users_new_path do %>
+                  <%= image_tag "icons/sake-reg.png", class: "icon-nav" %>
+                <% end %>
+              </li>
+              <% end %>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>
     
     <%= yield %>
     
-
-  <script>
+  
+  <script>　<!--メッセージバーの表示5秒-->
   $(function(){
     $(".alert").fadeOut(5000);
   });
- </script>
- 
-  
+  </script>
     
   </body>
 </html>

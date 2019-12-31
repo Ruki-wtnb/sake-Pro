@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(user_info[:password])
       log_in user
-      redirect_to new_jsake_path, success: 'ログインに成功しました'
+      redirect_to mypage_path, success: 'ログインに成功しました'
       #binding.pry
     else
       flash.now[:danger] = 'ログインに失敗しました'

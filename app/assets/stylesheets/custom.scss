@@ -1,18 +1,89 @@
 
-//top_index
-
-.red{
-  background-color: red;
-  height: 50px;
+//共通
+//ナビゲーションバー
+.navbar {
+  margin-bottom: 0px;
+  background-color: rgba(0,0,0,0.5);
 }
 
-.blue{
-  background-color: blue;
-  height: 50px;
+.logo{ //日本酒通のロゴ
+  height: 80px;
+  width: 320px;
+  padding-left: 100px;
+}
+
+.icon-nav{
+  height: 60px;
+  width: 60px;
+
+}  
+
+.icon-reg{
+  height: 60px;
+  width: 60px;
+}  
+  
+.icon-set{
+  padding-right: 100px;
+}
+
+//日本酒銘柄一つずつのサムネイル
+.topic-index-single{
+  background-color: #769164;
+  
+//日本酒画像
+img{
+    height: 300px;
+    width: 300px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+//銘柄名
+h4{
+  margin-top: 0px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+
+//イイねやコメント欄などのアイコン  
+.sns-icon{
+  height: 40px;
+  width: 40px;
+  padding: 0;
+  display: inline-block;
+}
+
+}
+
+//銘柄のデータ表示用テーブル
+table{
+  white-space: nowrap;
+}
+
+th{
+  text-align: center;
+  vertical-align: middle;
+  height: 20px;
+  background-color: #769164;
+  color: white;
+}
+
+td{
+  text-align: center;
+  vertical-align: middle;
+  background-color: #769164;
+  height: 20px;
+  color: white;
 }
 
 
-.top_search{
+
+//検索フォーム付きの一覧共通 top/index,top/result
+
+
+.form-inline{
   margin-top: 100px;
 }
 
@@ -27,7 +98,6 @@
 
 .well{
   text-align: center;
-  
 }
 
 //top_result
@@ -37,6 +107,7 @@
 
 canvas{
   background-image: image-url('graph.jpg');
+  background-size: 800px, 800px;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -86,12 +157,8 @@ h1, h2 {
   }
 }
 
-//users_new
-.form-control {
-  height: 45px;
-}
-
-.users-new-wrapper {
+//ユーザー新規登録画面 users/new &ログイン画面 session/new
+.users-new-wrapper { //全体
   width: 100vw;
   height: 100vh;
   background-image: image-url('users_new_bg.jpg');
@@ -101,7 +168,7 @@ h1, h2 {
   background-size: cover;
   background-color: #464646;
 
-  .users-new-container {
+  .users-new-container { //登録フォーム
     padding-top: 220px;
 
     .form-group {
@@ -110,32 +177,12 @@ h1, h2 {
   }
 }
 
-//nav-bar
-.navbar {
-  margin-bottom: 0px;
-  background-color: rgba(0,0,0,0.5);
+.form-control {
+  height: 45px;
 }
 
-.logo{
-  height: 80px;
-  width: 320px;
-  padding-left: 100px;
-}
 
-.icon-nav{
-  height: 60px;
-  width: 60px;
 
-}  
-
-.icon-reg{
-  height: 60px;
-  width: 60px;
-}  
-  
-.icon-set{
-  padding-right: 100px;
-}
 //alert
 .alert { 
   margin-bottom: 0px;
@@ -160,28 +207,7 @@ h1, h2 {
   padding-top: 150px;
 }
 
-.topic-index-single{
-  
-.sns-icon{
-  height: 30px;
-  width: 30px;
-  padding: 0;
-  display: inline-block;
-}
 
-img{
-    height: 300px;
-    width: 300px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 10px; 
-}
-
-h4{
-  text-align: center;
-}
-
-}
 
 .tab-content{
   padding-left: 200px;
@@ -195,27 +221,6 @@ h4{
   margin-top:100px;
 }
 
-table{
-  border-color: white;
-  white-space: nowrap;
-}
-
-th{
-  text-align: center;
-  vertical-align: middle;
-  height: 20px;
-  background-color: #769164;
-  color: white;
-}
-
-td{
-  text-align: center;
-  vertical-align: middle;
-  background-color: #769164;
-  opacity: 0.5;
-  height: 20px;
-  color: white;
-}
 
 //test
 .test{
