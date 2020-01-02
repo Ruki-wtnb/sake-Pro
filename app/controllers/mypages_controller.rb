@@ -7,18 +7,11 @@ class MypagesController < ApplicationController
     @favorite_jsakes = current_user.favorite_jsakes.paginate(page: params[:page], per_page: 28)
     @favo_sake = @favorite_jsakes.pluck(:meigara, :sake_meter_value, :acidity)
     #binding.pry
-    p = []
+    @plot = []
 
     @favo_sake.each do |sake|
-      p.push({meigara: sake[0], xy: [sake[1], sake[2]]})
+      @plot.push({name: sake[0], data: [[sake[1], sake[2]]]})
     end
-    
-    @plot = []
-    p.each do |pl|
-      @plot.push({name: [pl[:meigara]], data: [pl[:xy]]})
-    end
-    
-    #binding.pry
     
   end
   

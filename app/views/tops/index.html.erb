@@ -50,26 +50,27 @@
                           <tr><th>酸度</th><td><%= sake.acidity %></td></tr>
                         </table>
                         
-                        <!--いいねのハートマークとカウント-->
-                        <% if !sake.favorite_users.include?(current_user) %>
-                          <!---current_userがいいねしていなかったら空白--->
-                          <%= link_to favorites_path(jsake_id: sake.id, now_url: request.url), method: :post do %>
-                            <%= image_tag 'icons/blank-heart-black.png', class: 'sns-icon' %>
+                        <% if logged_in? != nil? %>
+                          <!--いいねのハートマークとカウント-->
+                          <% if !sake.favorite_users.include?(current_user) %>
+                            <!---current_userがいいねしていなかったら空白--->
+                            <%= link_to favorites_path(jsake_id: sake.id, now_url: request.url), method: :post do %>
+                              <%= image_tag 'icons/blank-heart-black.png', class: 'sns-icon' %>
+                            <% end %>
+                          <% else %>
+                            <!--いいねしてたら赤-->
+                            <%= link_to unfavorites_path(jsake_id: sake.id, now_url: request.url), method: :delete do %>
+                              <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
+                            <% end %>
                           <% end %>
-                        <% else %>
-                          <!--いいねしてたら赤-->
-                          <%= link_to unfavorites_path(jsake_id: sake.id, now_url: request.url), method: :delete do %>
-                            <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
+                          <!--いいね数の表示-->
+                          <span class="badge"><%= sake.favorite_users.count %></span>
+                          
+                          <!--コメント入力画面へのリンク-->
+                          <%= link_to new_comment_path(jsake_id: sake.id), method: :get do %>
+                            <%= image_tag 'icons/comment-black.png', class: 'sns-icon' %>
                           <% end %>
                         <% end %>
-                        <!--いいね数の表示-->
-                        <span class="badge"><%= sake.favorite_users.count %></span>
-                        
-                        <!--コメント入力画面へのリンク-->
-                        <%= link_to new_comment_path(jsake_id: sake.id), method: :get do %>
-                          <%= image_tag 'icons/comment-black.png', class: 'sns-icon' %>
-                        <% end %>
-                        
                         <!--アコーディオン形式のコメント欄(モーダル形式を採用の方向)-->
                         <span class="view-comment">
                           <a class="btn btn-primary" data-toggle="collapse" href="#reg_sake<%= sake.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">

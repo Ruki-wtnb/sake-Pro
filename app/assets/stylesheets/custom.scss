@@ -1,4 +1,9 @@
 
+.text-center{
+  margin: -20px;
+  padding-bottom: 30px;
+}
+
 //共通
 
 //ナビゲーションバー
@@ -132,6 +137,10 @@ td{
 
 .tab-menu{
   padding-top: 100px;
+}
+
+.tab-content{
+  background-color: #ebf6f7;
 }
 
 canvas{
