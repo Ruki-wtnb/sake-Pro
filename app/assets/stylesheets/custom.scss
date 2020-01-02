@@ -91,8 +91,9 @@ td{
   background-color: red;
 }
 
+//「コメントを見るボタン」(登録銘柄一覧だけはsns-iconでinline-block)
 .view-comment{
-  margin-left: 30px;
+  margin-left: 35px;
 }
 
 }
@@ -100,7 +101,7 @@ td{
 
 
 //検索フォーム付きの一覧共通 top/index,top/result
-.top{
+.all-wrap{
   background-color: #ebf6f7;
 }
 
@@ -124,28 +125,26 @@ td{
 
 //マイページ mypages/index
 
+//タブメニューをナビゲーションから出す
+.index-under-tab{
+  margin-top: 50px;
+}
+
 .tab-menu{
   padding-top: 100px;
-}
-
-.reg_content{
-  padding-top: 150px;
-}
-
-
-
-.tab-content{
-  padding-left: 200px;
-  padding-bottom: 300px;
 }
 
 canvas{
   background-image: image-url('graph.png');
   background-size: 740px;
-  background-position: right top;
+  background-position: 90% 7%;
   background-repeat: no-repeat;
 }
 
+.graph-wrapper{
+  margin-top: 50px;
+  padding-bottom: 50px;
+}
 
 h1, h2 {
   font-weight: 100;
@@ -228,11 +227,14 @@ h1, h2 {
 //jsake
 
 .jsake-new-wrapper{
-  padding-top:150px;
+  padding-top:80px;
+  padding-bottom: 45px;
 }
 
 //comment_new
 
 .comment-new-wrapper{
-  margin-top:100px;
+  padding: 100px;
+  
+  
 }

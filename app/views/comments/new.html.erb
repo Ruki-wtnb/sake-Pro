@@ -1,40 +1,76 @@
-
+<div class="all-wrap">
  <div class="container-fluid comment-new-wrapper">
-   <div class="row">
-     <div class="col-md-offset-3 col-md-6">
-       <div class="thumbnail">
-         <%= image_tag @comment.jsake.image_url.url %>
-         <div class="caption">
-           <h4 class="well"><%= @comment.jsake.meigara %></h4>
+  <div class="row">
+   <div class="col-md-6">
+    <div class="thumbnail topic-index-single">
+      <!--日本酒画像-->
+      <%= image_tag @comment.jsake.image_url.url, class: 'sake' %>
+       <!--銘柄のキャプション-->
+       <span class="caption">
+       <!--銘柄名-->
+       <h4><%= @comment.jsake.meigara %></h4>
+        <!--銘柄のデータ表-->
+        <table class="table text-nowrap">
+         <tr><th>産地</th><td><%= @comment.jsake.locaility %></td></tr>
+         <tr><th>精米歩合</th><td><%= @comment.jsake.seimai_buai %></td></tr>
+         <tr><th>アルコール度数</th><td><%= @comment.jsake.alcohol_degree %></td></tr>
+         <tr><th>日本酒度</th><td><%= @comment.jsake.sake_meter_value %></td></tr>
+         <tr><th>酸度</th><td><%= @comment.jsake.acidity %></td></tr>
+        </table>
+                        
+        <!--いいねのハートマークとカウント-->
+        <% if !@comment.jsake.favorite_users.include?(current_user) %>
+         <!---current_userがいいねしていなかったら空白--->
+         <%= link_to favorites_path(jsake_id: @comment.jsake.id, now_url: request.url), method: :post do %>
+           <%= image_tag 'icons/blank-heart-black.png', class: 'sns-icon' %>
+         <% end %>
+        <% else %>
+         <!--いいねしてたら赤-->
+         <%= link_to unfavorites_path(jsake_id: @comment.jsake.id, now_url: request.url), method: :delete do %>
+          <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
+         <% end %>
+        <% end %>
+        <!--いいね数の表示-->
+        <span class="badge"><%= @comment.jsake.favorite_users.count %></span>
+       
+        <!--アコーディオン形式のコメント欄(モーダル形式を採用の方向)-->
+        <span class="view-comment">
+         <a class="btn btn-primary" data-toggle="collapse" href="#reg_sake<%= @comment.jsake.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
+         コメントを見る
+         </a>
+        </span>
+                        
+        <div class="collapse" id="reg_sake<%= @comment.jsake.id%>">
+         <div class="card card-body">
+          <% @comment.jsake.comments.each do |c|%>
+           <div><%= c.body %></div>
+          <% end %>
          </div>
-           <table>
-             <tr><th>産地</th><td><%= @comment.jsake.locaility %></td></tr>
-             
-           </table>
-         
-       </div>
-       
-       <%= form_for @comment do |f| %> <!---コメントの入力フォーム--->
-       
-       <div class="form-group">
-        <%= f.hidden_field :jsake_id, value: @comment.jsake_id %>
-       </div>
-
-       <div class="form-group">
-        <%= f.label :body, class: 'text-white' %>
-        <%= f.text_area :body, class: 'form-control'%>
-       </div>
-       
-       <div class="form-group">
-        <%= f.hidden_field :back_url, value: request.referer %>
-       </div>
-       
-       <%= f.submit "コメントを投稿する", class: 'btn-block btn-black'%>
-       <% end%>
-       
-       
-       
-       <%= debug request.referer %>
+        </div>
+      </span>
+     </div><!--サムネイルのdiv-->
+   </div>
+     
+   <div class="col-md-4">
+    
+    <%= form_for @comment do |f| %> <!---コメントの入力フォーム--->
+     <div class="form-group">
+      <%= f.hidden_field :jsake_id, value: @comment.jsake_id %>
      </div>
-    </div>
+     
+     <div class="form-group">
+      <%= f.text_area :body, class: 'form-control'%>
+     </div>
+     
+     <div class="form-group">
+      <%= f.hidden_field :back_url, value: request.referer %>
+     </div>
+     
+     <%= f.submit "コメントを投稿する", class: 'btn-block btn-black'%>
+     <% end%>
+        
+   </div>
+     
   </div>
+ </div>
+</div>
