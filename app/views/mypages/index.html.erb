@@ -64,12 +64,12 @@
                         
                     <!--アコーディオン形式のコメント欄(モーダル形式を採用の方向)-->
                     <span class="view-comment">
-                      <a class="btn btn-primary" data-toggle="collapse" href="#reg_sake<%= sake.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                      <a class="btn btn-primary" data-toggle="collapse" href="#favo_sake<%= sake.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
                       コメントを見る
                       </a>
                     </span>
                         
-                    <div class="collapse" id="reg_sake<%= sake.id%>">
+                    <div class="collapse" id="favo_sake<%= sake.id%>">
                       <div class="card card-body">
                         <% sake.comments.each do |c|%>
                           <div><%= c.body %></div>
