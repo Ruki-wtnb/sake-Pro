@@ -1,9 +1,4 @@
 
-.text-center{
-  margin: -20px;
-  padding-bottom: 30px;
-}
-
 //共通
 
 //ナビゲーションバー
@@ -233,17 +228,31 @@ h1, h2 {
   z-index: 10000;
 }
 
-//jsake
+//日本酒の銘柄登録、修正画面
 
-.jsake-new-wrapper{
-  padding-top:80px;
-  padding-bottom: 45px;
+//新規登録画面
+.jsake-wrapper{
+  padding-top: 90px;
+  padding-bottom: 50px;
 }
 
+.jsake-title{
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.file_field{
+  margin-bottom: 20px;
+}
 //comment_new
 
 .comment-new-wrapper{
   padding: 100px;
   
   
+}
+
+.text-center{
+  margin: -20px;
+  padding-bottom: 30px;
 }

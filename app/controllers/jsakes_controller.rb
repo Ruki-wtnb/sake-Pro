@@ -1,8 +1,7 @@
 class JsakesController < ApplicationController
   def new
     @jsake = Jsake.new
-    #@prefecture = Prefecture.all
-    #@seimaibuai = Seimaibuai.all
+
   end
   
   def create

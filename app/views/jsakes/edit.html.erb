@@ -1,59 +1,56 @@
 <div class="all-wrap">
-<div class="jsake-new-wrapper">
+  <div class="jsake-wrapper">
     <div class="container">
-        <div class="row">
-            <div class="col-md-offset-4 col-md-4">
-        <h1>銘柄編集画面</h1>
-        <%= form_for @jsake, :url => {action: "update" } do |f| %>
-        
-        <div class='form-group'>
-            <% f.hidden_field :id, value: @update_id %>
-        </div>
-
-        <div class='form-group'>
-            <%= f.label :image_url %>
-            <%= f.file_field :image_url %>
-        </div>
-        
-        
-        <div class='form-group'>
-            <%= f.label :meigara, '銘柄' %>
-            <%= f.text_field :meigara, class: 'form-control' %>
-        </div>
-        
-        <div class='form-group'>
-            <%= f.label :seimai_buai, '精米歩合' %><br>
-            <%= f.collection_select :seimai_buai, Seimaibuai.all, :name, :name, {}, {class: 'form-control'} %>
-        </div>
-        
-        <div class='form-group'>
-            <%= f.label :locaility, '産地' %>
-            <%= f.collection_select :locaility, Prefecture.all, :name, :name, {}, {class: 'form-control'} %>
-        </div>
-        
-        <div class='form-group'>
-            <%= f.label :alcohol_degree, 'アルコール度数' %>
-            <%= f.text_field :alcohol_degree, class: 'form-control' %>
-        </div>
-        
-        <div class='form-group'>
-            <%= f.label :sake_meter_value, '日本酒度' %>
-            <%= f.number_field :sake_meter_value, step: "0.1", class: 'form-control' %>
-        </div>
-        
-         <div class='form-group'>
-             <%= f.label :acidity, '酸度' %>
-             <%= f.number_field :acidity, step: "0.1", class: 'form-control' %>
-         </div>
-        
-        <div class="form-group">
-        <%= f.submit "編集", class: 'btn btn-primary form-control' %>
-        </div>
-            
+      <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+          <h2 class="jsake-title">銘柄修正画面</h2>
+          <%= form_for @jsake, :url => {action: "update" } do |f| %>
+            <div class='form-group'>
+              <% f.hidden_field :id, value: @update_id %>
             </div>
-        <% end %>
+    
+            <div class='form-group file_field'>
+              <%= f.label :image_url,"日本酒の画像" %>
+              <%= f.file_field :image_url %>
+            </div>
+            
+            <div class='form-group'>
+              <%= f.label :meigara, '銘柄' %>
+              <%= f.text_field :meigara, class: 'form-control' %>
+            </div>
+            
+            <div class='form-group'>
+              <%= f.label :seimai_buai, '精米歩合' %><br>
+              <%= f.collection_select :seimai_buai, Seimaibuai.all, :name, :name, {}, {class: 'form-control'} %>
+            </div>
+            
+            <div class='form-group'>
+              <%= f.label :locaility, '産地' %>
+              <%= f.collection_select :locaility, Prefecture.all, :name, :name, {}, {class: 'form-control'} %>
+            </div>
+            
+            <div class='form-group'>
+              <%= f.label :alcohol_degree, 'アルコール度数' %>
+              <%= f.text_field :alcohol_degree, class: 'form-control' %>
+            </div>
+            
+            <div class='form-group'>
+              <%= f.label :sake_meter_value, '日本酒度' %>
+              <%= f.number_field :sake_meter_value, step: "0.1", class: 'form-control' %>
+            </div>
+            
+             <div class='form-group'>
+               <%= f.label :acidity, '酸度' %>
+               <%= f.number_field :acidity, step: "0.1", class: 'form-control' %>
+             </div>
+            
+            <div class="form-group">
+              <%= f.submit "修正", class: 'btn btn-primary form-control' %>
+            </div>
+              
+          <% end %>
         </div>
+      </div>
     </div>
-</div>
-
+  </div>
 </div>
