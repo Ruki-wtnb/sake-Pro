@@ -64,6 +64,15 @@ h4{
   margin-left: 20px;
 }
 
+.modal-dialog{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+  margin: auto;
+  pointer-events: none;
+}
+
 
 //銘柄のデータ表示用テーブル
 table{
@@ -93,7 +102,7 @@ td{
 
 //「コメントを見るボタン」(登録銘柄一覧だけはsns-iconでinline-block)
 .view-comment{
-  margin-left: 35px;
+  float: right;
 }
 
 }

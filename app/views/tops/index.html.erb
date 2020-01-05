@@ -71,18 +71,32 @@
                             <%= image_tag 'icons/comment-black.png', class: 'sns-icon' %>
                           <% end %>
                         <% end %>
-                        <!--アコーディオン形式のコメント欄(モーダル形式を採用の方向)-->
-                        <span class="view-comment">
-                          <a class="btn btn-primary" data-toggle="collapse" href="#all_sake<%= sake.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <!--モーダル形式のコメント欄-->
+                        <div class="view-comment">
+                          <button class="btn btn-primary" data-toggle="modal" data-target="#all_sake<%= sake.id %>">
                             コメントを見る
-                          </a>
-                        </span>
+                          </button>
+                          <span class="badge"><%= sake.comments.count %>件</span>
+                        </div>
                         
-                        <div class="collapse" id="all_sake<%= sake.id%>">
-                          <div class="card card-body">
-                            <% sake.comments.each do |c|%>
-                              <div><%= c.body %></div>
-                            <% end %>
+                        <div class="modal fade" id="all_sake<%= sake.id %>">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h4><%= sake.meigara%></h4>
+                                <button class="close" data-dismiss="modal">
+                                  <span aria-hidden="true">&times;</span><span class="sr-only">閉じる</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <% sake.comments.each do |c|%>
+                                <p><%= c.body %></p>
+                                <% end %>
+                              </div>
+                                <div class="modal-footer">
+                                  <button class="btn btn-primary btn-sm" data-dismiss="modal">閉じる</button>
+                                </div>
+                            </div>
                           </div>
                         </div>
                         
