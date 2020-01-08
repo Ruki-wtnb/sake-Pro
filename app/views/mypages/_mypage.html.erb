@@ -1,16 +1,15 @@
-<h1>Test</h1>
 
-                          <!--いいねのハートマークとカウント-->
-                          <% if !@sake.favorite_users.include?(current_user) %>
-                            <!---current_userがいいねしていなかったら空白--->
-                            <%= link_to favorites_path(jsake_id: @sake.id, now_url: request.url), method: :post, remote: true do %>
-                              <%= image_tag 'icons/blank-heart-black.png', class: 'sns-icon' %>
-                            <% end %>
-                          <% else %>
-                            <!--いいねしてたら赤-->
-                            <%= link_to unfavorites_path(jsake_id: @sake.id, now_url: request.url), method: :delete, remote: true do %>
-                              <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
-                            <% end %>
-                          <% end %>
-                          <!--いいね数の表示-->
-                          <span class="badge"><%= @sake.favorite_users.count %></span>
+<% if !sake.favorite_users.include?(current_user) %>
+  <!---current_userがいいねしていなかったら空白--->
+  <%= link_to favorites_path(jsake_id: sake.id), method: :post, remote: true do %>
+    <%= image_tag 'icons/blank-heart-black.png', class: 'sns-icon' %>
+  <% end %>
+<% else %>
+  <!--いいねしてたら赤-->
+  <%= link_to unfavorites_path(jsake_id: sake.id), method: :delete, remote: true do %>
+    <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
+  <% end %>
+<% end %>
+
+<!--いいね数の表示-->
+<span class="badge"><%= sake.favorite_users.count %></span>

@@ -57,7 +57,7 @@ h4{
   height: 40px;
   width: 40px;
   padding: 0;
-  display: inline-block;
+  display: inline;
 }
 
 .sns-comment{
@@ -102,7 +102,7 @@ td{
 
 //「コメントを見るボタン」(登録銘柄一覧だけはsns-iconでinline-block)
 .view-comment{
-  float: right;
+  
 }
 
 }
@@ -152,11 +152,6 @@ canvas{
   background-size: 740px;
   background-position: 90% 7%;
   background-repeat: no-repeat;
-}
-
-.graph-wrapper{
-  margin-top: 50px;
-  padding-bottom: 50px;
 }
 
 h1, h2 {

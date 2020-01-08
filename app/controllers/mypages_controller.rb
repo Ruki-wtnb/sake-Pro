@@ -16,27 +16,21 @@ class MypagesController < ApplicationController
   end
   
   def create #いいねの作成
+    @sake = Jsake.find(params[:jsake_id])
+    
     favorite = Favorite.new
     favorite.user_id = current_user.id
     favorite.jsake_id = params[:jsake_id]
-    
-    if favorite.save
-      redirect_to params[:now_url], success: 'いいねしました'
-    else
-      redirect_to params[:now_url], danger: 'いいねに失敗しました'
-    end
+    favorite.save
     
   end
   
   def destroy #いいねの削除
-    #binding.pry
-    unfavorite = Favorite.find_by(user_id: current_user.id, jsake_id: params[:jsake_id].to_i) #レコードの検索
+    @sake = Jsake.find(params[:jsake_id])
     
-    if unfavorite.destroy
-      redirect_to params[:now_url], success: 'いいねを削除しました'
-    else
-      redirect_to params[:now_url], success: 'いいねの削除に失敗しました'
-    end
+    unfavorite = Favorite.find_by(user_id: current_user.id, jsake_id: params[:jsake_id].to_i) #レコードの検索
+    unfavorite.destroy
+    
   end
 
   

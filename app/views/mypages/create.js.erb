@@ -1,2 +1,2 @@
 
-$('favo_buttons_<%= @sake.id %>').html("<%= j(render partial: 'mypages/mypage', locals: {sake: @sake})%>")
+$("#favo_<%= @sake.id %>").html("<%= j(render partial: 'mypages/mypage', locals: {sake: @sake}) %>");

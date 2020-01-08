@@ -51,11 +51,11 @@
                         </table>
                         
                         <% if logged_in? != nil? %>
-                        
-
-                          <div id="favo_all_<%= sake.id %>">
-                            <% @sake = sake  %>
-                            <%= render 'mypages/mypage', partial: {sake: @sake}%>
+                          <div class="sns-icon" id="favo_<%= sake.id %>">
+                            <!--いいねのハートマークとカウント-->
+                            
+                            <%= render partial: 'mypages/mypage', locals: {sake: sake} %>
+                            
                           </div>
                           
                           <!--コメント入力画面へのリンク-->
@@ -63,8 +63,9 @@
                             <%= image_tag 'icons/comment-black.png', class: 'sns-icon' %>
                           <% end %>
                         <% end %>
+                        
                         <!--モーダル形式のコメント欄-->
-                        <div class="view-comment">
+                        <div class="view-comment pull-right">
                           <button class="btn btn-primary" data-toggle="modal" data-target="#all_sake<%= sake.id %>">
                             コメントを見る
                           </button>
@@ -91,6 +92,7 @@
                             </div>
                           </div>
                         </div>
+                        <!--モーダル形式のコメント欄-->
                         
                       </span>
                   </div>
