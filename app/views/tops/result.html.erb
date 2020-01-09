@@ -27,7 +27,7 @@
     
         <!--銘柄全件を4件ずつ表示-->
         <% @result.each_slice(4) do |ret_sake1, ret_sake2, ret_sake3, ret_sake4| %>
-          <div class="row index-row">
+          <div class="row index-row-result">
             <% [ret_sake1, ret_sake2, ret_sake3, ret_sake4].each do |sake|%>
             
               <div class="col-md-3">
@@ -50,40 +50,49 @@
                           <tr><th>酸度</th><td><%= sake.acidity %></td></tr>
                         </table>
                         
-                        <!--いいねのハートマークとカウント-->
-                        <% if !sake.favorite_users.include?(current_user) %>
-                          <!---current_userがいいねしていなかったら空白--->
-                          <%= link_to favorites_path(jsake_id: sake.id, now_url: request.url), method: :post do %>
-                            <%= image_tag 'icons/blank-heart-black.png', class: 'sns-icon' %>
-                          <% end %>
-                        <% else %>
-                          <!--いいねしてたら赤-->
-                          <%= link_to unfavorites_path(jsake_id: sake.id, now_url: request.url), method: :delete do %>
-                            <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
+                        <% if logged_in? != nil? %>
+                          <div class="sns-icon" id="favo_<%= sake.id %>">
+                            <!--いいねのハートマークとカウント-->
+                            
+                            <%= render partial: 'mypages/mypage', locals: {sake: sake} %>
+                            
+                          </div>
+                          
+                          <!--コメント入力画面へのリンク-->
+                          <%= link_to new_comment_path(jsake_id: sake.id), method: :get do %>
+                            <%= image_tag 'icons/comment-black.png', class: 'sns-icon' %>
                           <% end %>
                         <% end %>
-                        <!--いいね数の表示-->
-                        <span class="badge"><%= sake.favorite_users.count %></span>
                         
-                        <!--コメント入力画面へのリンク-->
-                        <%= link_to new_comment_path(jsake_id: sake.id), method: :get do %>
-                          <%= image_tag 'icons/comment-black.png', class: 'sns-icon' %>
-                        <% end %>
-                        
-                        <!--アコーディオン形式のコメント欄(モーダル形式を採用の方向)-->
-                        <span class="view-comment">
-                          <a class="btn btn-primary" data-toggle="collapse" href="#reg_sake<%= sake.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <!--モーダル形式のコメント欄-->
+                        <div class="view-comment pull-right">
+                          <button class="btn btn-primary" data-toggle="modal" data-target="#all_sake<%= sake.id %>">
                             コメントを見る
-                          </a>
-                        </span>
+                          </button>
+                          <span class="badge"><%= sake.comments.count %>件</span>
+                        </div>
                         
-                        <div class="collapse" id="reg_sake<%= sake.id%>">
-                          <div class="card card-body">
-                            <% sake.comments.each do |c|%>
-                              <div><%= c.body %></div>
-                            <% end %>
+                        <div class="modal fade" id="all_sake<%= sake.id %>">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h4><%= sake.meigara%></h4>
+                                <button class="close" data-dismiss="modal">
+                                  <span aria-hidden="true">&times;</span><span class="sr-only">閉じる</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <% sake.comments.each do |c|%>
+                                <p><%= c.body %></p>
+                                <% end %>
+                              </div>
+                                <div class="modal-footer">
+                                  <button class="btn btn-primary btn-sm" data-dismiss="modal">閉じる</button>
+                                </div>
+                            </div>
                           </div>
                         </div>
+                        <!--モーダル形式のコメント欄-->
                         
                       </span>
                   </div>

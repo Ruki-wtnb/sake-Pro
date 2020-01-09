@@ -101,8 +101,8 @@ td{
 }
 
 //「コメントを見るボタン」(登録銘柄一覧だけはsns-iconでinline-block)
-.view-comment{
-  
+.view-comment-reg{
+  margin-top: 10px;
 }
 
 }
@@ -125,6 +125,12 @@ td{
 .index-row{
   margin-right: 10px;
   margin-left: 10px;
+}
+
+.index-row-result{
+  margin-right: 10px;
+  margin-left: 10px;
+  padding-bottom: 220px;
 }
 
 //top_result
@@ -152,6 +158,13 @@ canvas{
   background-size: 740px;
   background-position: 90% 7%;
   background-repeat: no-repeat;
+}
+
+.graph-wrapper{
+  margin-top: 50px;
+  padding-bottom: 210px;
+  display: flex;
+  justify-content: center;
 }
 
 h1, h2 {

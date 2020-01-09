@@ -141,7 +141,7 @@
                         <% end %>
                         
                         <!--モーダル形式のコメント欄-->
-                        <div class="view-comment pull-right">
+                        <div class="view-comment-reg">
                           <button class="btn btn-primary" data-toggle="modal" data-target="#reg_sake<%= sake.id %>">
                             コメントを見る
                           </button>
@@ -184,9 +184,7 @@
       
     <div class="tab-pane" id="plot">
       <div class="container-fluid graph-wrapper">
-        <div class="col-md-offset-2 col-md-3">
-          <%= scatter_chart @plot, messages: {empty: "いいねしている日本酒がありません"},legend: false %>
-        </div>
+        <%= scatter_chart @plot, messages: {empty: "いいねしている日本酒がありません"},legend: false, class: 'center-block' %>
       </div>
     </div>
     
