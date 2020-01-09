@@ -48,7 +48,7 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: sake_production
-  username: sake
-  password: <%= ENV['SAKE_DATABASE_PASSWORD'] %>
+<<: *default
+adapter: postgresql
+encoding: unicode
+pool: 5
