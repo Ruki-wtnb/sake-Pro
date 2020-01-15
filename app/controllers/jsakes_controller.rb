@@ -38,7 +38,7 @@ class JsakesController < ApplicationController
   
   private
   def jsake_params
-    params.require(:jsake).permit(:image_url, :meigara, :seimai_buai, :locaility, :alcohol_degree, :sake_meter_value, :acidity)
+    params.require(:jsake).permit(:image_url, :meigara, :seimai_buai, :locaility, :alcohol_degree, :sake_meter_value, :acidity, :image)
   end
   
   

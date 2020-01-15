@@ -26,7 +26,11 @@
                 <% if sake != nil %>
                   <div class="thumbnail topic-index-single">
                     <!--日本酒画像-->
-                    <%= image_tag sake.image_url, class: 'sake' %>
+                    <% if sake.image.attached? %>
+                      <%= image_tag sake.image %>
+                    <% else %>
+                      <%= image_tag sake.image_url.url, class: 'sake' %>
+                    <% end %>
                     <!--銘柄のキャプション-->
                     <span class="caption">
                     <!--銘柄名-->
@@ -109,7 +113,11 @@
                 <% if sake != nil %>
                   <div class="thumbnail topic-index-single">
                     <!--日本酒画像-->
-                    <%= image_tag sake.image_url, class: 'sake' %>
+                    <% if sake.image.attached? %>
+                      <%= image_tag sake.image %>
+                    <% else %>
+                      <%= image_tag sake.image_url.url, class: 'sake' %>
+                    <% end %>
                       <!--銘柄のキャプション-->
                       <span class="caption">
                         <!--銘柄名-->
