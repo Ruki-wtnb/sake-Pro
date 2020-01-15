@@ -1,5 +1,4 @@
 <!--自分で登録、いいねした日本酒の一覧、いいねした日本酒の分布図が閲覧できるページです。-->
-<div class="all-wrap">
   
   <div class="container-fluid tab-menu">
     <div class="row">
@@ -27,7 +26,7 @@
                 <% if sake != nil %>
                   <div class="thumbnail topic-index-single">
                     <!--日本酒画像-->
-                    <%= image_tag sake.image_url.url, class: 'sake' %>
+                    <%= image_tag sake.image_url, class: 'sake' %>
                     <!--銘柄のキャプション-->
                     <span class="caption">
                     <!--銘柄名-->
@@ -110,7 +109,7 @@
                 <% if sake != nil %>
                   <div class="thumbnail topic-index-single">
                     <!--日本酒画像-->
-                    <%= image_tag sake.image_url.url, class: 'sake' %>
+                    <%= image_tag sake.image_url, class: 'sake' %>
                       <!--銘柄のキャプション-->
                       <span class="caption">
                         <!--銘柄名-->
@@ -189,6 +188,3 @@
     </div>
     
   </div>
-
-
-</div>

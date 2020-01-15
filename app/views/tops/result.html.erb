@@ -1,4 +1,4 @@
-<div class="all-wrap">
+
 <!--銘柄の検索結果を表示、再検索するためのページです。-->
   <!--検索用の入力欄-->
    <div class="container">
@@ -35,7 +35,7 @@
                 <% if sake != nil %>
                   <div class="thumbnail topic-index-single">
                     <!--日本酒画像-->
-                    <%= image_tag sake.image_url.url, class: 'sake' %>
+                    <%= image_tag sake.image_url, class: 'sake' %>
                       <!--銘柄のキャプション-->
                       <span class="caption">
                         <!--銘柄名-->
@@ -104,4 +104,4 @@
     <%= will_paginate @result %>
   </div>
 
-</div>
+

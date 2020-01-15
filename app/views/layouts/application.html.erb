@@ -40,7 +40,7 @@
                 </li>
                 
                 <li>
-                  <%= link_to logout_path, method: :delete do %>
+                  <%= link_to logout_path, method: :delete, data: { confirm: "ログアウトします。よろしいですか？"} do %>
                     <%= image_tag "icons/sake-logout.png", class: 'icon-nav' %>
                   <% end %>
                 </li>

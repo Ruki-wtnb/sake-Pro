@@ -42,11 +42,4 @@ class JsakesController < ApplicationController
   end
   
   
-  private
-  def update_params
-    params.require(:jsake).permit(:image_url, :meigara, :seimai_buai, :locaility, :alcohol_degree, :sake_meter_value, :acidity)
-  end
-  
-  
-  
 end
