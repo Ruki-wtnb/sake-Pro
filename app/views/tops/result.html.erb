@@ -37,8 +37,6 @@
                     <!--日本酒画像-->
                     <% if sake.image.attached? %>
                       <%= image_tag sake.image %>
-                    <% else %>
-                      <%= image_tag sake.image_url.url, class: 'sake' %>
                     <% end %>
                       <!--銘柄のキャプション-->
                       <span class="caption">
