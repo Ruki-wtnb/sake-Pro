@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
   
   def create #コメントの新規作成
     comment = Comment.new(user_id: current_user.id, jsake_id: comment_params[:jsake_id], body: comment_params[:body])
-    binding.pry
+    
     if comment.save
       redirect_to comment_params[:back_url], success: "コメントを投稿しました"
     else
