@@ -3,7 +3,7 @@
 
 //ナビゲーションバー
 .navbar {
-  height: 65px;
+  height: 80px;
   margin-bottom: 0px;
   background-color: rgba(0,0,0,0.5);
 }
@@ -33,29 +33,28 @@
 }
 
 
-
+//検索入力欄
 .keyword{
   width: 90%;
-  height: 30px;
+  height: 40px;
+  border-radius: 5px;
 }
+//検索ボタン
 .search{
   width: 8%;
-  height: 30px;
+  height: 40px;
+  border-radius: 5px;
 }
-
-
-.view-comment{
-  display: inline;
+.search:hover{
+  box-shadow: 5px 5px 10px #E3E3E3;
 }
-
-
 
 //日本酒銘柄一つずつのサムネイル
 .thumbnail:hover{
   box-shadow: 5px 5px 10px #E3E3E3;
 }
 
-.topic-index-single{
+.thumbnail{
   background-color: #ffffff;
   border-color: #ffffff;
   
@@ -83,10 +82,6 @@ h4{
   display: inline;
 }
 
-.sns-comment{
-  margin-left: 20px;
-}
-
 .modal-dialog{
   display: flex;
   flex-direction: column;
@@ -95,7 +90,6 @@ h4{
   margin: auto;
   pointer-events: none;
 }
-
 
 //銘柄のデータ表示用テーブル
 table{
@@ -127,6 +121,12 @@ td{
 .view-comment-reg{
   margin-top: 10px;
 }
+
+//コメント閲覧ボタン
+.view-comment{
+  display: inline;
+}
+
 
 }
 
@@ -245,7 +245,7 @@ h1, h2 {
   background-color: #464646;
 
   .users-new-container { //登録フォーム
-    padding-top: 220px;
+    padding-top: 120px;
 
     .form-group {
       margin-bottom: 20px;
@@ -271,8 +271,7 @@ h1, h2 {
 
 //新規登録画面
 .jsake-wrapper{
-  padding-top: 90px;
-  padding-bottom: 50px;
+  padding-top: 80px;
 }
 
 .jsake-title{
@@ -295,3 +294,4 @@ h1, h2 {
   margin: -20px;
   padding-bottom: 30px;
 }
+

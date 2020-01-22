@@ -3,8 +3,8 @@
      <div class="row">
        <div class="col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 form-inline">
             <%= form_for @search, url: '/tops/search' do |f| %>
-           <%= f.text_field :word, class:'keyword', list: "search_history", placeholder: '銘柄を検索(スペース区切りで複数可)', autocomplete: 'off' %>
-           <%= f.submit "検索", class: 'search' %>
+           <%= f.text_field :word, class:'keyword', list: "search_history", placeholder: '　銘柄を検索(スペース区切りで複数可)', autocomplete: 'off' %>
+           <%= f.submit "検索", class: 'btn-primary search' %>
            <% end %>
        </div>
       </div>

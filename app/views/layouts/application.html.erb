@@ -27,19 +27,19 @@
             <ul class="nav navbar-nav navbar-right icon-set">
               <!--ログインしていたら、マイページ、銘柄登録、ログアウト-->
               <% if logged_in? %>
-                <li>
+                <li data-toggle="tooltip" data-placement="bottom" title="マイページ">
                   <%= link_to mypage_path do %>
                     <%= image_tag "icons/sake_my_page.png", class: 'icon-nav' %>
                   <% end %>
                 </li>
                 
-                <li>
+                <li data-toggle="tooltip" data-placement="bottom" title="銘柄登録">
                   <%= link_to new_jsake_path do %>
                     <%= image_tag "icons/reg-sake.png", class: 'icon-nav' %>
                   <% end %>
                 </li>
                 
-                <li>
+                <li data-toggle="tooltip" data-placement="bottom" title="ログアウト">
                   <%= link_to logout_path, method: :delete, data: { confirm: "ログアウトします。よろしいですか？"} do %>
                     <%= image_tag "icons/sake-logout.png", class: 'icon-nav' %>
                   <% end %>
@@ -47,13 +47,13 @@
               
               <% else %>
               <!--ログインしていなかったら、ログイン、ユーザ登録-->
-              <li>
+              <li data-toggle="tooltip" data-placement="bottom" title="ログイン">
                 <%= link_to login_path do %>
                   <%= image_tag "icons/sake-login.png", class: "icon-nav" %>
                 <% end %>
               </li>
               
-              <li>
+              <li data-toggle="tooltip" data-placement="bottom" title="新規登録">
                 <%= link_to users_new_path do %>
                   <%= image_tag "icons/sake-reg.png", class: "icon-nav" %>
                 <% end %>
@@ -72,6 +72,10 @@
   $(function(){
     $(".alert").fadeOut(5000);
   });
+  
+  <!--アイコン説明用のツールチップ-->
+  $('[data-toggle=tooltip]').tooltip();
+  
   </script>
     
   </body>

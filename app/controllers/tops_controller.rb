@@ -10,7 +10,7 @@ class TopsController < ApplicationController
   end
   
   def search #検索用アクション
-    redirect_to root_path if params_word[:word] == "" #検索ワードが空ならトップページ
+    #redirect_to root_path if params_word[:word] == "" #検索ワードが空ならトップページ
     
     split_word = params_word[:word].split(/[[:blank:]]+/) #検索ワードを空白(半角or全角)で分割する
     
@@ -30,7 +30,11 @@ class TopsController < ApplicationController
       search_history_save
     end
     
-    render :result
+    if params_word[:word] == ""
+      redirect_to root_path
+    else
+      render :result
+    end
     
   end
   
