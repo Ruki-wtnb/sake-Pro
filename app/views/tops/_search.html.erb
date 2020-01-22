@@ -1,0 +1,20 @@
+  <!--検索用の入力欄-->
+   <div class="container-fluid">
+     <div class="row">
+       <div class="col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8 form-inline">
+            <%= form_for @search, url: '/tops/search' do |f| %>
+           <%= f.text_field :word, class:'keyword', list: "search_history", placeholder: '銘柄を検索(スペース区切りで複数可)', autocomplete: 'off' %>
+           <%= f.submit "検索", class: 'search' %>
+           <% end %>
+       </div>
+      </div>
+    </div>
+  
+  <!--ログインしていたら、検索履歴をテキストフィールドに表示-->
+  <% if current_user != nil %>
+    <datalist id="search_history">
+      <% @search_history.each do |sh| %>
+        <option><%= sh.word%></option>
+      <% end %>
+    </datalist>
+  <% end %>

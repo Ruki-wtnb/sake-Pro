@@ -8,7 +8,7 @@ class TopsController < ApplicationController
         @search_history = SearchHistory.where(user_id: current_user.id)
       end
   end
-
+  
   def search #検索用アクション
     redirect_to root_path if params_word[:word] == "" #検索ワードが空ならトップページ
     
@@ -31,7 +31,7 @@ class TopsController < ApplicationController
     end
     
     render :result
-
+    
   end
   
   def result #検索履歴を表示
@@ -45,7 +45,7 @@ class TopsController < ApplicationController
     check = SearchHistory.where(user_id: current_user.id) #検索履歴の数用
     word = SearchHistory.where(user_id: current_user.id, word: @search.word) #過去に同じワードで検索しているか
     
-    if check.count >= 5 && word.empty? #検索数が5件以上で、同じワードで検索していないならば
+    if check.count >= 5 && word.empty? &&  params_word[:word] != nil#検索数が5件以上で、同じワードで検索していないならば
       check.limit(1).delete_all #一番古い履歴を一件削除
       @search.save #検索履歴を保存
     end

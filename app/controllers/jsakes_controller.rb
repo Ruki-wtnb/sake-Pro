@@ -7,6 +7,11 @@ class JsakesController < ApplicationController
   def create
     @jsake = Jsake.new(jsake_params)
     @jsake.user_id = current_user.id
+    
+    if params[:image] != nil
+      image = MiniMagick::Image.read(params[:image])
+      image.resize "300×300" 
+    end
     #binding.pry
     if @jsake.save!
       redirect_to root_path, success: '銘柄を登録しました。ご協力ありがとうございます！'

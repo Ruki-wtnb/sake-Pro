@@ -1,27 +1,7 @@
 <!--登録されている銘柄の検索、一覧を表示するためのページです。-->
+  
+  <%= render partial: 'search' %>
 
-  <!--検索用の入力欄-->
-   <div class="container">
-     <div class="row">
-       <div class="col-md-offset-2 col-md-8 form-inline">
-            <%= form_for @search, url: '/tops/search' do |f| %>
-           <%= f.text_field :word, class:'form-control', list: "search_history", autocomplete: 'off', size: '85' %>
-           <%= f.submit "検索", class: 'btn-lg btn-primary' %>
-           <% end %>
-       </div>
-      </div>
-    </div>
-  
-  <!--ログインしていたら、検索履歴をテキストフィールドに表示-->
-  <% if current_user != nil %>
-    <datalist id="search_history">
-      <% @search_history.each do |sh| %>
-        <option><%= sh.word%></option>
-      <% end %>
-    </datalist>
-  <% end %>
-  
-  
   <div class="container-fluid index-with-search">
     <%= will_paginate %>
     
@@ -30,76 +10,8 @@
           <div class="row index-row">
             <% [all_sake1, all_sake2, all_sake3, all_sake4].each do |sake|%>
             
-              <div class="col-md-3">
-                <!--sakeが空白でない場合に実行(each.sliceのエラー対策)-->
-                <% if sake != nil %>
-                  <div class="thumbnail topic-index-single">
-                    <!--日本酒画像-->
-                    <% if sake.image.attached? %>
-                      <%= image_tag sake.image %>
-                    <% end %>
-                      <!--銘柄のキャプション-->
-                      <span class="caption">
-                        <!--銘柄名-->
-                        <h4><%= sake.meigara %></h4>
-                        
-                        <!--銘柄のデータ表-->
-                        <table class="table text-nowrap">
-                          <tr><th>産地</th><td><%= sake.locaility %></td></tr>
-                          <tr><th>精米歩合</th><td><%= sake.seimai_buai %></td></tr>
-                          <tr><th>アルコール度数</th><td><%= sake.alcohol_degree %></td></tr>
-                          <tr><th>日本酒度</th><td><%= sake.sake_meter_value %></td></tr>
-                          <tr><th>酸度</th><td><%= sake.acidity %></td></tr>
-                        </table>
-                        
-                        <% if logged_in? != nil? %>
-                          <div class="sns-icon" id="favo_<%= sake.id %>">
-                            <!--いいねのハートマークとカウント-->
-                            
-                            <%= render partial: 'mypages/mypage', locals: {sake: sake} %>
-                            
-                          </div>
-                          
-                          <!--コメント入力画面へのリンク-->
-                          <%= link_to new_comment_path(jsake_id: sake.id), method: :get do %>
-                            <%= image_tag 'icons/comment-black.png', class: 'sns-icon' %>
-                          <% end %>
-                        <% end %>
-                        
-                        <!--モーダル形式のコメント欄-->
-                        <div class="view-comment pull-right">
-                          <button class="btn btn-primary" data-toggle="modal" data-target="#all_sake<%= sake.id %>">
-                            コメントを見る
-                          </button>
-                          <span class="badge"><%= sake.comments.count %>件</span>
-                        </div>
-                        
-                        <div class="modal fade" id="all_sake<%= sake.id %>">
-                          <div class="modal-dialog">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h4><%= sake.meigara%></h4>
-                                <button class="close" data-dismiss="modal">
-                                  <span aria-hidden="true">&times;</span><span class="sr-only">閉じる</span>
-                                </button>
-                              </div>
-                              <div class="modal-body">
-                                <% sake.comments.each do |c|%>
-                                <p><%= c.body %></p>
-                                <% end %>
-                              </div>
-                                <div class="modal-footer">
-                                  <button class="btn btn-primary btn-sm" data-dismiss="modal">閉じる</button>
-                                </div>
-                            </div>
-                          </div>
-                        </div>
-                        <!--モーダル形式のコメント欄-->
-                        
-                      </span>
-                  </div>
-                <% end %><!--if sake != nilのend -->
-              </div>
+              <%= render partial: 'tops/list',  locals: {sake: sake} %>
+          
             <% end %><!--eachのend -->
           </div>
       <% end %><!--each.sliceのend -->

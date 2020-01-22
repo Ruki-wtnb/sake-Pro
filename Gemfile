@@ -76,3 +76,4 @@ gem 'will_paginate',           '3.1.7'
 gem 'bootstrap-will_paginate', '1.0.0'
 gem 'chartkick'
 gem "aws-sdk-s3", require: false
+gem 'mini_magick', '~> 4.8'

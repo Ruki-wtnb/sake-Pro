@@ -22,7 +22,7 @@ class MypagesController < ApplicationController
     favorite.user_id = current_user.id
     favorite.jsake_id = params[:jsake_id]
     favorite.save
-    
+
   end
   
   def destroy #いいねの削除

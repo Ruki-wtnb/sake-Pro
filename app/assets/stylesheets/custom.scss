@@ -3,26 +3,28 @@
 
 //ナビゲーションバー
 .navbar {
+  height: 65px;
   margin-bottom: 0px;
   background-color: rgba(0,0,0,0.5);
 }
 
-.logo{ //日本酒通のロゴ
-  height: 80px;
+//日本酒通のロゴ
+.logo{ 
+  height: 70px;
   width: 320px;
   padding-left: 100px;
 }
 
 //アイコン
 .icon-nav{
-  height: 60px;
-  width: 60px;
+  height: 50px;
+  width: 50px;
 
 }  
 
 .icon-reg{
-  height: 60px;
-  width: 60px;
+  height: 50px;
+  width: 50px;
 } 
 
 //アイコンの右空間
@@ -31,15 +33,36 @@
 }
 
 
+
+.keyword{
+  width: 90%;
+  height: 30px;
+}
+.search{
+  width: 8%;
+  height: 30px;
+}
+
+
+.view-comment{
+  display: inline;
+}
+
+
+
 //日本酒銘柄一つずつのサムネイル
+.thumbnail:hover{
+  box-shadow: 5px 5px 10px #E3E3E3;
+}
+
 .topic-index-single{
   background-color: #ffffff;
   border-color: #ffffff;
-  box-shadow: 5px 5px 10px #000;
+  
 //日本酒画像
 img{
-    height: 300px;
-    width: 300px;
+    height: 250px;
+    width: 250px;
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -54,8 +77,8 @@ h4{
 
 //イイねやコメント欄などのアイコン  
 .sns-icon{
-  height: 40px;
-  width: 40px;
+  height: 30px;
+  width: 30px;
   padding: 0;
   display: inline;
 }
@@ -77,7 +100,7 @@ h4{
 //銘柄のデータ表示用テーブル
 table{
   white-space: nowrap;
-  
+  margin-bottom: 1px;
 }
 
 th{
