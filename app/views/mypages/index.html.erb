@@ -78,7 +78,7 @@
                         <% end %>
                         
                         <!--モーダル形式のコメント欄-->
-                        <div class="view-comment-reg">
+                        <div class="view-comment">
                           <button class="btn btn-primary" data-toggle="modal" data-target="#reg_sake<%= sake.id %>">
                             コメント:<%= sake.comments.count %>件
                           </button>
@@ -123,5 +123,4 @@
         <%= scatter_chart @plot, messages: {empty: "いいねしている日本酒がありません"},legend: false, class: 'center-block' %>
       </div>
     </div>
-    
   </div>

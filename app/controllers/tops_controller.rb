@@ -24,6 +24,14 @@ class TopsController < ApplicationController
       end
     end
     
+    @search_sake = @result.pluck(:meigara, :sake_meter_value, :acidity)
+    
+    @search_plot = []
+    
+    @search_sake.each do |sake|
+      @search_plot.push({name: sake[0], data: [[sake[1], sake[2]]]})
+    end
+    
     @search = SearchHistory.new #検索履歴モデルの新規
     if current_user != nil #ログインしているならば検索履歴の表示と保存を実行
       @search_history = SearchHistory.where(user_id: current_user.id)
@@ -42,16 +50,19 @@ class TopsController < ApplicationController
   end
   
   def search_history_save #検索履歴の保存
-    @search = SearchHistory.new
-    @search.user_id = current_user.id
-    @search.word = params_word[:word]
-    
+    @search_save = SearchHistory.new
+    @search_save.user_id = current_user.id
+    @search_save.word = params_word[:word]
+
     check = SearchHistory.where(user_id: current_user.id) #検索履歴の数用
-    word = SearchHistory.where(user_id: current_user.id, word: @search.word) #過去に同じワードで検索しているか
+    word = SearchHistory.where(user_id: current_user.id, word: @search_save.word) #過去に同じワードで検索しているか
     
-    if check.count >= 5 && word.empty? &&  params_word[:word] != nil#検索数が5件以上で、同じワードで検索していないならば
+    
+    if check.count >= 5 && word.empty? #検索数が5件以上で、同じワードで検索していないならば
       check.limit(1).delete_all #一番古い履歴を一件削除
-      @search.save #検索履歴を保存
+      @search_save.save #検索履歴を保存
+    elsif check.count < 5
+      @search_save.save
     end
 
   end

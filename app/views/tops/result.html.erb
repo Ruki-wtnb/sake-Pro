@@ -7,7 +7,7 @@
     
         <!--銘柄全件を4件ずつ表示-->
         <% @result.each_slice(4) do |ret_sake1, ret_sake2, ret_sake3, ret_sake4| %>
-          <div class="row index-row-result">
+          <div class="row index-row">
             <% [ret_sake1, ret_sake2, ret_sake3, ret_sake4].each do |sake|%>
             <%= render partial: 'tops/list',  locals: {sake: sake} %>
 
@@ -15,6 +15,10 @@
           </div>
       <% end %><!--each.sliceのend -->
     <%= will_paginate @result %>
+    
+    <div class="graph-wrapper">
+      <%= scatter_chart @search_plot, legend: false, class: 'center-block' %>
+    </div>
   </div>
 
 
