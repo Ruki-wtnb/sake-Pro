@@ -1,7 +1,7 @@
 class TopsController < ApplicationController
   
   def index #トップページでの日本酒一覧表示
-      @tops = Jsake.order("RAND()").paginate(page: params[:page], per_page: 28)
+      @tops = Jsake.order(id: "DESC").paginate(page: params[:page], per_page: 28)
       @search = SearchHistory.new
       @time = Time.now
       if current_user != nil
