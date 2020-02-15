@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<ht <head>
+<html>
+  <head>
     <title>Sake</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
 
   <body>
@@ -16,15 +18,13 @@
     <nav class="navbar navbar-fixed-top">
        <div class="container-fluid">
          <div class="row">
-          
           <!--日本酒-通-のロゴ-->
           <%= link_to root_path do %>
             <span><%= image_tag "icons/sake-logo.png", class: "navbar-brand logo" %></span>
           <% end %>
           
           <!--ログイン状態によってアイコンの表示を変更-->
-          <div>
-            <ul class="nav navbar-nav navbar-right icon-set">
+            <ul>
               <!--ログインしていたら、マイページ、銘柄登録、ログアウト-->
               <% if logged_in? %>
                 <li data-toggle="tooltip" data-placement="bottom" title="マイページ">
@@ -60,9 +60,8 @@
               </li>
               <% end %>
             </ul>
-          </div>
-        </div>
       </div>
+    </div>
     </nav>
     
     <%= yield %>

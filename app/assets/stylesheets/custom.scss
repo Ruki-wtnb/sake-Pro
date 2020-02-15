@@ -10,28 +10,27 @@
 
 //日本酒通のロゴ
 .logo{ 
-  height: 70px;
+  height: 80px;
   width: 320px;
-  padding-left: 100px;
+  padding-left: 5vw;
+}
+ul{
+  float: right;
+}
+li{
+  display: inline-block;
+  a{
+    display:block;
+    width:100%;
+    padding: 15px;
+  }
 }
 
 //アイコン
 .icon-nav{
   height: 50px;
   width: 50px;
-
 }  
-
-.icon-reg{
-  height: 50px;
-  width: 50px;
-} 
-
-//アイコンの右空間
-.icon-set{
-  padding-right: 100px;
-}
-
 
 //検索入力欄
 .keyword{
@@ -98,7 +97,7 @@ table{
 }
 
 th{
-  text-align: center;
+  text-align: left;
   vertical-align: middle;
   height: 20px;
   background-color: none;
@@ -106,7 +105,7 @@ th{
 }
 
 td{
-  text-align: center;
+  text-align: left;
   vertical-align: middle;
   background-color: none;
   height: 20px;
@@ -142,6 +141,7 @@ body{
 
 .index-with-search{
   margin-top: 50px;
+  padding: 0px -15px;
 }
 
 .index-row{
@@ -178,7 +178,6 @@ canvas{
 
 .graph-wrapper{
   margin-top: 50px;
-  padding-bottom: 210px;
   display: flex;
   justify-content: center;
 }
@@ -292,4 +291,68 @@ h1, h2 {
 
 .top-pagination{
   margin-top: -50px;
+}
+
+//スマートフォン用CSS
+@media screen and (max-width:600px) { 
+    /*　画面サイズが480pxからはここを読み込む　*/
+p{ color: red;}
+
+//日本酒通のロゴ
+.logo{ 
+  height: 80px;
+  width: 40vw;
+  padding-left: 5vw;
+}
+
+
+li{
+  display: inline-block;
+  a{
+    padding: 15px 5px;
+  }
+}
+
+//アイコン
+.icon-nav{
+  height: 50px;
+  width: 10vw;
+} 
+
+//検索入力欄
+.keyword{
+  width: 80%;
+  height: 40px;
+  border-radius: 5px;
+}
+//検索ボタン
+.search{
+  width: 16%;
+  height: 40px;
+  border-radius: 5px;
+}
+
+canvas{
+  width: 345px;
+  height: 600px;
+  background-image: image-url('graph.png');
+  background-size: 280px 545px;
+  background-position: 90% 7%;
+  background-repeat: no-repeat;
+}
+
+.graph-wrapper{
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+
+
+
+
+
+
 }
