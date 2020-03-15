@@ -27,7 +27,7 @@
             <ul>
               <!--ログインしていたら、マイページ、銘柄登録、ログアウト-->
               <% if logged_in? %>
-                <li data-toggle="tooltip" data-placement="bottom" title="マイページ">
+                <li data-toggle="tooltip" data-placement="bottom" title="<%= current_user.name %>のマイページ">
                   <%= link_to mypage_path do %>
                     <%= image_tag "icons/sake_my_page.png", class: 'icon-nav' %>
                   <% end %>
@@ -63,6 +63,7 @@
       </div>
     </div>
     </nav>
+    
     
     <%= yield %>
     
