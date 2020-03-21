@@ -5,8 +5,12 @@ class JsakesController < ApplicationController
   end
   
   def create
+    
+    amakara_calculation
+    binding.pry
     @jsake = Jsake.new(jsake_params)
     @jsake.user_id = current_user.id
+    @jsake.amakara = amakara_calculation
     
     if params[:image] != nil
       image = MiniMagick::Image.read(params[:image])
@@ -36,15 +40,43 @@ class JsakesController < ApplicationController
       flash.now[:danger] = '銘柄の修正に失敗しました。入力内容を確認してください。'
       render :edit
     end
-    #binding.pry
+    
     
   end
   
   
   private
+  def amakara_calculation
+   smv = params[:jsake][:sake_meter_value].to_f
+   acidity = params[:jsake][:acidity].to_f
+   
+   smv_part = 193593 / (1443 + smv)
+   acidity_part = -1.16 * acidity
+   amakara_value = (smv_part + acidity_part) -132.57
+   
+   if amakara_value == 0
+    return "どちらでもない"
+   elsif 0 < amakara_value && amakara_value <= 1
+    return "少し甘い"
+   elsif 1 < amakara_value && amakara_value <= 2
+    return "かなり甘い"
+   elsif 2 < amakara_value
+    return "非常に甘い"
+   elsif -1 <= amakara_value && amakara_value < 0
+    return "少し辛い"
+   elsif -2 <= amakara_value && amakara_value < -1
+    return "かなり辛い"
+   elsif amakara_value < -2
+    return "非常に辛い"
+   end
+
+  end
+
   def jsake_params
     params.require(:jsake).permit(:image_url, :meigara, :seimai_buai, :locaility, :alcohol_degree, :sake_meter_value, :acidity, :image)
   end
+  
+
   
   
 end
