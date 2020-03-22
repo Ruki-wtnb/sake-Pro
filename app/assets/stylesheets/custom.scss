@@ -120,6 +120,11 @@ td{
   background-color: red;
 }
 
+.modal{
+  overflow-y: auto;
+  max-height: 60%;
+}
+
 //「コメントを見るボタン」(登録銘柄一覧だけはsns-iconでinline-block)
 .view-comment-reg{
   margin-top: 10px;
@@ -184,6 +189,10 @@ canvas{
   margin-top: 50px;
   display: flex;
   justify-content: center;
+}
+
+h5{
+  text-align: center;
 }
 
 h1, h2 {
@@ -254,8 +263,6 @@ h1, h2 {
   height: 45px;
 }
 
-
-
 //alert
 .alert { 
   margin-bottom: 0px;
@@ -268,7 +275,7 @@ h1, h2 {
 
 //新規登録画面
 .jsake-wrapper{
-  padding-top: 80px;
+  padding-top: 20px;
 }
 
 .jsake-title{

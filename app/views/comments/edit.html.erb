@@ -1,0 +1,87 @@
+ <div class="container-fluid comment-new-wrapper">
+  <div class="row">
+   <div class="col-md-6 col-xs-6">
+    <div class="thumbnail topic-index-single">
+      <!--日本酒画像-->
+      <%= image_tag @comment.jsake.image, class: 'sake' %>
+       <!--銘柄のキャプション-->
+       <span class="caption">
+       <!--銘柄名-->
+       <h4><%= @comment.jsake.meigara %></h4>
+        <!--銘柄のデータ表-->
+        <table class="table text-nowrap">
+         <tr><th>産地</th><td><%= @comment.jsake.locaility %></td></tr>
+         <tr><th>精米歩合</th><td><%= @comment.jsake.seimai_buai %></td></tr>
+         <tr><th>アルコール度数</th><td><%= @comment.jsake.alcohol_degree %></td></tr>
+         <tr><th>日本酒度</th><td><%= @comment.jsake.sake_meter_value %></td></tr>
+         <tr><th>酸度</th><td><%= @comment.jsake.acidity %></td></tr>
+        </table>
+                        
+        <!--いいねのハートマークとカウント-->
+        <% if !@comment.jsake.favorite_users.include?(current_user) %>
+         <!---current_userがいいねしていなかったら空白--->
+         <%= link_to favorites_path(jsake_id: @comment.jsake.id, now_url: request.url), method: :post do %>
+           <%= image_tag 'icons/blank-heart-black.png', class: 'sns-icon' %>
+         <% end %>
+        <% else %>
+         <!--いいねしてたら赤-->
+         <%= link_to unfavorites_path(jsake_id: @comment.jsake.id, now_url: request.url), method: :delete do %>
+          <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
+         <% end %>
+        <% end %>
+        <!--いいね数の表示-->
+        <span class="badge"><%= @comment.jsake.favorite_users.count %></span>
+       
+        <!--モーダル形式のコメント欄-->
+        <div class="view-comment">
+         <button class="btn btn-primary" data-toggle="modal" data-target="#all_sake<%= @comment.jsake.id %>">
+          コメント:<%= @comment.jsake.comments.count %>件
+         </button>
+        </div>
+                        
+        <div class="modal fade" id="all_sake<%= @comment.jsake.id %>">
+         <div class="modal-dialog">
+          <div class="modal-content">
+           <div class="modal-header">
+            <h4><%= @comment.jsake.meigara%></h4>
+            <button class="close" data-dismiss="modal">
+             <span aria-hidden="true">&times;</span><span class="sr-only">閉じる</span>
+            </button>
+           </div>
+                              
+           <div class="modal-body">
+            <% @comment.jsake.comments.each do |c|%>
+             <p><%= c.body %></p>
+            <% end %>
+           </div>
+           
+           <div class="modal-footer">
+            <button class="btn btn-primary btn-sm" data-dismiss="modal">閉じる</button>
+           </div>
+          </div>
+         </div>
+        </div>
+        <!--モーダル形式のコメント欄-->
+        
+        </div>
+      </span>
+     </div><!--サムネイルのdiv-->
+   
+     
+   <div class="col-md-4">
+    <%= form_for @comment do |f| %> <!---コメントの入力フォーム--->
+     <div class="form-group">
+      <%= f.hidden_field :jsake_id, value: @comment.jsake_id %>
+     </div>
+     <div class="form-group">
+      <%= f.text_area :body, class: 'form-control'%>
+     </div>
+     <div class="form-group">
+      <%= f.hidden_field :back_url, value: request.referer %>
+     </div>
+     <%= f.submit "コメントを投稿する", class: 'btn-block btn-success'%>
+     <% end%>
+   </div>
+  
+  </div>
+ </div>

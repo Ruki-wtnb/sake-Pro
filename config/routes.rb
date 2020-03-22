@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
-  get 'comments/new'
-  get 'jsakes/new'
-  get 'sessions/new'
-  get 'users/new'
-  
+
   root 'tops#index'
   get 'tops/result'
   

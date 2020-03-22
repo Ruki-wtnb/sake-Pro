@@ -14,10 +14,10 @@ class CommentsController < ApplicationController
       new
       render :new
     end
-    
-    
-    
-    
+  end
+  
+  def edit
+    @comment = Comment.find(params[:id])
   end
   
   private #入力フォームからの受取
