@@ -36,6 +36,8 @@
                           <% end %>
                         <% end %>
                         
+                        <%= link_to 'コメント一覧', comment_path(sake) %>
+                        
                         <!--モーダル形式のコメント欄-->
                         <div class="view-comment">
                           <button class="btn btn-primary" data-toggle="modal" data-target="#all_sake<%= sake.id %>">

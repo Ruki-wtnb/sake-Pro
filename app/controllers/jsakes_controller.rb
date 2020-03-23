@@ -33,6 +33,7 @@ class JsakesController < ApplicationController
   def update
 
     @jsake = Jsake.find(params[:id])
+    @jsake.amakara = amakara_calculation
     
     if @jsake.update(jsake_params)
       redirect_to controller: 'mypages', action: 'index', success: '銘柄を修正しました'

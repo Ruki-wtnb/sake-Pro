@@ -79,7 +79,7 @@
      <div class="form-group">
       <%= f.hidden_field :back_url, value: request.referer %>
      </div>
-     <%= f.submit "コメントを投稿する", class: 'btn-block btn-success'%>
+     <%= f.submit "コメントを修正する", class: 'btn-block btn-success', data:{confirm: "コメントを修正します、よろしいですか？"} %>
      <% end%>
    </div>
   

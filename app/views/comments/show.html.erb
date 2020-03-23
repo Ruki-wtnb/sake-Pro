@@ -1,0 +1,43 @@
+ <div class="container-fluid comment-new-wrapper">
+  <div class="row">
+   <div class="col-md-6 col-xs-6">
+    <div class="thumbnail topic-index-single">
+      <!--日本酒画像-->
+      <%= image_tag @jsake.image, class: 'sake' %>
+       <!--銘柄のキャプション-->
+       <span class="caption">
+       <!--銘柄名-->
+       <h4><%= @jsake.meigara %></h4>
+        <!--銘柄のデータ表-->
+        <table class="table text-nowrap">
+         <tr><th>産地</th><td><%= @jsake.locaility %></td></tr>
+         <tr><th>精米歩合</th><td><%= @jsake.seimai_buai %></td></tr>
+         <tr><th>アルコール度数</th><td><%= @jsake.alcohol_degree %></td></tr>
+         <tr><th>日本酒度</th><td><%= @jsake.sake_meter_value %></td></tr>
+         <tr><th>酸度</th><td><%= @jsake.acidity %></td></tr>
+        </table>
+                        
+        <!--いいねのハートマークとカウント-->
+        <% if !@jsake.favorite_users.include?(current_user) %>
+         <!---current_userがいいねしていなかったら空白--->
+         <%= link_to favorites_path(jsake_id: @jsake.id, now_url: request.url), method: :post do %>
+           <%= image_tag 'icons/blank-heart-black.png', class: 'sns-icon' %>
+         <% end %>
+        <% else %>
+         <!--いいねしてたら赤-->
+         <%= link_to unfavorites_path(jsake_id: @jsake.id, now_url: request.url), method: :delete do %>
+          <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
+         <% end %>
+        <% end %>
+        <!--いいね数の表示-->
+        <span class="badge"><%= @jsake.favorite_users.count %></span>
+       </div>
+      </span>
+     </div><!--サムネイルのdiv-->
+   
+   <div class="col-md-4">
+    <% @jsake.comments.each do |c|%>
+    <p><%= c.user.name %>：<%= c.body %>
+    <%= link_to 'コメントを編集', edit_comment_path(c.id) %></p>
+    <% end %>
+    </div>

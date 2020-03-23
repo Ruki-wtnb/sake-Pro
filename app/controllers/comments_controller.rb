@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  
   def new
     @comment = Comment.new(user_id: current_user.id, jsake_id: params[:jsake_id])
     #コメントアイコンからjsake_idを受け取る
@@ -18,6 +19,16 @@ class CommentsController < ApplicationController
   
   def edit
     @comment = Comment.find(params[:id])
+  end
+  
+  def show
+    @jsake = Jsake.find(params[:id])
+  end
+  
+  def update
+    comment = Comment.find(params[:id])
+    comment.update!(body: comment_params[:body])
+    redirect_to comment_params[:back_url], success: "コメントを修正しました" 
   end
   
   private #入力フォームからの受取
