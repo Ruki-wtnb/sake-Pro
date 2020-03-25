@@ -17,18 +17,25 @@ class CommentsController < ApplicationController
     end
   end
   
-  def edit
-    @comment = Comment.find(params[:id])
-  end
-  
   def show
     @jsake = Jsake.find(params[:id])
+  end
+  
+  def edit
+    @comment = Comment.find(params[:id])
   end
   
   def update
     comment = Comment.find(params[:id])
     comment.update!(body: comment_params[:body])
     redirect_to comment_params[:back_url], success: "コメントを修正しました" 
+  end
+  
+  def destroy
+    comment = Comment.find(params[:comment_id])
+    
+    comment.destroy
+    redirect_to action: :show
   end
   
   private #入力フォームからの受取
