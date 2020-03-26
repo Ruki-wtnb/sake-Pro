@@ -1,6 +1,6 @@
  <div class="container-fluid comment-new-wrapper">
   <div class="row">
-   <div class="col-md-6 col-xs-6">
+   <div class="col-md-4 col-md-offset-2 col-xs-6">
     <div class="thumbnail topic-index-single">
       <!--日本酒画像-->
       <%= image_tag @jsake.image, class: 'sake' %>
@@ -35,12 +35,14 @@
       </span>
      </div><!--サムネイルのdiv-->
    
-   <div class="col-md-4">
+   <div class="col-md-2 comment-list">
     <% @jsake.comments.each do |c|%>
     <p><%= c.user.name %><br>
     <%= c.body %><br>
-    <%= link_to 'コメントを編集', edit_comment_path(c.id), class: 'btn btn-success btn-xs' %>
-    <%= link_to 'コメントを削除', comment_path(comment_id: c.id, id: c.jsake_id), method: :delete, class: 'btn btn-danger btn-xs', data:{confirm: "コメントを削除します、よろしいですか？"} %>
+    <% if logged_in? && current_user.id == c.user_id %>
+     <%= link_to 'コメントを編集', edit_comment_path(c.id), class: 'btn btn-success btn-xs' %>
+     <%= link_to 'コメントを削除', comment_path(comment_id: c.id, id: c.jsake_id), method: :delete, class: 'btn btn-danger btn-xs', data:{confirm: "コメントを削除します、よろしいですか？"} %>
+    <% end %>
     </p>
     <% end %>
-    </div>
+   </div>

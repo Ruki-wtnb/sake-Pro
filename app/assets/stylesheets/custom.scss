@@ -304,6 +304,13 @@ h1, h2 {
   margin-top: -50px;
 }
 
+.comment-list{
+  width:600px;
+  height:600px;
+  overflow:auto;
+}
+
+
 //スマートフォン用CSS
 @media screen and (max-width:600px) { 
     /*　画面サイズが480pxからはここを読み込む　*/
