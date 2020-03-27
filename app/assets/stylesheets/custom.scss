@@ -310,6 +310,13 @@ h1, h2 {
   overflow:auto;
 }
 
+.comment-single{
+  border-bottom: solid 1px #d3d3d3;
+}
+
+.comment-user-name{
+  font-weight: bold;
+}
 
 //スマートフォン用CSS
 @media screen and (max-width:600px) { 
@@ -364,6 +371,12 @@ canvas{
   justify-content: center;
 }
 
+.comment-list{
+  margin: 0 auto;
+  width:200px;
+  height:400px;
+  overflow:auto;
+}
 
 
 
