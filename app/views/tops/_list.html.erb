@@ -35,9 +35,7 @@
                             <%= image_tag 'icons/comment-black.png', class: 'sns-icon' %>
                           <% end %>
                         <% end %>
-                        <br>
-                        <%= link_to 'コメント一覧', comment_path(sake.id) %>:<%= sake.comments.count %>件
-                        
+                        <span class="comment-show"><%= link_to 'コメント一覧', comment_path(sake.id) %>:<%= sake.comments.count %>件</span>
                       </span>
                   </div>
                 <% end %><!--if sake != nilのend -->
