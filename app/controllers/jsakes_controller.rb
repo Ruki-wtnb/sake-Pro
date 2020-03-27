@@ -5,9 +5,7 @@ class JsakesController < ApplicationController
   end
   
   def create
-    
     amakara_calculation
-    binding.pry
     @jsake = Jsake.new(jsake_params)
     @jsake.user_id = current_user.id
     @jsake.amakara = amakara_calculation
