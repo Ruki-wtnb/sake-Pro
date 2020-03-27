@@ -31,37 +31,8 @@
         <% end %>
         <!--いいね数の表示-->
         <span class="badge"><%= @comment.jsake.favorite_users.count %></span>
-       
-        <!--モーダル形式のコメント欄-->
-        <div class="view-comment">
-         <button class="btn btn-primary" data-toggle="modal" data-target="#all_sake<%= @comment.jsake.id %>">
-          コメント:<%= @comment.jsake.comments.count %>件
-         </button>
-        </div>
-                        
-        <div class="modal fade" id="all_sake<%= @comment.jsake.id %>">
-         <div class="modal-dialog">
-          <div class="modal-content">
-           <div class="modal-header">
-            <h4><%= @comment.jsake.meigara%></h4>
-            <button class="close" data-dismiss="modal">
-             <span aria-hidden="true">&times;</span><span class="sr-only">閉じる</span>
-            </button>
-           </div>
-                              
-           <div class="modal-body">
-            <% @comment.jsake.comments.each do |c|%>
-             <p><%= c.body %></p>
-            <% end %>
-           </div>
-           
-           <div class="modal-footer">
-            <button class="btn btn-primary btn-sm" data-dismiss="modal">閉じる</button>
-           </div>
-          </div>
-         </div>
-        </div>
-        <!--モーダル形式のコメント欄-->
+        
+        <%= link_to 'コメント一覧', comment_path(sake.id) %>:<%= sake.comments.count %>件
         
         </div>
       </span>
