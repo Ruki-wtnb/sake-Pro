@@ -1,6 +1,6 @@
  <div class="container-fluid comment-new-wrapper">
   <div class="row">
-   <div class="col-md-6 col-xs-6">
+   <div class="col-md-offset-2 col-md-4 col-xs-offset-2 col-xs-8">
     <div class="thumbnail topic-index-single">
       <!--日本酒画像-->
       <%= image_tag @comment.jsake.image, class: 'sake' %>
@@ -31,8 +31,6 @@
         <% end %>
         <!--いいね数の表示-->
         <span class="badge"><%= @comment.jsake.favorite_users.count %></span>
-        
-        <%= link_to 'コメント一覧', comment_path(sake.id) %>:<%= sake.comments.count %>件
         
         </div>
       </span>
