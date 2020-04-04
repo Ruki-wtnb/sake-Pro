@@ -1,0 +1,35 @@
+<div class="users-new-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-4 col-md-4 col-xs-offset-1 col-xs-10 users-new-container">
+        <h1 class="text-center text-white">登録情報の編集</h1>
+        
+        <%= form_for @user do |f| %>
+        
+          <div class="form-group">
+            <%= f.label :name, "氏名", class: 'text-white' %>
+            <%= f.text_field :name, :placeholder => "15文字以内で入力してください", class: 'form-control'%>
+          </div>
+          
+          <div class="form-group">
+            <%= f.label :email, "メールアドレス", class: 'text-white' %>
+            <%= f.text_field :email, class: 'form-control' %>
+          </div>
+          
+          <div class="form-group">
+            <%= f.label :password, "パスワード",class: 'text-white' %>
+            <%= f.password_field :password, :placeholder => "文字数字交じり,8字以上32文字以下",class: 'form-control' %>
+          </div>
+          
+          <div class="form-group">
+            <%= f.label :password_confirmation, "パスワード確認用", class: 'text-white' %>
+            <%= f.password_field :password_confirmation, class: 'form-control' %>
+          </div>
+          
+          <%= f.submit "修正", class: 'btn-block btn-white' %>
+        
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

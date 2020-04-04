@@ -6,6 +6,7 @@
        <li class="active"><a href="#favo" data-target="#favo" data-toggle="tab">お気に入り一覧</a></li>
        <li><a href="#plot" data-target="#plot" data-toggle="tab">お気に入り分布図</a></li>
        <li><a href="#reg" data-target="#reg" data-toggle="tab">登録一覧</a></li>
+       <li><a href="#userInfo" data-target="#userInfo" data-toggle="tab">ユーザ情報</a></li>
       </ul>
     </div>
   </div>
@@ -91,11 +92,22 @@
       </div>
     </div>
       
-      
     <div class="tab-pane" id="plot">
       <div class="container-fluid graph-wrapper">
         <%= scatter_chart @plot, messages: {empty: "いいねしている日本酒がありません"},legend: false, class: 'center' %>
       </div>
-      <h5 id="cation">注：このグラフの傾向はあくまで「目安」です。<>飲酒時の体調、おつまみなどによって感じ方に違いが出ることがあります。</h5>
+      <h5 id="cation">注：このグラフの傾向はあくまで「目安」です。<br>飲酒時の体調、おつまみなどによって感じ方に違いが出ることがあります。</h5>
     </div>
+    
+    <div class="tab-pane" id="userInfo">
+      <div class="container-fluid graph-wrapper">
+        <div class="row">
+          <h4>ユーザ名：<%= current_user.name %></h4>
+          <h4>メールアドレス：<%= current_user.email %></h4>
+          <%= link_to 'ユーザ情報修正', edit_user_path(current_user.id), class: 'btn-sm btn-success'%>
+        </div>
+      </div>
+    </div>
+    
+    
   </div>

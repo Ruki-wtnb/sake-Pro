@@ -9,7 +9,7 @@ class Jsake < ApplicationRecord
   belongs_to :user
   
   has_one_attached :image
-  mount_uploader :image_url, ImageUploader
+  
   
   has_many :favorites
   has_many :favorite_users, through: :favorites, source: 'user'
