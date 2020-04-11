@@ -8,7 +8,7 @@ class JsakesController < ApplicationController
   @jsake = Jsake.new(jsake_params)
   @jsake.user_id = current_user.id
   @jsake.amakara = amakara_calculation
-  #binding.pry
+
   if @jsake.save!
    redirect_to root_path, success: '銘柄を登録しました。ご協力ありがとうございます！'
   else

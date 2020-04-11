@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  
+  helper_method :log_in
+  
   def new
   end
   
@@ -9,7 +12,6 @@ class SessionsController < ApplicationController
       log_in user
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       redirect_to mypage_path, success: 'ログインに成功しました'
-      #binding.pry
     else
       flash.now[:danger] = 'ログインに失敗しました'
       render :new
@@ -45,7 +47,7 @@ class SessionsController < ApplicationController
   end
   
   def user_info
-    params.require(:session).permit(:email, :password)
+    params.require(:session).permit(:email, :password, :remember_me)
   end
   
   

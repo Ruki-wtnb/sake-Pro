@@ -31,9 +31,9 @@ class User < ApplicationRecord
   end
   
   def authenticated?(remember_token)
-    binding.pry
     return false if remember_digest.nil?
-    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+    user = User.find_by(user)
+    user.remember_digest == (remember_token)
   end
   
   def forget

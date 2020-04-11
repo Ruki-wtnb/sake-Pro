@@ -18,6 +18,11 @@ class ApplicationController < ActionController::Base
   end
  end
  
+ 
+ def log_in(user) #sessionメソッドでuse.idを保存している
+  session[:user_id] = user.id
+ end
+ 
  def logged_in?
   !current_user.nil? #current_userが空ではない？
  end
