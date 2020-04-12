@@ -20,6 +20,13 @@ class User < ApplicationRecord
   
   has_many :comments
   
+  # 渡された文字列のハッシュ値を返す
+  def self.digest(string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+                                                  BCrypt::Engine.cost
+    BCrypt::Password.create(string, cost: cost)
+  end
+  
   #ランダムなトークンを返す
   def self.new_token
     SecureRandom.urlsafe_base64
@@ -31,9 +38,8 @@ class User < ApplicationRecord
   end
   
   def authenticated?(remember_token)
-    return false if remember_digest.nil?
-    user = User.find_by(user)
-    user.remember_digest == (remember_token)
+    return false if remember_digest.nil? 
+    remember_digest == remember_token
   end
   
   def forget

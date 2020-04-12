@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
 
- helper_method :current_user, :logged_in?
+ helper_method :current_user, :logged_in?, :current_user
+ 
  
  protect_from_forgery width: :exception
  
