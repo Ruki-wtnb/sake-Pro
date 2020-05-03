@@ -45,6 +45,7 @@ group :development, :test do
   gem 'pry-doc'
   gem 'pry-byebug'
   gem 'pry-stack_explorer'
+  gem 'sqlite3'
 end
 
 group :development do
@@ -65,7 +66,7 @@ group :test do
 end
 
 group :production do
-  gem 'pg'
+  gem 'pg', '0.20.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
