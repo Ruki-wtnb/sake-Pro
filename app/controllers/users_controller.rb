@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+#Userモデルを新規作成
  def new
   @user = User.new
   @name_value = "15文字以内"
