@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   
   helper_method :log_in
-  
+  #view/session/new.html.erbを呼び出す
   def new
   end
   

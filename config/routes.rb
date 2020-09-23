@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-
+  
+  #views/tops/indexに遷移
   root 'tops#index'
   get 'tops/result'
   
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
   resources :jsakes
   resources :comments
   
+  #ログインパスsessionコントローラのnewアクションへ
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'

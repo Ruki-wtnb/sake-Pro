@@ -1,9 +1,12 @@
 class ApplicationController < ActionController::Base
 
+#定義したメソッドをビューでも使えるようにする
  helper_method :current_user, :logged_in?, :current_user
- 
+
+ #CSFR対策
  protect_from_forgery width: :exception
  
+ #フラッシュの種類の追加
  add_flash_types :success, :info, :warning, :danger
  
  def current_user
