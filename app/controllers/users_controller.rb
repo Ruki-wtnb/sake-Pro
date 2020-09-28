@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
  def new
   @user = User.new
+  binding.pry
   @name_value = "15文字以内"
  end
 

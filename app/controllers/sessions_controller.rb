@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: user_info[:email])
 
     if user && user.authenticate(user_info[:password])
-      log_in user
+      log_in(user)
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       redirect_to mypage_path, success: 'ログインに成功しました'
     else
