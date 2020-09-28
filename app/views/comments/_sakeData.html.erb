@@ -17,6 +17,7 @@
          <tr><th>酸度</th><td><%= @comment.jsake.acidity %></td></tr>
          <tr><th>甘辛評価</th><td><%= @comment.jsake.amakara %></td></tr>
         </table>
+               
                         
         <!--いいねのハートマークとカウント-->
         <% if !@comment.jsake.favorite_users.include?(current_user) %>
