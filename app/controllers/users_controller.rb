@@ -1,19 +1,22 @@
 class UsersController < ApplicationController
 
-#Userモデルを新規作成
+#Userモデルを新規作成id: nil,
+#name, email, password_digest, created_at, updated_at, remember_digest
+#をフィールドに持つオブジェクトを作成
  def new
   @user = User.new
   @name_value = "15文字以内"
  end
-
+#ユーザ新規登録の登録ボタンからcreateアクションへ
  def create
   @user = User.new(user_params)
   if @user.save
+   #ログイン画面へリダイレクトする
    redirect_to login_path, success: '登録が完了しました'
   else
    flash.now[:danger] = '登録に失敗しました'
+  #新規登録画面に再び戻る
   render :new
-  
   end
  end
   
