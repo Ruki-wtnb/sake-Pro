@@ -1,19 +1,23 @@
-# [Choice] Ruby version: 2, 2.7, 2.6, 2.5
-ARG VARIANT=2
-FROM mcr.microsoft.com/vscode/devcontainers/ruby:${VARIANT}
+# コピペでOK, app_nameもそのままでOK
+# 19.01.20現在最新安定版のイメージを取得
+FROM ruby:2.6.3
 
-# Install Rails
-RUN gem install rails webdrivers 
+# 必要なパッケージのインストール（基本的に必要になってくるものだと思うので削らないこと）
+RUN apt-get update -qq && \
+    apt-get install -y build-essential \ 
+                       libpq-dev \        
+                       nodejs           
 
-ARG NODE_VERSION="lts/*"
-RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && nvm install ${NODE_VERSION} 2>&1"
+# 作業ディレクトリの作成、設定
+RUN mkdir /app_name 
+##作業ディレクトリ名をAPP_ROOTに割り当てて、以下$APP_ROOTで参照
+ENV APP_ROOT /app_name 
+WORKDIR $APP_ROOT
 
-# [Optional] Uncomment this section to install additional OS packages.
-# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-#     && apt-get -y install --no-install-recommends <your-package-list-here>
+# ホスト側（ローカル）のGemfileを追加する（ローカルのGemfileは【３】で作成）
+ADD ./Gemfile $APP_ROOT/Gemfile
+ADD ./Gemfile.lock $APP_ROOT/Gemfile.lock
 
-# [Optional] Uncomment this line to install additional gems.
-# RUN gem install <your-gem-names-here>
-
-# [Optional] Uncomment this line to install global node packages.
-# RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
+# Gemfileのbundle install
+RUN bundle install
+ADD . $APP_ROOT
