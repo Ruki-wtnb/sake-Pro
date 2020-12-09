@@ -2,6 +2,9 @@
 # 19.01.20現在最新安定版のイメージを取得
 FROM ruby:2.6.3
 
+# railsコンソール中で日本語入力するための設定
+ENV LANG C.UTF-8
+
 # 必要なパッケージのインストール（基本的に必要になってくるものだと思うので削らないこと）
 RUN apt-get update -qq && \
     apt-get install -y build-essential \ 
