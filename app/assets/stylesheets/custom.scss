@@ -179,9 +179,9 @@ body{
 }
 
 canvas{
-  background-image: image-url('graph.png');
-  background-size: 740px;
-  background-position: 90% 7%;
+  background-image: image-url('taste.png');
+  background-size: 1015px 434px;
+  background-position: 85% 55%;
   background-repeat: no-repeat;
 }
 
@@ -363,11 +363,11 @@ li{
   height: 40px;
   border-radius: 5px;
 }
-
+//グラフの背景
 canvas{
   width: 345px;
   height: 600px;
-  background-image: image-url('graph.png');
+  background-image: image-url('taste.png');
   background-size: 280px 545px;
   background-position: 90% 7%;
   background-repeat: no-repeat;

@@ -1,25 +1,126 @@
 
 <!--銘柄の検索結果を表示、再検索するためのページです。-->
   <%= render partial: 'search' %>
+  <div class="container-fluid index-with-search">
+  <%= will_paginate @result %>
   
- <div class="container-fluid index-with-search">
-    <%= will_paginate @result %>
-    
-        <!--銘柄全件を4件ずつ表示-->
-        <% @result.each_slice(4) do |ret_sake1, ret_sake2, ret_sake3, ret_sake4| %>
-          <div class="row index-row">
-            <% [ret_sake1, ret_sake2, ret_sake3, ret_sake4].each do |sake|%>
-            <%= render partial: 'tops/list',  locals: {sake: sake} %>
-
-            <% end %><!--eachのend -->
-          </div>
-      <% end %><!--each.sliceのend -->
-    <%= will_paginate @result %>
-    
-    <div class="graph-wrapper">
-      <%= scatter_chart @search_plot, legend: false, class: 'center-block' %>
+  <!--銘柄全件を4件ずつ表示-->
+  <% @result.each_slice(4) do |ret_sake1, ret_sake2, ret_sake3, ret_sake4| %>
+    <div class="row index-row">
+      <% [ret_sake1, ret_sake2, ret_sake3, ret_sake4].each do |sake|%>
+        <%= render partial: 'tops/list',  locals: {sake: sake} %>
+      <% end %><!--eachのend -->
     </div>
-    <h5 id="cation">注：このグラフの傾向はあくまで「目安」です。<br>飲酒時の体調、おつまみなどによって感じ方に違いが出ることがあります。</h5>
+  <% end %><!--each.sliceのend -->
+    
+  <%= will_paginate @result %>
+
+  <!-- Chart.jsのグラフ-->
+  
+  <div class="graph-wrapper">
+    <canvas id="myScatterChart"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+  </div>
+
+  <!-- chartkickのグラフ
+  <div class="graph-wrapper">
+    <%= scatter_chart @search_plot, legend: false, class: 'center-block' %>
+  </div>
+  -->
+  <h5 id="cation">注：このグラフの傾向はあくまで「目安」です。<br>飲酒時の体調、おつまみなどによって感じ方に違いが出ることがあります。</h5>
+  
+  <!--<script type="text/javascript" src="app\assets\javascripts\graph.js"></script> -->
+  <script>
+    // グラフ作成
+    var ctx = document.getElementById("myScatterChart");
+    //銘柄名, 日本酒度, 酸度, プロットカラーの取得
+    var meigara = '<%== JSON.dump(@chart) %>'.slice(1).slice(0, -1).split(',');
+    var x = '<%== JSON.dump(@x) %>'.slice(1).slice(0, -1).split(',');
+    var y = '<%== JSON.dump(@y) %>'.slice(1).slice(0, -1).split(',');
+    var color = ['#c3003a', '#3a546b', '#d5a02e', '#918d43', '#787cac', '#604439', '#6f2757', '#c1541c',
+      '#565d63', '#afc9ca', '#baaa52', '#e2b2c0', 
+      '#4d639f', '#356c92', '#c9ced1', '#dfd4be', '#92a1a6', '#a67b2d', '#bda5bb', '#2c4b79', '#d6d680', '#babea5', '#ebc175', '#3a614f']
+    
+    //日本酒度(x軸)と酸度の(y軸)のオブジェクトを作成, 配列に格納
+    var plots = new Array()
+    for(var i in x){
+      var plot = {x: parseFloat(x[i]), y: parseFloat(y[i])}
+      plots.push(plot)
+      }
+    //プロット用のオブジェクトを生成
+    var datum = new Array()
+    for(var i in meigara){
+      var data = {
+        label: meigara[i],
+        data: [plots[i]],
+        backgroundColor: color[i], //'RGBA(51, 102, 153, 1)',
+        pointRadius: 10,
+        pointHoverRadius: 10,
+        }
+      datum.push(data)
+    }
+
+    //グラフのオブジェクト 
+    var myScatterChart = new Chart(ctx, {
+      type: 'scatter', //グラフの形式
+      data: { //データ
+        datasets: datum 
+        /*[{
+            label: '日本酒',
+            data: plots,
+            backgroundColor: 'RGBA(51, 102, 153, 1)',
+            pointRadius: 10,
+            pointHoverRadius: 10,
+            }] */
+          },
+          options:{
+            title: {
+              display: true,
+              text: '日本酒味傾向'
+              },
+          scales: {
+            xAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: '日本酒度'
+              },
+              ticks: {
+                suggestedMin: -25,
+                suggestedMax: 25,
+                stepSize: 10,
+                callback: function(value, index, values){
+                  return  value
+                }
+              }
+            }],
+            yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: '酸度'
+              },
+              ticks: {
+                suggestedMax: 2,
+                suggestedMin: 0,
+                stepSize: 0.5,
+                callback: function(value, index, values){
+                  return  value
+                }
+              }
+            }],
+          },
+          //ツールチップ(プロットにマウスオンしたときの表示)
+          tooltips: {
+            callbacks: {
+              label: function (tooltipItem, data){
+                return meigara[tooltipItem.datasetIndex] + "(" + tooltipItem.xLabel + "," + tooltipItem.yLabel + ")";
+              }
+            }
+          },
+        }
+    });
+</script>
+
+
   </div>
 
 

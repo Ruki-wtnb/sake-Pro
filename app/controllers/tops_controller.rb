@@ -9,6 +9,7 @@ class TopsController < ApplicationController
   end
  
   def search #検索用アクション
+
     split_word = params_word[:word].split(/[[:blank:]]+/) #検索ワードを空白(半角or全角)で分割する
     @result = [].paginate(page: params[:page], per_page: 28) #検索結果格納用の配列
       
@@ -20,11 +21,24 @@ class TopsController < ApplicationController
         end
       end
       @search_sake = @result.pluck(:meigara, :sake_meter_value, :acidity)
-      @search_plot = []
-      @search_sake.each do |sake|
-      @search_plot.push({name: sake[0], data: [[sake[1], sake[2]]]})
-    end
-          
+
+      #@search_plot = []
+      #@search_sake.each do |sake|
+       # @search_plot.push({name: sake[0], data: [[sake[1], sake[2]]]})
+      #end
+      
+      @chart = ''
+      @x = []
+      @y = []
+      @search_sake.each_with_index do |sake, i|
+        @chart += sake[0]
+        if @search_sake.size-1 != i
+          @chart += ','
+        end
+        @x.push(sake[1])
+        @y.push(sake[2])
+      end
+
     @search = SearchHistory.new #検索履歴モデルの新規
     if current_user != nil #ログインしているならば検索履歴の表示と保存を実行
       @search_history = SearchHistory.where(user_id: current_user.id)
