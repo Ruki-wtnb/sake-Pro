@@ -180,7 +180,7 @@ body{
 
 canvas{
   background-image: image-url('taste.png');
-  background-size: 1015px 434px;
+  background-size: 94% 80%;
   background-position: 85% 55%;
   background-repeat: no-repeat;
 }
@@ -327,7 +327,7 @@ input[type=checkbox] {
   transform: scale(1.5);
 }
 //スマートフォン用CSS
-@media screen and (max-width:600px) { 
+@media screen and (max-width:800px) { 
     /*　画面サイズが480pxからはここを読み込む　*/
 
 //日本酒通のロゴ
@@ -365,12 +365,17 @@ li{
 }
 //グラフの背景
 canvas{
-  width: 345px;
+  background-image: image-url('taste.png');
+  background-size: 81% 68%;
+  background-position: 85% 59%;
+  background-repeat: no-repeat;
+  /*width: 345px;
   height: 600px;
   background-image: image-url('taste.png');
   background-size: 280px 545px;
   background-position: 90% 7%;
   background-repeat: no-repeat;
+  */
 }
 
 .graph-wrapper{

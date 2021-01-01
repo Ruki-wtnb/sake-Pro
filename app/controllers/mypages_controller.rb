@@ -5,11 +5,26 @@ class MypagesController < ApplicationController
   @sakes = @mypages.pluck(:meigara, :sake_meter_value, :acidity)
   @favorite_jsakes = current_user.favorite_jsakes.paginate(page: params[:page], per_page: 28)
   @favo_sake = @favorite_jsakes.pluck(:meigara, :sake_meter_value, :acidity)
-  @plot = []
+  #@plot = []
   
-  @favo_sake.each do |sake|
-   @plot.push({name: sake[0], data: [[sake[1], sake[2]]]})
+  #@favo_sake.each do |sake|
+   #@plot.push({name: sake[0], data: [[sake[1], sake[2]]]})
+  #end
+
+  @chart = ''
+  @x = []
+  @y = []
+  @favo_sake.each_with_index do |sake, i|
+    @chart += sake[0]
+    if @favo_sake.size-1 != i
+      @chart += ','
+    end
+    @x.push(sake[1])
+    @y.push(sake[2])
   end
+
+
+
  end
   
  def create #いいねの作成

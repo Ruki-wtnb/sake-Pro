@@ -93,10 +93,10 @@
     </div>
       
     <div class="tab-pane" id="plot">
-      <div class="container-fluid graph-wrapper">
-        <%= scatter_chart @plot, messages: {empty: "いいねしている日本酒がありません"},legend: false, class: 'center' %>
-      </div>
-      <h5 id="cation">注：このグラフの傾向はあくまで「目安」です。<br>飲酒時の体調、おつまみなどによって感じ方に違いが出ることがあります。</h5>
+      
+        <%= render partial: 'graphs/scatterPlot'%>
+        <!--<%= scatter_chart @plot, messages: {empty: "いいねしている日本酒がありません"},legend: false, class: 'center' %>-->
+      
     </div>
     
     <div class="tab-pane" id="userInfo">
