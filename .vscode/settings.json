@@ -1,0 +1,10 @@
+{
+    "editor.codeActionsOnSave": null,
+    "launch": {
+        "configurations": [],
+        "compounds": []
+    }
+    "files.associations": {
+        "*.html.erb": "html"
+     }
+}

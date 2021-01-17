@@ -1,79 +1,79 @@
 <!DOCTYPE html>
 <html>
- <head>
-  <title>Sake</title>
-  <%= favicon_link_tag('icons/favicon.ico') %>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <head>
+    <title>Sake</title>
+    <%= favicon_link_tag('icons/favicon.ico') %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   
   <body>
-   <% flash.each do |key, value| %>
-   <div class="alert alert-<%= key %>" role="alert"><%= value %></div> 
-   <% end %>
-   
-   <nav class="navbar navbar-fixed-top">
-    <div class="container-fluid">
-     <div class="row">
-      <!--日本酒-通-のロゴ・トップページへのリンク-->
-      <%= link_to root_path do %>
-      <span><%= image_tag "icons/sake-logo.png", class: "navbar-brand logo" %></span>
-      <% end %>
-      
-      <!--各リンクへのアイコン-->
-       <ul>
-        <!--ログインしていたら、マイページ、銘柄登録、ログアウト-->
-        <% if logged_in? %>
-         <li data-toggle="tooltip" data-placement="bottom" title="<%= current_user.name %>のマイページ">
-          <%= link_to mypage_path do %>
-          <%= image_tag "icons/sake_my_page.png", class: 'icon-nav' %>
-          <% end %>
-         </li>
-         
-         <li data-toggle="tooltip" data-placement="bottom" title="銘柄登録">
-          <%= link_to new_jsake_path do %>
-          <%= image_tag "icons/reg-sake.png", class: 'icon-nav' %>
-          <% end %>
-         </li>
-         
-         <li data-toggle="tooltip" data-placement="bottom" title="ログアウト">
-          <%= link_to logout_path, method: :delete, data: { confirm: "ログアウトします。よろしいですか？"} do %>
-          <%= image_tag "icons/sake-logout.png", class: 'icon-nav' %>
-          <% end %>
-         </li>
-              
-        <% else %>
-         <!--ログインしていなかったら、ログイン、ユーザ登録-->
-         <li data-toggle="tooltip" data-placement="bottom" title="ログイン">
-          <%= link_to login_path do %>
-          <%= image_tag "icons/sake-login.png", class: "icon-nav" %>
-          <% end %>
-         </li>
-              
-         <li data-toggle="tooltip" data-placement="bottom" title="新規登録">
-          <%= link_to new_user_path do %>
-          <%= image_tag "icons/sake-reg.png", class: "icon-nav" %>
-          <% end %>
-         </li>
-        <% end %>
-       </ul>
-     </div>
-    </div>
-   </nav>
-   <!--ここに各ページの内容が埋め込まれる-->
-   <%= yield %>
+    <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>" role="alert"><%= value %></div> 
+    <% end %>
   
-  <script>　<!--メッセージバーの表示5秒-->
-    $(function(){
-      $(".alert").fadeOut(5000);
-    });
+  <nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="row">
+        <!--日本酒-通-のロゴ・トップページへのリンク-->
+        <%= link_to root_path do %>
+        <span><%= image_tag "icons/sake-logo.png", class: "navbar-brand logo" %></span>
+        <% end %>
+        
+        <!--各リンクへのアイコン-->
+        <ul>
+          <!--ログインしていたら、マイページ、銘柄登録、ログアウト-->
+          <% if logged_in? %>
+          <li data-toggle="tooltip" data-placement="bottom" title="<%= current_user.name %>のマイページ">
+            <%= link_to mypage_path do %>
+            <%= image_tag "icons/sake_my_page.png", class: 'icon-nav' %>
+            <% end %>
+          </li>
+          
+          <li data-toggle="tooltip" data-placement="bottom" title="銘柄登録">
+            <%= link_to new_jsake_path do %>
+            <%= image_tag "icons/reg-sake.png", class: 'icon-nav' %>
+            <% end %>
+          </li>
+          
+          <li data-toggle="tooltip" data-placement="bottom" title="ログアウト">
+            <%= link_to logout_path, method: :delete, data: { confirm: "ログアウトします。よろしいですか？"} do %>
+            <%= image_tag "icons/sake-logout.png", class: 'icon-nav' %>
+            <% end %>
+          </li>
+                
+          <% else %>
+          <!--ログインしていなかったら、ログイン、ユーザ登録-->
+          <li data-toggle="tooltip" data-placement="bottom" title="ログイン">
+            <%= link_to login_path do %>
+            <%= image_tag "icons/sake-login.png", class: "icon-nav" %>
+            <% end %>
+          </li>
+                
+          <li data-toggle="tooltip" data-placement="bottom" title="新規登録">
+            <%= link_to new_user_path do %>
+            <%= image_tag "icons/sake-reg.png", class: "icon-nav" %>
+            <% end %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+    <!--ここに各ページの内容が埋め込まれる-->
+    <%= yield %>
     
-    <!--アイコン説明用のツールチップ-->
-    $('[data-toggle=tooltip]').tooltip();
-  </script>
-    
- </body>
+    <script>　<!--メッセージバーの表示5秒-->
+      $(function(){
+        $(".alert").fadeOut(5000);
+      });
+      
+      <!--アイコン説明用のツールチップ-->
+      $('[data-toggle=tooltip]').tooltip();
+    </script>
+      
+  </body>
 </html>

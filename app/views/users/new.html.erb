@@ -17,12 +17,12 @@
 
           <div class="form-group">
             <%= f.label :gender_id, "性別", class: 'text-white' %><br>
-            <%= f.select :gender_id, [["男性", 1], ["女性", 2]], class: 'form-control' %>
+            <%= f.select :gender_id, [["男性", 1], ["女性", 2]], {}, {class: 'form-control'} %>
           </div>
 
-          <div class="form-group">
+          <div class="form-group form-inline">
             <%= f.label :birthday, "生年月日", class: 'text-white' %><br>
-            <%= f.date_select :birthday, use_month_numbers: true, start_year: 1950, end_year: (Time.now.year - 20), default: Date.new(1900, 1, 1), class: 'form-control' %>
+            <%= f.date_select :birthday, {use_month_numbers: true, start_year: 1950, end_year: (Time.now.year - 20), default: Date.new(1900, 1, 1) }, {class: 'form-control date-select'} %>
           </div>
 
           <div class="form-group">

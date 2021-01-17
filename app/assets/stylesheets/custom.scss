@@ -56,7 +56,7 @@ li{
 .thumbnail{
   background-color: #ffffff;
   border-color: #ffffff;
-  
+ //別でidを設けて「border-color:#818487;」 
 //日本酒画像
 img{
     height: 250px;
@@ -134,17 +134,27 @@ td{
 .view-comment{
   display: inline;
 }
-
-
+//サムネイル終わり
 }
+
+//サムネイル
+#single-sake{
+  border-color:#818487;
+  margin-bottom: 0px;
+  padding:0px;
+}
+
+#thumbnail-sake{
+  padding: 0px;
+}
+
 
 //検索フォーム付きの一覧共通 top/index,top/result
 body{
   background-color: #ebf6f7;
 }
 
-
-.form-inline{
+#search-form{
   margin-top: 100px;
 }
 
@@ -254,7 +264,7 @@ h1, h2 {
     padding-top: 120px;
 
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
   }
 }

@@ -38,14 +38,14 @@
    
    <div class="col-md-2 comment-list">
     <% @jsake.comments.each do |c|%>
-    <p class="comment-single">
-     <span class="comment-user-name"><%= c.user.name %></span><br>
-     <%= c.body %><br>
+      <p class="comment-single">
+      <span class="comment-user-name"><%= c.user.name %></span><br>
+      <%= c.body %><br>
       <% if logged_in? && current_user.id == c.user_id %>
-      <%= link_to 'コメントを編集', edit_comment_path(c.id), class: 'btn btn-success btn-xs' %>
-      <%= link_to 'コメントを削除', comment_path(comment_id: c.id, id: c.jsake_id), method: :delete, class: 'btn btn-danger btn-xs', data:{confirm: "コメントを削除します、よろしいですか？"} %>
-      <% end %>
-    </p>
+        <%= link_to 'コメントを編集', edit_comment_path(c.id), class: 'btn btn-success btn-xs' %>
+        <%= link_to 'コメントを削除', comment_path(comment_id: c.id, id: c.jsake_id), method: :delete, class: 'btn btn-danger btn-xs', data:{confirm: "コメントを削除します、よろしいですか？"} %>
+        <% end %>
+      </p>
     <% end %>
    </div>
  </div>

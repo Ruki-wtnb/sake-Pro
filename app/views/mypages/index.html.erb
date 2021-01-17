@@ -104,7 +104,8 @@
         <div class="row">
           <h4>ユーザ名：<%= current_user.name %></h4>
           <h4>メールアドレス：<%= current_user.email %></h4>
-          <h4>性別：<%= current_user.gender_id %></h4>
+          <h4>性別：<%= current_user.gender.gender_name %></h4>
+          <h4>誕生日：<%= current_user.birthday %></h4>
           <%= link_to 'ユーザ情報修正', edit_user_path(current_user.id), class: 'btn-sm btn-success'%>
         </div>
       </div>
