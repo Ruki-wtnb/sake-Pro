@@ -6,8 +6,9 @@
           <%= form_for @jsake do |f| %>
             <div class="file_field">
               <%= f.label :image, "日本酒の画像"  %>
-              <%= f.file_field :image %>
+              <%= f.file_field :image, id: 'sake_img' %>
             </div>
+            <div id="img_area"></div>
             
             <div class='form-group'>
               <%= f.label :meigara, '銘柄' %>

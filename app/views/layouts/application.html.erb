@@ -6,7 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   
@@ -66,13 +66,30 @@
     <!--ここに各ページの内容が埋め込まれる-->
     <%= yield %>
     
-    <script>　<!--メッセージバーの表示5秒-->
+    <script>　//メッセージバーの表示5秒
       $(function(){
         $(".alert").fadeOut(5000);
       });
       
-      <!--アイコン説明用のツールチップ-->
+      //アイコン説明用のツールチップ
       $('[data-toggle=tooltip]').tooltip();
+
+      document.getElementById('sake_img').addEventListener("change", function() {
+    let img = document.getElementById('img_area');
+    if(img != null){
+      while(img.firstChild){
+        img.removeChild(img.firstChild);
+      }
+    }
+
+    let fileList = this.files;
+
+    for(let i=fileList.length; 0<i; i--){
+      let blobUrl = window.URL.createObjectURL(fileList[i-1])
+      img.insertAdjacentHTML('afterbegin', '<img id="img" height="150px" width="150px" src="' + blobUrl + '" >')
+    }
+  })
+
     </script>
       
   </body>
