@@ -1,50 +1,15 @@
-
-    <div class="container jsake-wrapper">
-      <div class="row">
-        <div class="col-md-offset-4 col-md-4 col-xs-offset-1 col-xs-10">
-          <h2 class="jsake-title">銘柄新規登録</h2>
-          <%= form_for @jsake do |f| %>
-            <div class="file_field">
-              <%= f.label :image, "日本酒の画像"  %>
-              <%= f.file_field :image, id: 'sake_img' %>
-            </div>
-            <div id="img_area"></div>
-            
-            <div class='form-group'>
-              <%= f.label :meigara, '銘柄' %>
-              <%= f.text_field :meigara, class: 'form-control' %>
-            </div>
-            
-            <div class='form-group'>
-              <%= f.label :seimai_buai, '精米歩合' %><br>
-              <%= f.collection_select :seimai_buai, Seimaibuai.all, :name, :name, {}, {class: 'form-control'} %>
-            </div>
-            
-            <div class='form-group'>
-              <%= f.label :locaility, '産地' %>
-              <%= f.collection_select :locaility, Prefecture.all, :name, :name, {}, {class: 'form-control'} %>
-            </div>
-            
-            <div class='form-group'>
-              <%= f.label :alcohol_degree, 'アルコール度数' %>
-              <%= f.text_field :alcohol_degree, class: 'form-control' %>
-            </div>
-            
-            <div class='form-group'>
-              <%= f.label :sake_meter_value, '日本酒度' %>
-              <%= f.number_field :sake_meter_value, step: "0.1", class: 'form-control' %>
-            </div>
-            
-             <div class='form-group'>
-              <%= f.label :acidity, '酸度' %>
-              <%= f.number_field :acidity, step: "0.1", class: 'form-control' %>
-             </div>
-            
-            <div class="form-group">
-              <%= f.submit "登録", class: 'btn btn-primary form-control' %>
-            </div>
-          <% end %>
-            
-        </div>      
+<div class="container jsake-wrapper">
+  <div class="row">
+    <div class="col-md-offset-4 col-md-4 col-xs-offset-1 col-xs-10">
+      <h2 class="jsake-title"><%= @title %></h2>
+      <%= form_for @jsake do |f| %>
+      <%= render partial: 'jsakes/form' , locals: {f: f} %>
+        
+      <div class="form-group">
+        <%= f.submit "登録", class: 'btn btn-primary form-control' %>
       </div>
-    </div>
+      <% end %>
+            
+    </div>      
+  </div>
+</div>

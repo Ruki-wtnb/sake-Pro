@@ -73,23 +73,6 @@
       
       //アイコン説明用のツールチップ
       $('[data-toggle=tooltip]').tooltip();
-
-      document.getElementById('sake_img').addEventListener("change", function() {
-    let img = document.getElementById('img_area');
-    if(img != null){
-      while(img.firstChild){
-        img.removeChild(img.firstChild);
-      }
-    }
-
-    let fileList = this.files;
-
-    for(let i=fileList.length; 0<i; i--){
-      let blobUrl = window.URL.createObjectURL(fileList[i-1])
-      img.insertAdjacentHTML('afterbegin', '<img id="img" height="150px" width="150px" src="' + blobUrl + '" >')
-    }
-  })
-
     </script>
       
   </body>
