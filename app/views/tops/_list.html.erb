@@ -5,7 +5,7 @@
   <div class="thumbnail" id="single-sake">
     <!--日本酒画像-->
     <% if sake.image.attached? %>
-    <%= image_tag sake.image %>
+      <%= image_tag sake.image %>
     <% end %>
     <!--銘柄のキャプション-->
     <span class="caption">
@@ -19,19 +19,21 @@
         <tr><th>日本酒度</th><td><%= sake.sake_meter_value %></td></tr>
         <tr><th>酸度</th><td><%= sake.acidity %></td></tr>
         <tr><th>甘辛評価</th><td><%= sake.amakara %></td></tr>
+        <tr><th>
+          <% if logged_in? != nil? %>
+          <div class="sns-icon" id="favo_<%= sake.id %>">
+            <!--いいねのハートマークとカウント-->
+            <%= render partial: 'mypages/favorite', locals: {sake: sake} %>
+          </div>
+          <!--コメント入力画面へのリンク-->
+          <%= link_to new_comment_path(jsake_id: sake.id), method: :get do %>
+            <%= image_tag 'icons/comment-black.png', class: 'sns-icon' %>
+          <% end %>
+          <% end %>  
+          <span class="comment-show"><%= link_to 'コメント一覧', comment_path(sake.id) %>:<%= sake.comments.count %>件</span>
+        </th><td></td></tr>
       </table>                  
-      
-      <% if logged_in? != nil? %>
-      <div class="sns-icon" id="favo_<%= sake.id %>">
-        <!--いいねのハートマークとカウント-->
-        <%= render partial: 'mypages/mypage', locals: {sake: sake} %>
-      </div>
-      <!--コメント入力画面へのリンク-->
-      <%= link_to new_comment_path(jsake_id: sake.id), method: :get do %>
-        <%= image_tag 'icons/comment-black.png', class: 'sns-icon' %>
-      <% end %>
-      <% end %>  
-      <span class="comment-show"><%= link_to 'コメント一覧', comment_path(sake.id) %>:<%= sake.comments.count %>件</span>
+    
     </span>
   </div>
   <% end %><!--if sake != nilのend -->

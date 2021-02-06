@@ -1,19 +1,17 @@
 <!--登録されている銘柄の検索、一覧を表示するためのページです。-->
-  
-  <!--検索フォームを部分テンプレートにする-->
-  <%= render partial: 'search' %>
-  <div class="container-fluid index-with-search">
-    <%= will_paginate %>
-    
-        <!--銘柄全件を4件ずつ表示-->
-        <% @tops.each_slice(4) do |all_sake1, all_sake2, all_sake3, all_sake4| %>
-          <div class="row index-row">
-            <% [all_sake1, all_sake2, all_sake3, all_sake4].each do |sake|%>
-            
-              <%= render partial: 'tops/list',  locals: {sake: sake} %>
-          
-            <% end %><!--eachのend -->
-          </div>
-      <% end %><!--each.sliceのend -->
-    <%= will_paginate %>
+<!--検索フォームを部分テンプレートにする-->
+
+<%= render partial: 'search' %>
+<div class="container-fluid index-with-search">
+  <%= will_paginate %>
+  <!--銘柄全件を4件ずつ表示-->
+  <% @tops.each_slice(4) do |all_sake1, all_sake2, all_sake3, all_sake4| %>
+  <div class="row index-row">
+    <% [all_sake1, all_sake2, all_sake3, all_sake4].each do |sake|%>
+      <%= render partial: 'tops/list',  locals: {sake: sake} %>
+    <% end %><!--eachのend -->
   </div>
+  <% end %><!--each.sliceのend -->
+  
+  <%= will_paginate %>
+</div>
