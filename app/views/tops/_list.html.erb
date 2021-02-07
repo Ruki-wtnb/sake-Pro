@@ -5,7 +5,7 @@
   <div class="thumbnail" id="single-sake">
     <!--日本酒画像-->
     <% if sake.image.attached? %>
-      <%= image_tag sake.image %>
+      <%= image_tag sake.image.variant(resize: '250x250') %>
     <% end %>
     <!--銘柄のキャプション-->
     <span class="caption">

@@ -64,7 +64,8 @@ class JsakesController < ApplicationController
   end
 
   def jsake_params
+    #binding.pry
     params.require(:jsake).permit(:image_url, :meigara, :seimai_buai, :locaility, :alcohol_degree, :sake_meter_value, :acidity, :image)
   end
-  
+   
 end
