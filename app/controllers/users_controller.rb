@@ -5,7 +5,6 @@ class UsersController < ApplicationController
 #をフィールドに持つオブジェクトを作成
  def new
   @user = User.new
-  binding.pry
   @name_value = "15文字以内"
  end
 #ユーザ新規登録の登録ボタンからcreateアクションへ
