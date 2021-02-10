@@ -19,6 +19,15 @@ class JsakesController < ApplicationController
     end
   end
 
+  def destroy
+    @jsake = Jsake.find(params[:id])
+    if @jsake.destroy
+      redirect_to controller: 'mypages', action: 'index', success: '銘柄を削除しました'
+    else
+      redirect_to controller: 'mypages', action: 'index', danger:  '銘柄の削除に失敗しました'
+    end
+  end
+
   def edit
     @update_id = params[:id]
     @jsake = Jsake.find(@update_id)
@@ -36,7 +45,7 @@ class JsakesController < ApplicationController
       render :edit
     end
   end
-    
+
   private
   
   def amakara_calculation

@@ -75,12 +75,14 @@
                         <% end %>
                         
                         <!--編集へのリンク-->
-                        <%= link_to  edit_jsake_path(id: sake.id) do %>
+                        <%= link_to edit_jsake_path(id: sake.id) do %>
                           <%= image_tag 'icons/edit.png', class: 'sns-icon' %>
                         <% end %>
-                        <!-- 削除ボタン-->
-                          <%= image_tag 'icons/dump_sake' , class: 'sns-icon' %>
-                        
+
+                        <%= link_to jsake_path(id: sake.id), method: :delete, data: { confirm: "銘柄:#{sake.meigara}を削除します。よろしいですか？"} do %>
+                        <%= image_tag 'icons/dump_sake.png', class: 'sns-icon' %>
+                      <% end %>
+
                         <%= link_to 'コメント一覧', comment_path(sake.id) %>:<%= sake.comments.count %>件
                         
                       </span>

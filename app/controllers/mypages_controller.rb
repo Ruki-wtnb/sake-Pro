@@ -1,7 +1,7 @@
 class MypagesController < ApplicationController
  
  def index
-  @mypages = current_user.jsakes.paginate(page: params[:page], per_page: 28)
+  @mypages = current_user.jsakes.order(id: "DESC").paginate(page: params[:page], per_page: 28)
   @sakes = @mypages.pluck(:meigara, :sake_meter_value, :acidity)
   @favorite_jsakes = current_user.favorite_jsakes.paginate(page: params[:page], per_page: 28)
   @favo_sake = @favorite_jsakes.pluck(:meigara, :sake_meter_value, :acidity)
