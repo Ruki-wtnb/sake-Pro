@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+#マスターユーザ...userid:master password:master1234
 
 #定義したメソッドをビューでも使えるようにする
  helper_method :current_user, :logged_in?, :current_user
