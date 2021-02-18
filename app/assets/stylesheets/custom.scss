@@ -56,14 +56,6 @@ li{
 .thumbnail{
   background-color: #ffffff;
   border-color: #ffffff;
- //別でidを設けて「border-color:#818487;」 
-//日本酒画像
-// img{
-//     height: 250px;
-//     width: 250px;
-//     //padding-left: 20px;
-//     //padding-right: 20px;
-// }
 
 //銘柄名
 h4{
@@ -76,6 +68,7 @@ h4{
 #cation{
   text-align: center;
 }
+
 
 //イイねやコメント欄などのアイコン  
 .sns-icon{
@@ -332,6 +325,15 @@ h1, h2 {
 input[type=checkbox] {
   transform: scale(1.5);
 }
+
+//ページネーション
+ul.pagination>li {
+  display: inline-block;
+}
+li.next{
+width: 54px;
+}
+
 //スマートフォン用CSS
 @media screen and (max-width:800px) { 
     /*　画面サイズが480pxからはここを読み込む　*/
