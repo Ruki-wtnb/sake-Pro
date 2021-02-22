@@ -88,8 +88,10 @@ class TopsController < ApplicationController
   end
  end
 
- def get_data(sake_data_set)
-  chart = '', x = [], y = []
+ def get_data(sake_data_set) #グラフの描画に必要なデータ取得
+  chart = ''
+   x = []
+   y = [] 
   sake_data_set.each_with_index do |sake, i|
     chart += sake[0]
     chart += ',' if sake_data_set.size-1 != i
