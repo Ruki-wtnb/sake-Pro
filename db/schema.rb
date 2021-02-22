@@ -10,6 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+#  heroku run rails console --app young-everglades-09991
+
 ActiveRecord::Schema.define(version: 2021_01_01_091026) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
