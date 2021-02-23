@@ -1,10 +1,10 @@
  <!-- Chart.jsのグラフ-->
-  
-  <div class="graph-wrapper" >
-    <canvas id="myScatterChart"></canvas>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+  <div class="wrap-chart">
+    <div class="graph-wrapper">
+      <canvas id="myScatterChart"></canvas>
+    </div>
   </div>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
   <script type="text/javascript">
 
   </script>
@@ -26,8 +26,8 @@
    function window_load() {
      if(window.innerWidth < 800){
        var graph = document.getElementById("myScatterChart");
-       graph.setAttribute("width", "80");
-       graph.setAttribute("height", "80");
+      //  graph.setAttribute("width", "80");
+      //  graph.setAttribute("height", "80");
        }
     }
 
@@ -49,73 +49,76 @@
       }
     //プロット用のオブジェクトを生成
     var datum = new Array()
+    
+    var pointRadius = window.innerWidth > 800? 10 : 4
+    var pointHoverRadius = window.innerWidth > 800? 10 : 4
+
     for(var i in meigara){
       var data = {
         label: meigara[i],
         data: [plots[i]],
         backgroundColor: color[i], //'RGBA(51, 102, 153, 1)',
-        pointRadius: 10,
-        pointHoverRadius: 10,
+        pointRadius: pointRadius,
+        pointHoverRadius: pointHoverRadius,
         }
       datum.push(data)
     }
+
+    var window_width_flag = window.innerWidth > 800;
 
     //グラフのオブジェクト 
     var myScatterChart = new Chart(ctx, {
       type: 'scatter', //グラフの形式
       data: { //データ
         datasets: datum 
-        /*[{
-            label: '日本酒',
-            data: plots,
-            backgroundColor: 'RGBA(51, 102, 153, 1)',
-            pointRadius: 10,
-            pointHoverRadius: 10,
-            }] */
-          },
-          options:{
-            title: {
-              display: true,
-              text: '日本酒味傾向'
-              },
-          scales: {
-            xAxes: [{
-              scaleLabel: {
-                display: true,
-                labelString: '日本酒度'
-              },
-              ticks: {
-                suggestedMin: -35,
-                suggestedMax: 35,
-                stepSize: 5,
-                callback: function(value, index, values){
-                  return  value
-                }
-              }
-            }],
-            yAxes: [{
-              scaleLabel: {
-                display: true,
-                labelString: '酸度'
-              },
-              ticks: {
-                suggestedMax: 2.5,
-                suggestedMin: 0,
-                stepSize: 0.5,
-                callback: function(value, index, values){
-                  return  value
-                }
-              }
-            }],
-          },
-          //ツールチップ(プロットにマウスオンしたときの表示)
-          tooltips: {
-            callbacks: {
-              label: function (tooltipItem, data){
-                return meigara[tooltipItem.datasetIndex] + "(" + tooltipItem.xLabel + "," + tooltipItem.yLabel + ")";
+      },
+      options:{
+        legend: {
+          display: window_width_flag,
+        },
+        //maintainAspectRatio: false,
+        title: {
+          display: true,
+          text: '日本酒味傾向'
+        },
+        scales: {
+          xAxes: [{
+            scaleLabel: {
+              display: window_width_flag,
+              labelString: '日本酒度'
+            },
+            ticks: {
+              suggestedMin: -35,
+              suggestedMax: 35,
+              stepSize: 5,
+              callback: function(value, index, values){
+                return  value
               }
             }
+          }],
+          yAxes: [{
+            scaleLabel: {
+              display: window_width_flag ,
+              labelString: '酸度'
           },
+          ticks: {
+            suggestedMax: 2.5,
+            suggestedMin: 0,
+            stepSize: 0.5,
+            callback: function(value, index, values){
+              return  value
+            }
+          }
+        }],
+      },
+      //ツールチップ(プロットにマウスオンしたときの表示)
+      tooltips: {
+        callbacks: {
+          label: function (tooltipItem, data){
+            return meigara[tooltipItem.datasetIndex] + "(" + tooltipItem.xLabel + "," + tooltipItem.yLabel + ")";
+          }
         }
+      },
+    }
     });
 </script>

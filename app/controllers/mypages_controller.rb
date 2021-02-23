@@ -9,8 +9,7 @@ class MypagesController < ApplicationController
   #@favo_sake.each do |sake|
    #@plot.push({name: sake[0], data: [[sake[1], sake[2]]]})
   #end  
-  @tc = TopsController.new
-  @chart, @x, @y = @tc.get_data(@favo_sake)
+  @chart, @x, @y = TopsController.get_data(@favo_sake)
 
  end
   

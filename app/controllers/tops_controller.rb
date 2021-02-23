@@ -1,5 +1,4 @@
 class TopsController < ApplicationController
-  helper_method :get_data
 
   def index #トップページでの日本酒一覧表示
     @tops = Jsake.order(id: "DESC").paginate(page: params[:page], per_page: 28)
@@ -31,31 +30,6 @@ class TopsController < ApplicationController
       
       @chart, @x, @y = get_data(@search_sake)
       
-      # @chart = ''
-      # @x = []
-      # @y = []
-      # @search_sake.each_with_index do |sake, i|
-      #   @chart += sake[0]
-      #   if @search_sake.size-1 != i
-      #     @chart += ','
-      #   end
-
-      #   if sake[1] > 30
-      #     @x.push(30)
-      #   elsif sake[1] < -30
-      #     @x.push(-30)
-      #   else
-      #     @x.push(sake[1])  
-      #   end
-      #   if sake[2] > 2
-      #     @y.push(2)
-      #   else
-      #     @y.push(sake[2])
-      #   end
-      #   # @x.push(sake[1])
-      #   # @y.push(sake[2])
-      # end
-
     @search = SearchHistory.new #検索履歴モデルの新規
     if current_user != nil #ログインしているならば検索履歴の表示と保存を実行
       @search_history = SearchHistory.where(user_id: current_user.id)
@@ -88,7 +62,7 @@ class TopsController < ApplicationController
   end
  end
 
- def get_data(sake_data_set) #グラフの描画に必要なデータ取得
+ def self.get_data(sake_data_set) #グラフの描画に必要なデータ取得
   chart = ''
    x = []
    y = [] 
