@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
  
  def new
   @comment = Comment.new(user_id: current_user.id, jsake_id: params[:jsake_id])
+  @taste = Taste.all
  end
   
  def create
@@ -18,6 +19,7 @@ class CommentsController < ApplicationController
 
  def edit
   @comment = Comment.find(params[:id])
+  @taste = Taste.all
  end
 
  def update
@@ -28,6 +30,7 @@ class CommentsController < ApplicationController
 
  def show
   @jsake = Jsake.find(params[:id])
+  @taste = Taste.all
  end
 
  def destroy

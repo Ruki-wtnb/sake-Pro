@@ -10,17 +10,15 @@ class User < ApplicationRecord
   validates :password, length:{in: 8..32}, format: { with: VALID_PASSWORD_REGEX }
   
   has_secure_password
-  
+
   has_many :jsakes
-  
   has_many :favorites
   has_many :favorite_jsakes, through: :favorites, source: 'jsake'
-  
   has_many :search_histories
-  
   has_many :comments
-  
   belongs_to :gender
+  has_many :votes
+
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost

@@ -3,7 +3,9 @@
 
 <%= render partial: 'search' %>
 <div class="container-fluid index-with-search">
+
   <%= will_paginate(:previous_label => '前へ', :next_label => '後へ') %>
+  <h3>現在の登録件数 : <%= @count_entry %> 種</h3>
   <!--銘柄全件を4件ずつ表示-->
   <% @tops.each_slice(4) do |all_sake1, all_sake2, all_sake3, all_sake4| %>
   <div class="row index-row">
@@ -16,4 +18,3 @@
   <%= will_paginate(:previous_label => '前へ', :next_label => '後へ') %>
   
 </div>
-

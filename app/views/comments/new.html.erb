@@ -1,13 +1,17 @@
 
 <%= render partial: 'sakeData' %>
-     
-   <div class="col-md-4">
+  <div class="vote-button">
+    <% @taste.each_with_index do |t, i| %>
+    <button id="<%= i %>"><%= t.taste_name %></button>
+  <% end %>
+  </div>
+  <div class="col-md-4">
     <%= form_for @comment do |f| %> <!---コメントの入力フォーム--->
      <div class="form-group">
       <%= f.hidden_field :jsake_id, value: @comment.jsake_id %>
      </div>
      <div class="form-group">
-      <%= f.text_area :body, class: 'form-control'%>
+      <%= f.text_area :body, size: "200×100", class: 'form-control'%>
      </div>
      <div class="form-group">
       <%= f.hidden_field :back_url, value: request.referer %>

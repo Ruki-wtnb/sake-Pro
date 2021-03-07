@@ -290,8 +290,26 @@ h1, h2 {
 .comment-new-wrapper{
   padding-top: 100px;
   padding-bottom: 50px;
-  
 }
+
+.vote-button{
+  outline: none;
+  :nth-child(1){
+    background-color: #ff00ff;
+  }
+  :nth-child(2){
+    background-color: #ffaaff;
+  }
+  :nth-child(3){
+    background-color: #ffffff;
+  }
+  :nth-child(4){
+    background-color: #ffaaaa;
+  }
+  :nth-child(5){
+    background-color: #ff0000;
+  }
+} 
 
 .text-center{
   margin: -20px;
