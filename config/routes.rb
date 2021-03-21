@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'vote/create'
+  get 'vote/destroy'
   #views/tops/indexに遷移
   root 'tops#index'
   get 'tops/result'

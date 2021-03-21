@@ -2,8 +2,8 @@
 <%= render partial: 'sakeData' %>
   <div class="vote-button">
     <% @taste.each_with_index do |t, i| %>
-    <button id="<%= i %>"><%= t.taste_name %></button>
-  <% end %>
+      <%= button_to  t.taste_name, vote_create_path, {class: "btn", id: i, method: :get, params: {jsake_id: @comment.jsake_id, taste_id: i+1} } %>
+    <% end %>
   </div>
   <div class="col-md-4">
     <%= form_for @comment do |f| %> <!---コメントの入力フォーム--->
