@@ -1,50 +1,13 @@
- <div class="container-fluid comment-new-wrapper">
-  <div class="row">
-   <div class="col-md-offset-2 col-md-4 col-xs-offset-2 col-xs-8">
+<%= render partial: 'sakeData' %>
 
-    <div class="thumbnail topic-index-single" id="single-sake">
-      <!--日本酒画像-->
-      <%= image_tag @jsake.image.variant(resize: '250x250'), class: 'sake' %>
-       <!--銘柄のキャプション-->
-       <span class="caption">
-       <!--銘柄名-->
-       <h4><%= @jsake.meigara %></h4>
-        <!--銘柄のデータ表-->
-        <table class="table text-nowrap">
-         <tr><th>産地</th><td><%= @jsake.locaility %></td></tr>
-         <tr><th>精米歩合</th><td><%= @jsake.seimai_buai %></td></tr>
-         <tr><th>アルコール度数</th><td><%= @jsake.alcohol_degree %></td></tr>
-         <tr><th>日本酒度</th><td><%= @jsake.sake_meter_value %></td></tr>
-         <tr><th>酸度</th><td><%= @jsake.acidity %></td></tr>
-         <tr><th>甘辛評価</th><td><%= @jsake.amakara %></td></tr>
-        </table>
-                        
-        <!--いいねのハートマークとカウント-->
-        <% if !@jsake.favorite_users.include?(current_user) %>
-         <!---current_userがいいねしていなかったら空白--->
-         <%= link_to favorites_path(jsake_id: @jsake.id, now_url: request.url), method: :post do %>
-           <%= image_tag 'icons/blank-heart-black.png', class: 'sns-icon' %>
-         <% end %>
-        <% else %>
-         <!--いいねしてたら赤-->
-         <%= link_to unfavorites_path(jsake_id: @jsake.id, now_url: request.url), method: :delete do %>
-          <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
-         <% end %>
-        <% end %>
-        <!--いいね数の表示-->
-        <span class="badge"><%= @jsake.favorite_users.count %></span>
-       </div>
-      </span>
-     </div><!--サムネイルのdiv-->
-   
    <div class="col-md-2 comment-list">
-    <% @jsake.comments.each do |c|%>
+    <% @body.each do |b|%>
       <p class="comment-single">
-      <span class="comment-user-name"><%= c.user.name %></span><br>
-      <%= c.body %><br>
-      <% if logged_in? && current_user.id == c.user_id %>
-        <%= link_to 'コメントを編集', edit_comment_path(c.id), class: 'btn btn-success btn-xs' %>
-        <%= link_to 'コメントを削除', comment_path(comment_id: c.id, id: c.jsake_id), method: :delete, class: 'btn btn-danger btn-xs', data:{confirm: "コメントを削除します、よろしいですか？"} %>
+      <span class="comment-user-name"><%= b.user.name %></span><br>
+      <%= b.body %><br>
+      <% if logged_in? && current_user.id == b.user_id %>
+        <%= link_to 'コメントを編集', edit_comment_path(b.id), class: 'btn btn-success btn-xs' %>
+        <%= link_to 'コメントを削除', comment_path(comment_id: b.id, id: b.jsake_id), method: :delete, class: 'btn btn-danger btn-xs', data:{confirm: "コメントを削除します、よろしいですか？"} %>
         <% end %>
       </p>
     <% end %>

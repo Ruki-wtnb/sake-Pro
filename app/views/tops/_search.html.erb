@@ -1,5 +1,4 @@
   <!--検索用の入力欄-->
-   <div class="container-fluid">
      <div class="row">
        <div class="col-md-offset-2 col-md-8 col-xs-12 form-inline" id="search-form">
             <%= form_for @search, url: '/tops/search' do |f| %>
@@ -8,7 +7,6 @@
            <% end %>
        </div>
       </div>
-    </div>
   
   <!--ログインしていたら、検索履歴をテキストフィールドに表示-->
   <% if current_user != nil %>
