@@ -20,14 +20,10 @@
             <%= image_tag "icons/sake-logo.png", class: "navbar-brand logo" %>
           <% end %>
 
-          <div class="col-sm-5 nav-box">
-            <!--検索フォーム-->
-            <input type="text" class="search-word">
-            <input type="submit" value="検索" class="search-buttom">
-          </div>
+          <div class="col-sm-5"></div>
 
           <!--各リンクへのアイコン-->
-          <div class="col-sm-offset-5 link-list">
+          <div class="link-list">
             <ul class="nav-ul">
               <!--ログインしていたら、マイページ、銘柄登録、ログアウトを表示-->
               <% if logged_in? %>
