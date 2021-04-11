@@ -11,20 +11,16 @@
   </head>
   
   <body>
-    <div class="container-fluid">
-      <div class="row"></div>
-        <nav class="navbar navbar-fixed-top">
-          <div class="col-sm-offset-1"></div>
-          <!--日本酒-通-のロゴ・トップページへのリンク-->
-          <%= link_to root_path do %>
-            <%= image_tag "icons/sake-logo.png", class: "navbar-brand logo" %>
-          <% end %>
-
-          <div class="col-sm-5"></div>
-
-          <!--各リンクへのアイコン-->
-          <div class="link-list">
-            <ul class="nav-ul">
+    
+      <header>
+        <div class="header-content">
+          <div class="logo"><!--日本酒-通-のロゴ・トップページへのリンク-->
+            <%= link_to root_path do %>
+            <%= image_tag "icons/text-logo.png" %>
+            <% end %>
+          </div>
+          <nav>
+              <ul class="nav-ul">
               <!--ログインしていたら、マイページ、銘柄登録、ログアウトを表示-->
               <% if logged_in? %>
                 <li class="nav-li"><%= link_to 'マイページ', mypage_path%></li>
@@ -35,14 +31,15 @@
                 <li class="nav-li"><%= link_to 'ログイン', login_path %></li>
                 <li class="nav-li"><%= link_to '新規登録', new_user_path %></li>
               <% end %>
-            </ul>
-
-        </nav>
+              </ul>
+            </nav>
+          </div>
       </div>
-      <!--ここに各ページの内容が埋め込まれる-->
+      </header>
+
       <%= yield %>
-    </div>
-    
+
+      <!--ここに各ページの内容が埋め込まれる-->
     <script>　//メッセージバーの表示5秒
       $(function(){
         $(".alert").fadeOut(5000);

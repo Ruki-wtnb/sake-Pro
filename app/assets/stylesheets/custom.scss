@@ -1,28 +1,35 @@
 
-// //共通
-
-//ナビゲーションバー
-nav {
+//共通
+body{
+  margin: 0;
+  padding: 0;
+}
+//ヘッダー
+header {
+  height: 100px;
+  margin: 0 auto;
   background-color: #4169e1;
 }
+.header-content{
+  width: 1160px;
+  height: 100px;
+  margin: 0 auto;
+}
 
-//日本酒通のロゴ
+//ロゴ
 .logo{ 
-  height: 75px;
-  width: 300px;
-  margin: 1%;
+  margin-top: 10px;
+  float: left;
 }
 
-.link-list{
-  margin-right: 10%;
-  margin-top: 2.8;
-  float: right;
-}
-
+//リンクリスト
 .nav-ul{
   list-style: none;
+  float: right;
+  margin-top: 40px;
   .nav-li{
     display: inline;
+    margin-right: 2.5em;
     a{
       color: white;
       text-decoration: none;
@@ -30,6 +37,10 @@ nav {
       font-size:20px;
     }
   }
+}
+
+a:hover{
+  text-decoration: underline;
 }
 
 
@@ -50,28 +61,33 @@ nav {
   width: 19%;
   border-radius: 0px 15px 15px 0px;
   border: none;
+  border: 1px solid;
   text-align: center;
   display: inline-block;
 }
 
-.nav-box{
-  margin: 2%;
+@media screen and (max-width:820px) { 
+
+  header {
+    width: auto;
+    height: 15%;
+    margin: 0;
+  }
+  .header-content{
+    width: 80%;
+    height: 80%;
+  }
+
+  .nav-ul{
+    float: none;
+    margin-top: 0px;
+  }
+
+
 }
 
-// //検索入力欄
-// .keyword{
-//   width: 90%;
-//   height: 40px;
-//   border-radius: 5px;
-// }
-// //検索ボタン
-// .search{
-//   width: 8%;
-//   height: 40px;
-//   border-radius: 5px;
-// }
-// .search:hover{
-//   box-shadow: 5px 5px 10px #E3E3E3;
+// #search-row{
+//   padding-top: 9%;
 // }
 
 // //日本酒銘柄一つずつのサムネイル
