@@ -19,7 +19,7 @@
         <tr><th>日本酒度</th><td><%= sake.sake_meter_value %></td></tr>
         <tr><th>酸度</th><td><%= sake.acidity %></td></tr>
         <tr><th>甘辛評価</th><td><%= sake.amakara %></td></tr>
-        <tr><th>
+        <tr><th id="sns-space">
           <% if logged_in? != nil? %>
           <div class="sns-icon" id="favo_<%= sake.id %>">
             <!--いいねのハートマークとカウント-->
