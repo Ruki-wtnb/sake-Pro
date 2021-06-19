@@ -5,11 +5,8 @@ class MypagesController < ApplicationController
   @sakes = @mypages.pluck(:meigara, :sake_meter_value, :acidity)
   @favorite_jsakes = current_user.favorite_jsakes.paginate(page: params[:page], per_page: 28)
   @favo_sake = @favorite_jsakes.pluck(:meigara, :sake_meter_value, :acidity)
-  
-  #@favo_sake.each do |sake|
-   #@plot.push({name: sake[0], data: [[sake[1], sake[2]]]})
-  #end  
-  @chart, @x, @y = TopsController.get_data(@favo_sake)
+
+  @chart, @x, @y, @color = TopsController.get_data(@favo_sake)
 
  end
   

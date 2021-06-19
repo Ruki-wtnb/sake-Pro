@@ -37,9 +37,15 @@
     var meigara = '<%== JSON.dump(@chart) %>'.slice(1).slice(0, -1).split(',');
     var x = '<%== JSON.dump(@x) %>'.slice(1).slice(0, -1).split(',');
     var y = '<%== JSON.dump(@y) %>'.slice(1).slice(0, -1).split(',');
-    var color = ['#c3003a', '#3a546b', '#d5a02e', '#918d43', '#787cac', '#604439', '#6f2757', '#c1541c',
-      '#565d63', '#afc9ca', '#baaa52', '#e2b2c0', 
-      '#4d639f', '#356c92', '#c9ced1', '#dfd4be', '#92a1a6', '#a67b2d', '#bda5bb', '#2c4b79', '#d6d680', '#babea5', '#ebc175', '#3a614f']
+    var color = [];
+
+    '<%== JSON.dump(@color) %>'.slice(1).slice(0, -1).split(',').forEach(col => {
+      color.push(col.slice(1,8))
+    })
+
+    // ['#c3003a', '#3a546b', '#d5a02e', '#918d43', '#787cac', '#604439', '#6f2757', '#c1541c',
+    //   '#565d63', '#afc9ca', '#baaa52', '#e2b2c0', 
+    //   '#4d639f', '#356c92', '#c9ced1', '#dfd4be', '#92a1a6', '#a67b2d', '#bda5bb', '#2c4b79', '#d6d680', '#babea5', '#ebc175', '#3a614f']
     
     //日本酒度(x軸)と酸度の(y軸)のオブジェクトを作成, 配列に格納
     var plots = new Array()
@@ -74,7 +80,7 @@
       },
       options:{
         legend: {
-          display: window_width_flag,
+          display: false,
         },
         //maintainAspectRatio: false,
         title: {

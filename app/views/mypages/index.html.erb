@@ -1,7 +1,7 @@
 <!--自分で登録、いいねした日本酒の一覧、いいねした日本酒の分布図が閲覧できるページです。-->
   
   <div class="container-fluid tab-menu">
-    <div class="row">
+    <div class="row first-row">
       <ul class="nav nav-pills nav-justified">
        <li class="active"><a href="#favo" data-target="#favo" data-toggle="tab">お気に入り一覧</a></li>
        <li><a href="#plot" data-target="#plot" data-toggle="tab">お気に入り分布図</a></li>
@@ -15,80 +15,32 @@
     <!--お気に入り銘柄の一覧-->
     <div class="tab-pane active" id="favo">
       <div class="container-fluid index-under-tab">
-        <%= will_paginate @favorite_jsakes %>
+        <%= will_paginate(@favorite_jsakes, :previous_label => '前へ', :next_label => '後へ') %>
     
         <!--登録した銘柄を4件ずつ表示-->
         <% @favorite_jsakes.each_slice(4) do |favo_sake1, favo_sake2, favo_sake3, favo_sake4| %>
           <div class="row index-row">
             <% [favo_sake1, favo_sake2, favo_sake3, favo_sake4].each do |sake|%>
 
-              <%= render partial: 'tops/list',  locals: {sake: sake} %>
+              <%= render partial: 'tops/list',  locals: {sake: sake, reg: 'not'} %>
 
             <% end %><!--eachのend -->
           </div>
         <% end %><!--each.sliceのend -->
-        <%= will_paginate @favorite_jsakes %>
+        <%= will_paginate(@favorite_jsakes, :previous_label => '前へ', :next_label => '後へ') %>
       </div>
     </div>
       
     <!--登録銘柄の一覧-->
     <div class="tab-pane" id="reg">
       <div class="container-fluid index-under-tab">
-        <%= will_paginate %>
+        <%= will_paginate(:previous_label => '前へ', :next_label => '後へ') %>
     
         <!--銘柄全件を4件ずつ表示-->
         <% @mypages.each_slice(4) do |reg_sake1, reg_sake2, reg_sake3, reg_sake4| %>
           <div class="row index-row">
             <% [reg_sake1, reg_sake2, reg_sake3, reg_sake4].each do |sake|%>
-            
-              <div class="col-md-3 col-xs" id="thumbnail-sake">
-                <!--sakeが空白でない場合に実行(each.sliceのエラー対策)-->
-                <% if sake != nil %>
-                  <div class="thumbnail" id="single-sake">
-                    <!--日本酒画像-->
-                    <% if sake.image.attached? %>
-                      <%= image_tag sake.image.variant(resize: '250x250')  %>
-                    <% end %>
-                      <!--銘柄のキャプション-->
-                      <span class="caption">
-                        <!--銘柄名-->
-                        <h4><%= sake.meigara %></h4>
-                        
-                        <!--銘柄のデータ表-->
-                        <table class="table text-nowrap">
-                          <tr><th>産地</th><td><%= sake.locaility %></td></tr>
-                          <tr><th>精米歩合</th><td><%= sake.seimai_buai %></td></tr>
-                          <tr><th>アルコール度数</th><td><%= sake.alcohol_degree %></td></tr>
-                          <tr><th>日本酒度</th><td><%= sake.sake_meter_value %></td></tr>
-                          <tr><th>酸度</th><td><%= sake.acidity %></td></tr>
-                          <tr><th>甘辛評価</th><td><%= sake.amakara %></td></tr>
-                        </table>
-                        
-                        <div class="sns-icon" id="favo_<%= sake.id %>">
-                          <!--いいねのハートマークとカウント-->
-                          <%= render partial: 'mypages/favorite', locals: {sake: sake} %>
-                        </div>
-                        
-                        <!--コメント入力画面へのリンク-->
-                        <%= link_to new_comment_path(jsake_id: sake.id), method: :get do %>
-                          <%= image_tag 'icons/comment-black.png', class: 'sns-icon' %>
-                        <% end %>
-                        
-                        <!--編集へのリンク-->
-                        <%= link_to edit_jsake_path(id: sake.id) do %>
-                          <%= image_tag 'icons/edit.png', class: 'sns-icon' %>
-                        <% end %>
-
-                        <%= link_to jsake_path(id: sake.id), method: :delete, data: { confirm: "銘柄:#{sake.meigara}を削除します。よろしいですか？"} do %>
-                        <%= image_tag 'icons/dump_sake.png', class: 'sns-icon' %>
-                      <% end %>
-
-                        <%= link_to 'コメント一覧', comment_path(sake.id) %>:<%= sake.comments.count %>件
-                        
-                      </span>
-                  </div>
-                <% end %><!--if sake != nilのend -->
-              </div>
+              <%= render partial: 'tops/list',  locals: {sake: sake, reg: 'registered'} %>
             <% end %><!--eachのend -->
           </div>
         <% end %><!--each.sliceのend -->

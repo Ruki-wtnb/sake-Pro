@@ -1,5 +1,5 @@
   <!--検索用の入力欄-->
-  <div class="row" id="search-row">
+  <div class="row first-row">
     <div class="col-md-offset-3 col-md-6 col-xs-offset-1 col-xs-10">
       <%= form_for @search, class: 'search-box', url: '/tops/search' do |f| %>
         <%= f.text_field :word, class:'search-word', list: "search_history", placeholder: '　銘柄を検索', autocomplete: 'off' %>

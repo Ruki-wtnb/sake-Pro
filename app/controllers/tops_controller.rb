@@ -67,6 +67,7 @@ class TopsController < ApplicationController
   chart = ''
    x = []
    y = [] 
+   color = []
   sake_data_set.each_with_index do |sake, i|
     chart += sake[0]
     chart += ',' if sake_data_set.size-1 != i
@@ -86,7 +87,19 @@ class TopsController < ApplicationController
     end
   end
 
-  return chart, x, y
+  x.size.times do
+    red_color = [*0..255]
+    green_color = [*0..255]
+    blue_color = [*0..255]
+    
+    r = red_color.sample
+    g = green_color.sample
+    b = blue_color.sample
+    
+    color.push("##{"%02x"%r}#{"%02x"%g}#{"%02x"%b}")
+  end
+
+  return chart, x, y, color
 
 end
 
