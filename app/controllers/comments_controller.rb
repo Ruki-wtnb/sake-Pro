@@ -29,10 +29,10 @@ class CommentsController < ApplicationController
  end
 
  def show
-  #@jsake = Jsake.find(params[:id])
-  
+  @jsake = Jsake.find(params[:id])
   @comment = Comment.find_by(jsake_id: params[:id])
   @body = Comment.where(jsake_id: params[:id])
+  #binding.pry
  end
 
  def destroy
