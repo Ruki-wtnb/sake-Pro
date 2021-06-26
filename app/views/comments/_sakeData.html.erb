@@ -1,12 +1,11 @@
-<div class="container-fluid comment-new-wrapper">
-  <div class="row index-row">
-    <div class="col-md-offset-2 col-md-4 col-xs-offset-2 col-xs-8" id="thumbnail-sake">
+
+    <div class="col-md-offset-2 col-md-4 col-xs-offset-2 col-xs-8" id="single-sake">
       <!--日本酒画像-->
-      <%= image_tag sake.image.variant(resize: '250x250'), class: 'sake' %>
+      <%= image_tag sake.image.variant(resize: '250x250'), id: 'sake-img' %>
       <!--銘柄のキャプション-->
       <h4><%= sake.meigara %></h4>
       <!--銘柄のデータ表-->
-      <table class="table text-nowrap">
+      <table class="text-nowrap">
         <tr><th>産地</th><td><%= sake.locaility %></td></tr>
         <tr><th>精米歩合</th><td><%= sake.seimai_buai %></td></tr>
         <tr><th>アルコール度数</th><td><%= sake.alcohol_degree %></td></tr>
@@ -16,14 +15,14 @@
       </table>
       <!--いいねのハートマークとカウント-->
       <!---current_userがいいねしていなかったら空白--->
-      <% if !sake.favorite_users.include?(current_user) %>
-        <%= image_tag 'icons/blank-heart-black.png', class: 'sns-icon' %>
-      <% else %>
-      <!--いいねしてたら赤-->
-        <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
-      <% end %>
+      <div id="icon-list">
+        <% if !sake.favorite_users.include?(current_user) %>
+          <%= image_tag 'icons/blank-heart-black.png', class: 'sns-icon' %>
+        <% else %>
+        <!--いいねしてたら赤-->
+          <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
+        <% end %>
       <!--いいね数の表示-->
       <span class="badge"><%= sake.favorite_users.count %></span>
+      </div>
     </div>
-  </div>
-</div>

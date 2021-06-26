@@ -1,16 +1,18 @@
-<%= render partial: 'sakeData' , locals: {sake: @jsake} %>
-
-   <div class="col-md-2 comment-list">
-    <% @body.each do |b|%>
+<div class="container-fluid comment-new-wrapper">
+  <div class="row index-row">
+    <%= render partial: 'sakeData' , locals: {sake: @jsake} %>
+    
+    <div class="col-md-2 comment-list">
+      <% @body.each do |b|%>
       <p class="comment-single">
-      <span class="comment-user-name"><%= b.user.name %></span><br>
-      <%= b.body %><br>
-      <% if logged_in? && current_user.id == b.user_id %>
-        <%= link_to 'コメントを編集', edit_comment_path(b.id), class: 'btn btn-success btn-xs' %>
-        <%= link_to 'コメントを削除', comment_path(comment_id: b.id, id: b.jsake_id), method: :delete, class: 'btn btn-danger btn-xs', data:{confirm: "コメントを削除します、よろしいですか？"} %>
+        <span class="comment-user-name"><%= b.user.name %></span><br>
+        <%= b.body %><br>
+        <% if logged_in? && current_user.id == b.user_id %>
+          <%= link_to 'コメントを編集', edit_comment_path(b.id), class: 'btn btn-success btn-xs' %>
+          <%= link_to 'コメントを削除', comment_path(comment_id: b.id, id: b.jsake_id), method: :delete, class: 'btn btn-danger btn-xs', data:{confirm: "コメントを削除します、よろしいですか？"} %>
         <% end %>
       </p>
-    <% end %>
-   </div>
+      <% end %>
+    </div>
  </div>
 </div>

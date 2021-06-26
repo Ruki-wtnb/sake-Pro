@@ -35,6 +35,13 @@
   <%= f.number_field :acidity, step: "0.1", class: 'form-control' %>
 </div>
 
+<% if current_user.id == 1 %>
+<div class='form-group'>
+  <%= f.label :rakutenlink, "リンク名", class: 'text-white' %>
+  <%= f.text_field :rakutenlink, :placeholder => "楽天リンクを入力", class: 'form-control'%>
+</div>
+<% end %>
+
 <script>
 document.getElementById('sake_img').addEventListener('change', function() {
   let img = document.getElementById('img_area');

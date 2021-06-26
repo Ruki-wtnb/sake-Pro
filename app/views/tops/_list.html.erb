@@ -9,13 +9,14 @@
     <!--銘柄のキャプション-->
     <h4><%= sake.meigara %></h4>
       <!--銘柄のデータ表-->
-      <table class="table text-nowrap">
+      <table class="text-nowrap">
         <tr><th>産地</th><td><%= sake.locaility %></td></tr>
         <tr><th>精米歩合</th><td><%= sake.seimai_buai %></td></tr>
         <tr><th>Alc.</th><td><%= sake.alcohol_degree %></td></tr>
         <tr><th>日本酒度</th><td><%= sake.sake_meter_value %></td></tr>
         <tr><th>酸度</th><td><%= sake.acidity %></td></tr>
         <tr><th>甘辛評価</th><td><%= sake.amakara %></td></tr>
+        <tr><th><%= link_to '楽天で購入', sake.rakutenlink %></th><td></td></tr>
       </table>
       <div id="icon-list">
         <% if logged_in? != nil? %>
@@ -29,7 +30,7 @@
             <% end %>
           
           <!--登録ユーザIDとログイン中のユーザIDが同じかつ登録一覧なら表示-->
-          <% if sake.user_id == current_user.id && reg == 'registered' %>
+          <% if sake.user_id == current_user.id && reg == 'registered' && reg != 'admin' %>
             <!--編集へのリンク-->
             <%= link_to edit_jsake_path(id: sake.id) do %>
               <%= image_tag 'icons/edit.png', class: 'sns-icon' %>
@@ -39,7 +40,12 @@
               <%= image_tag 'icons/dump_sake.png', class: 'sns-icon' %>
             <% end %>
           <% end %>
-        <% end %>  
+        <% end %>
+        
+        <% if reg == 'admin' %>
+          <%= link_to '登録', edit_link_path(jsake_id: sake.id) %>
+        <% end %>
+          
         <div class="comment-show sns-icon">
           <%= link_to 'コメント一覧', comment_path(sake.id) %>:<%= sake.comments.count %>件
         </div>
