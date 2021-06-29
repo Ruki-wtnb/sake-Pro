@@ -23,13 +23,8 @@ class TopsController < ApplicationController
         end
       end
       @search_sake = @result.pluck(:meigara, :sake_meter_value, :acidity)
-
-      #@search_plot = []
-      #@search_sake.each do |sake|
-       # @search_plot.push({name: sake[0], data: [[sake[1], sake[2]]]})
-      #end
       
-      @chart, @x, @y = TopsController.get_data(@search_sake)
+      @chart, @x, @y, @color = TopsController.get_data(@search_sake)
       
     @search = SearchHistory.new #検索履歴モデルの新規
     if current_user != nil #ログインしているならば検索履歴の表示と保存を実行

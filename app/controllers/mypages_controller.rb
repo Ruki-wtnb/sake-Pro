@@ -3,9 +3,9 @@ class MypagesController < ApplicationController
  def index
 
   if current_user.id == 1
-    @mypages = current_user.jsakes.order(id: "DESC").paginate(page: params[:page], per_page: 28)
-  else
     @mypages = Jsake.paginate(page: params[:page], per_page: 28)
+  else
+    @mypages = current_user.jsakes.order(id: "DESC").paginate(page: params[:page], per_page: 28)
   end
 
   @sakes = @mypages.pluck(:meigara, :sake_meter_value, :acidity)

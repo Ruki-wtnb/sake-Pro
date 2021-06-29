@@ -6,7 +6,7 @@
     <% @result.each_slice(4) do |ret_sake1, ret_sake2, ret_sake3, ret_sake4| %>
       <div class="row index-row">
         <% [ret_sake1, ret_sake2, ret_sake3, ret_sake4].each do |sake|%>
-          <%= render partial: 'tops/list',  locals: {sake: sake} %>
+          <%= render partial: 'tops/list',  locals: {sake: sake,  reg: 'not'} %>
         <% end %><!--eachのend -->
       </div>
     <% end %><!--each.sliceのend -->

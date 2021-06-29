@@ -16,8 +16,8 @@
         <tr><th>日本酒度</th><td><%= sake.sake_meter_value %></td></tr>
         <tr><th>酸度</th><td><%= sake.acidity %></td></tr>
         <tr><th>甘辛評価</th><td><%= sake.amakara %></td></tr>
-        <tr><th><%= link_to '楽天で購入', sake.rakutenlink %></th><td></td></tr>
       </table>
+      
       <div id="icon-list">
         <% if logged_in? != nil? %>
           <div class="sns-icon" id="favo_<%= sake.id %>">
@@ -50,6 +50,15 @@
           <%= link_to 'コメント一覧', comment_path(sake.id) %>:<%= sake.comments.count %>件
         </div>
       </div>
+      <div id="link">
+        <% if sake.rakutenlink != nil %>
+          <%= link_to '楽天で購入', sake.rakutenlink,  target: :_blank, rel: "noopener noreferrer"  %>
+            <% else %>
+          リンク未設定
+        <% end %>
+      </div>
+
+
   <!--if sake != nilのend -->
   <% end %>
 
