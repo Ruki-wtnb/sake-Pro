@@ -16,17 +16,21 @@
     <div class="tab-pane active" id="favo">
       <div class="container-fluid index-under-tab">
         <%= will_paginate(@favorite_jsakes, :previous_label => '前へ', :next_label => '後へ') %>
-    
-        <!--登録した銘柄を4件ずつ表示-->
-        <% @favorite_jsakes.each_slice(4) do |favo_sake1, favo_sake2, favo_sake3, favo_sake4| %>
-          <div class="row index-row">
-            <% [favo_sake1, favo_sake2, favo_sake3, favo_sake4].each do |sake|%>
 
-              <%= render partial: 'tops/list',  locals: {sake: sake, reg: 'not'} %>
+        <!--お気に入りした銘柄を4件ずつ表示-->
+        <% if @favorite_jsakes.length != 0 %>
+          <% @favorite_jsakes.each_slice(4) do |favo_sake1, favo_sake2, favo_sake3, favo_sake4| %>
+            <div class="row index-row">
+              <% [favo_sake1, favo_sake2, favo_sake3, favo_sake4].each do |sake|%>
 
-            <% end %><!--eachのend -->
-          </div>
-        <% end %><!--each.sliceのend -->
+                <%= render partial: 'tops/list',  locals: {sake: sake, reg: 'not'} %>
+
+              <% end %><!--eachのend -->
+            </div>
+          <% end %><!--each.sliceのend -->
+        <% else %>
+          <div class="noreg">現在お気に入り登録している銘柄はありません。</div>
+        <% end %>
         <%= will_paginate(@favorite_jsakes, :previous_label => '前へ', :next_label => '後へ') %>
       </div>
     </div>
@@ -37,13 +41,17 @@
         <%= will_paginate(:previous_label => '前へ', :next_label => '後へ') %>
     
         <!--銘柄全件を4件ずつ表示-->
-        <% @mypages.each_slice(4) do |reg_sake1, reg_sake2, reg_sake3, reg_sake4| %>
-          <div class="row index-row">
-            <% [reg_sake1, reg_sake2, reg_sake3, reg_sake4].each do |sake|%>
-              <%= render partial: 'tops/list',  locals: {sake: sake, reg: 'registered'} %>
-            <% end %><!--eachのend -->
-          </div>
-        <% end %><!--each.sliceのend -->
+        <% if @mypages.length != 0 %>
+          <% @mypages.each_slice(4) do |reg_sake1, reg_sake2, reg_sake3, reg_sake4| %>
+            <div class="row index-row">
+              <% [reg_sake1, reg_sake2, reg_sake3, reg_sake4].each do |sake|%>
+                <%= render partial: 'tops/list',  locals: {sake: sake, reg: 'registered'} %>
+              <% end %><!--eachのend -->
+            </div>
+          <% end %><!--each.sliceのend -->
+        <% else %>
+          <div class="noreg">現在お気に入り登録している銘柄はありません。</div>
+        <% end %>
         <%= will_paginate %><%= will_paginate(:previous_label => '前へ', :next_label => '後へ') %>
       </div>
     </div>
