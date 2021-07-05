@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_19_121529) do
+ActiveRecord::Schema.define(version: 2021_07_05_123127) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2021_06_19_121529) do
     t.string "meigara"
     t.string "seimai_buai"
     t.string "locaility"
-    t.string "alcohol_degree"
+    t.float "alcohol_degree"
     t.float "sake_meter_value"
     t.float "acidity"
     t.datetime "created_at", null: false
