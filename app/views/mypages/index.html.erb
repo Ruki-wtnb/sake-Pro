@@ -50,14 +50,18 @@
             </div>
           <% end %><!--each.sliceのend -->
         <% else %>
-          <div class="noreg">現在お気に入り登録している銘柄はありません。</div>
+          <div class="noreg">現在登録している銘柄はありません。</div>
         <% end %>
         <%= will_paginate %><%= will_paginate(:previous_label => '前へ', :next_label => '後へ') %>
       </div>
     </div>
       
     <div class="tab-pane" id="plot">
-      <%= render partial: 'graphs/scatterPlot'%>
+      <% if @chart.length != 0 %>
+        <%= render partial: 'graphs/scatterPlot'%>
+      <% else %>
+        <div class="noreg">現在登録している銘柄はありません。</div>
+      <% end %>
     </div>
     
     <div class="tab-pane" id="userInfo">
