@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.7'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.5'
 # Use mysql as the database for Active Record
@@ -76,7 +75,6 @@ gem 'bcrypt'
 gem "carrierwave"
 gem 'will_paginate',           '3.1.7'
 gem 'bootstrap-will_paginate', '1.0.0'
-gem 'chartkick'
 gem "aws-sdk-s3", require: false
 gem 'mini_magick', '~> 4.8'
 gem 'image_processing', '~> 1.2'
