@@ -1,3 +1,4 @@
+ARG RUBY_VERSION=2.6.7
 FROM ruby:2.6.7
 RUN apt-get update -qq && \
     apt-get install -y build-essential \ 
