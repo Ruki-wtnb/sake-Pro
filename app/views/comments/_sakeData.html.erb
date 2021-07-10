@@ -1,28 +1,28 @@
 
     <div class="col-md-offset-2 col-md-4 col-xs-offset-2 col-xs-8" id="single-sake">
       <!--日本酒画像-->
-      <%= image_tag sake.image.variant(resize: '250x250'), id: 'sake-img' %>
+      <%= image_tag @comment.jsake.image.variant(resize: '250x250'), id: 'sake-img' %>
       <!--銘柄のキャプション-->
-      <h4><%= sake.meigara %></h4>
+      <h4><%= @comment.jsake.meigara %></h4>
       <!--銘柄のデータ表-->
       <table class="text-nowrap">
-        <tr><th>産地</th><td><%= sake.locaility %></td></tr>
-        <tr><th>精米歩合</th><td><%= sake.seimai_buai %></td></tr>
-        <tr><th>アルコール度数</th><td><%= sake.alcohol_degree %></td></tr>
-        <tr><th>日本酒度</th><td><%= sake.sake_meter_value %></td></tr>
-        <tr><th>酸度</th><td><%= sake.acidity %></td></tr>
-        <tr><th>甘辛評価</th><td><%= sake.amakara %></td></tr>
+        <tr><th>産地</th><td><%= @comment.jsake.locaility %></td></tr>
+        <tr><th>精米歩合</th><td><%= @comment.jsake.seimai_buai %></td></tr>
+        <tr><th>アルコール度数</th><td><%= @comment.jsake.alcohol_degree %></td></tr>
+        <tr><th>日本酒度</th><td><%= @comment.jsake.sake_meter_value %></td></tr>
+        <tr><th>酸度</th><td><%= @comment.jsake.acidity %></td></tr>
+        <tr><th>甘辛評価</th><td><%= @comment.jsake.amakara %></td></tr>
       </table>
       <!--いいねのハートマークとカウント-->
       <!---current_userがいいねしていなかったら空白--->
       <div id="icon-list">
-        <% if !sake.favorite_users.include?(current_user) %>
+        <% if !@comment.jsake.favorite_users.include?(current_user) %>
           <%= image_tag 'icons/blank-heart-black.png', class: 'sns-icon' %>
         <% else %>
         <!--いいねしてたら赤-->
           <%= image_tag 'icons/filled-heart.png', class: 'sns-icon' %>
         <% end %>
       <!--いいね数の表示-->
-      <span class="badge"><%= sake.favorite_users.count %></span>
+      <span class="badge"><%= @comment.jsake.favorite_users.count %></span>
       </div>
     </div>

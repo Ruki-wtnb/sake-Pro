@@ -1,10 +1,12 @@
 
-<%= render partial: 'sakeData' %>
-  <div class="vote-button">
+<%= render partial: 'sakeData', locals:{comment: @comment} %>
+  <!--
+    <div class="vote-button">
     <% @taste.each_with_index do |t, i| %>
       <%= button_to  t.taste_name, vote_create_path, {class: "btn", id: i, method: :get, params: {jsake_id: @comment.jsake_id, taste_id: i+1} } %>
     <% end %>
   </div>
+-->
   <div class="col-md-4">
     <%= form_for @comment do |f| %> <!---コメントの入力フォーム--->
      <div class="form-group">

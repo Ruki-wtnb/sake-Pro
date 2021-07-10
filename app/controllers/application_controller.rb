@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
 #マスターユーザ...userid:master password:master1234
 #heroku...メールアドレス, prg_Java_Ruby099
 
+#DB接続　heroku login →　heroku pg:psql -a young-everglades-09991
 #定義したメソッドをビューでも使えるようにする
  helper_method :current_user, :logged_in?, :current_user
 
