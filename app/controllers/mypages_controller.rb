@@ -2,7 +2,7 @@ class MypagesController < ApplicationController
  
  def index
 
-  if current_user.id == 1
+  if current_user.id == 9
     @mypages = Jsake.paginate(page: params[:page], per_page: 28)
   else
     @mypages = current_user.jsakes.order(id: "DESC").paginate(page: params[:page], per_page: 28)
