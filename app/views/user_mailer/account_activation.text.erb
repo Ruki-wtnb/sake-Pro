@@ -1,5 +1,5 @@
 
-<%= @user.name %>さん、こんにちは
+<%= @user[:name] %>さん、こんにちは
 
 日本酒通へようこそ。下記リンクをクリックしてアカウントを有効化してください。
-<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>
+= link_to "Activate", edit_account_activation_url(@user[:activation_token], email: @user[:email], id: @user[:id])
