@@ -10,8 +10,12 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
+/bin/*
 !/log/.keep
 !/tmp/.keep
+/db/mysql/volumes/ib_buffer_pool
+/db/mysql/volums/ib_logfile0
+/db/mysql/volums/ibdata1
 
 # Ignore uploaded files in development
 /storage/*
@@ -317,3 +321,12 @@ vendor/cache/ruby/2.6.0/gems/rake-13.0.3/lib/rake/clean.rb
 vendor/cache/ruby/2.6.0/gems/rake-13.0.3/lib/rake/cloneable.rb
 vendor/cache/ruby/2.6.0/gems/rake-13.0.3/lib/rake/cpu_counter.rb
 vendor/cache/ruby/2.6.0/gems/rake-13.0.3/lib/rake/default_loader.rb
+db/mysql/volumes/ib_buffer_pool
+db/mysql/volumes/ib_buffer_pool
+db/mysql/volumes/ib_logfile0
+db/mysql/volumes/ibdata1
+db/mysql/volumes/mysql/innodb_index_stats.ibd
+db/mysql/volumes/mysql/innodb_table_stats.ibd
+db/mysql/volumes/sake_development/schema_migrations.ibd
+db/mysql/volumes/sake_development/users.frm
+db/mysql/volumes/sake_development/users.ibd

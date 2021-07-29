@@ -34,8 +34,12 @@
               </ul>
             </nav>
           </div>
-      </div>
-      </header>
+          <% flash.each do |key, value| %>
+            <div calss="alert alert-<%= key %>" role="alert">
+              <%= value %>
+            </div>
+          <% end %>
+        </header>
 
       <%= yield %>
 
