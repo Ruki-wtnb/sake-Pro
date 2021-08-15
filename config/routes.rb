@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :users
   resources :jsakes
   resources :comments
+  resources :account_activations, only: [:edit]
 
   #ログインパスsessionコントローラのnewアクションへ
   get '/login', to: 'sessions#new'

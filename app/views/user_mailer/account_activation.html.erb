@@ -1,0 +1,4 @@
+<h1>日本酒通</h1>
+<p><%= @user[:name] %>さん、こんにちは</p>
+<p>日本酒通へようこそ。下記リンクをクリックしてアカウントを有効化してください。</p>
+<%= edit_account_activation_url(@user[:activation_token], email: @user[:email], id: @user[:id]) %>

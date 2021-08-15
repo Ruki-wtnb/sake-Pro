@@ -10,8 +10,12 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
+/bin/*
 !/log/.keep
 !/tmp/.keep
+/db/mysql/volumes/ib_buffer_pool
+/db/mysql/volums/ib_logfile0
+/db/mysql/volums/ibdata1
 
 # Ignore uploaded files in development
 /storage/*
