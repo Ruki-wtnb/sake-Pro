@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 2021_07_28_083759) do
     t.datetime "birthday"
     t.integer "gender_id"
     t.string "activation_digest"
-    t.boolean "activated", default: false
+    t.boolean "activated", default: true
     t.datetime "activated_at"
     t.boolean "admin", default: false
   end
