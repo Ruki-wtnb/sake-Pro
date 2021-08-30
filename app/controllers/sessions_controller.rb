@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     #Userモデルからemailをキーに、入を力されたemailを検索する
     user = User.find_by(email: user_info[:email])
     #登録されたemailであり、暗号化されたパスワードが一致するか
-    if user && user.authenticate(user_info[:password]) && user.activated?
+    if user && user.authenticate(user_info[:password]) #&& user.activated?
       log_in(user)
       #params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       redirect_to mypage_path, success: 'ログインに成功しました'
