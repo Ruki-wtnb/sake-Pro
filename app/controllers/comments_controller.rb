@@ -32,7 +32,9 @@ class CommentsController < ApplicationController
   @jsake = Jsake.find(params[:id])
   @comment = Comment.find_by(params[:id])
   @body = Comment.where(jsake_id: params[:id])
-  #binding.pry
+  search_sake = []
+  search_sake.push([@jsake.meigara, @jsake.sake_meter_value.to_f, @jsake.acidity.to_f])
+  @chart, @x, @y, @color = TopsController.get_data(search_sake)
  end
 
  def destroy

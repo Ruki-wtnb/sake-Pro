@@ -346,3 +346,6 @@ bin/tilt
 bin/yard
 bin/yardoc
 bin/yri
+db/mysql/volumes/ib_logfile0
+db/mysql/volumes/ib_logfile0
+db/mysql/volumes/ibdata1

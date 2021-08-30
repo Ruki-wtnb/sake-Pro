@@ -63,7 +63,7 @@ class TopsController < ApplicationController
    x = []
    y = [] 
    color = []
-  sake_data_set.each_with_index do |sake, i|
+   sake_data_set.each_with_index do |sake, i|
     chart += sake[0]
     chart += ',' if sake_data_set.size-1 != i
     
