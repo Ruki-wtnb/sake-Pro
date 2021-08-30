@@ -1,7 +1,6 @@
 <div class="container-fluid comment-new-wrapper">
   <div class="row index-row">
     <%= render partial: 'sakeData' , locals: {jsake: @jsake, comment: @comment} %>
-    
     <div class="col-md-2 comment-list">
       <% @body.each do |b|%>
       <p class="comment-single">
