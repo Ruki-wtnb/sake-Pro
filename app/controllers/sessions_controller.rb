@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     #登録されたemailであり、暗号化されたパスワードが一致するか
     if user && user.authenticate(user_info[:password]) && user.activated?
       log_in(user)
-      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+      #params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       redirect_to mypage_path, success: 'ログインに成功しました'
     else
       flash.now[:danger] = 'ログインに失敗しました'
