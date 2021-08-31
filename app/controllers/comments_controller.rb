@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
  
  def new
-  @jsake = Jsake.find(params[:jsake_id])
+  @jsake = Jsake.find(params[:id])
   @comment = Comment.new(user_id: current_user.id, jsake_id: params[:jsake_id])
   @taste = Taste.all
  end
@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
  end
 
  def edit
-  @jsake = Jsake.find(params[:jsake_id])
+  @jsake = Jsake.find(params[:id])
   @comment = Comment.find(params[:id])
  end
 
@@ -30,7 +30,8 @@ class CommentsController < ApplicationController
  end
 
  def show
-  @jsake = Jsake.find(params[:jsake_id])
+  binding.pry
+  @jsake = Jsake.find(params[:id])
   @comment = Comment.find_by(params[:id])
   @body = Comment.where(jsake_id: params[:id])
   # search_sake = []
