@@ -30,7 +30,6 @@ class CommentsController < ApplicationController
  end
 
  def show
-  binding.pry
   @jsake = Jsake.find(params[:id])
   @comment = Comment.find_by(params[:id])
   @body = Comment.where(jsake_id: params[:id])
