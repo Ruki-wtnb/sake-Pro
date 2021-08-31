@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
  
  def new
-  @jsake = Jsake.find(params[:id])
+  @jsake = Jsake.find(params[:jsake_id])
   @comment = Comment.new(user_id: current_user.id, jsake_id: params[:jsake_id])
   @taste = Taste.all
  end
